@@ -1,26 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo_utils.c                                       :+:      :+:    :+:   */
+/*   free_and_clear.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aldalmas <aldalmas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/09 08:32:54 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/02/16 17:28:43 by aldalmas         ###   ########.fr       */
+/*   Created: 2023/02/14 08:46:21 by aldalmas          #+#    #+#             */
+/*   Updated: 2023/02/14 10:13:51 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	check_point(int x, int x_end, int y, int y_end)
+void	free_tab(char **tab)
 {
-	float	check_x;
-	float	check_y;
-	float	result;
+	int	i;
 
-	check_x = abs(x_end - x);
-	check_y = abs(y_end - y);
-	result = abs(check_x / check_y);
-	// a terminer
+	while (tab[i])
+	{
+		if (tab[i])
+			free(tab[i]);
+	}
+	if (tab)
+		free(tab);
 }
 
+void	clear_map_int(t_map *map)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (map->map[y])
+	{
+		x = 0;
+		while (map->map[y][x])
+		{
+			free(map->map_int[y][x]);
+			x++;
+		}
+		free(map->map_int[y]);
+		y++;
+	}
+}
+
+void	clear_map(t_map *map)
+{
+	return ;
+}

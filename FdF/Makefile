@@ -1,16 +1,18 @@
 NAME = FdF 
 
 SRC = main.c \
+	  get_fd_data.c \
+	  key_events.c \
 	  error_checker.c \
-	  get_line.c \
-	  fdf_utils.c
+	  fdf_utils.c \
+	  free_and_clear.c \
+	  draw.c
 
 LIBPATH = libft/
 LIBNAME = libft.a
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
-#FLAGSMLX = -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit
-FLAGSMLX = -Wall -Wextra -Werror
+FLAGSMLX = -Wall -Wextra -Werror -lmlx -framework OpenGL -framework AppKit
 OBJ = $(SRC:.c=.o)
 
 .c.o = $(CC) ${FLAGS} -c -o $(OBJ)
@@ -28,7 +30,7 @@ clean:
 	@echo "Suppression des .o" 
 
 fclean: clean
-	make fclean -C ${LIBPATH}
+	@make fclean -C ${LIBPATH}
 	@rm -f $(NAME)
 	@echo "Suppression du .a effectuée"
 
