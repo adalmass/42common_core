@@ -6,7 +6,7 @@
 /*   By: aldalmas <aldalmas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 10:42:05 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/02/16 16:34:41 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/02/17 11:11:29 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 typedef struct s_img{
 	int			endian;
 	int			bpp;
-	int			l_length;
+	int			lght;
 	char		*addr;
 	void		*img;
 }				t_img;
@@ -56,10 +56,15 @@ int		check_fd_opening(int fd);
 int		check_mlx_init(t_minilbx *mlx);
 int		check_mlx_window(t_minilbx *mlx);
 
+// security.c
+void	struct_initializer(t_minilbx *mlx, t_map *map, t_img *img);
+void	mlx_initializer(t_minilbx *mlx, t_img *img);
+
 // get_fd_data.c
 void	get_map_char(t_map *map);
 void	get_map_int(t_map *map);
 void	get_map(t_map *map);
+void	fill_all_tabs(t_map *map, char *av);
 
 // fdf_utils.c
 void	check_point(int x, int x_end, int y, int y_end);
@@ -68,14 +73,9 @@ void	check_point(int x, int x_end, int y, int y_end);
 int		check_event(int key);
 int		shutdown(void);
 
-// free_and_clear.c
-void	clear_map_int(t_map *map);
-void	clear_map(t_map *map);
-void	free_tab(char **tab);
-
 // draw.c
 void	create_img(t_minilbx *mlx, t_img *img);
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void	put_pixel(t_img *img, int x, int y, int color);
 void	fdf(t_minilbx *mlx, t_map *map, t_img *img);
 
 #endif

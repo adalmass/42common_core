@@ -5,7 +5,7 @@ SRC = main.c \
 	  key_events.c \
 	  error_checker.c \
 	  fdf_utils.c \
-	  free_and_clear.c \
+	  initialize.c \
 	  draw.c
 
 LIBPATH = libft/

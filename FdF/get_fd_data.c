@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_line.c                                         :+:      :+:    :+:   */
+/*   get_fd_data.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aldalmas <aldalmas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/09 13:44:43 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/02/13 10:58:51by aldalmas         ###   ########.fr       */
+/*   Created: 2023/02/17 11:39:31 by aldalmas          #+#    #+#             */
+/*   Updated: 2023/02/17 11:40:20 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,14 @@ void	get_map(t_map *map)
 	map->map[i] = NULL;
 }
 
+void	fill_all_tabs(t_map *map, char *av)
+{
+	map->fd = open(av, O_RDONLY);
+	get_map_char(map);
+	get_map(map);
+	get_map_int(map);
+	close(map->fd);
+}
 /* Naviguer dans le triple tableau de ses morts la pute
 while (map->map[i][++j])
 {
