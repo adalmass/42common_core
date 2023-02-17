@@ -1,4 +1,6 @@
+FdF.dSYM
+FdF.dSYM
 .Ds_Store
 *.a
 *.o
-.vscode/
+*.vscode/
