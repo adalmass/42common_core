@@ -4,3 +4,5 @@ FdF.dSYM
 *.o
 *.vscode/
 ./FdF
+./a.out
+./so_long
