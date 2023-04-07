@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:35:24 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/07 16:18:03 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/07 16:44:33 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	get_map_str(t_map *map)
 	int		good_len;
 	char	*temp;
 
-	map->map_str = malloc(sizeof(char));
+	map->map_str = ft_strdup("");
 	first_turn = 1;
 	while (1)
 	{
@@ -61,8 +61,6 @@ void	get_map_str(t_map *map)
 			good_len = s_len(temp);
 			first_turn = 0;
 		}
-		ft_printf("good_len : %d - actual_len : %d\n", good_len, s_len(temp));
-		ft_putstr(temp);
 		if (check_len_size(good_len, s_len(temp), temp))
 			map->map_str = ft_strjoin_gnl(map->map_str, temp);
 		else
