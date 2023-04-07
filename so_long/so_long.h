@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:29:34 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/07 14:42:50 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:11:38 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,6 @@
 # include "libft/libft.h"
 # include <mlx.h>
 # include <fcntl.h>
-# include <stdio.h>
-
-# ifndef BUFFER
-#  define BUFFER 20000
-#  endif
 
 typedef struct	s_minilbx {
 	void		*img;
@@ -32,6 +27,7 @@ typedef struct	s_map {
 	int			x;
 	int 		y;
 	int			fd;
+	char		*temp;
 	char		*map_str;
 	char		**map;
 }			    t_map;

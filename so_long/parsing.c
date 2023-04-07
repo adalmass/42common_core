@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:35:24 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/07 16:44:33 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:08:21 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,33 +42,29 @@ int	is_a_valid_map(char *temp, t_parse *parse)
 
 void	get_map_str(t_map *map)
 {
-	int		first_turn;
-	int		good_len;
-	char	*temp;
+	int	first_turn;
+	int	good_len;
 
 	map->map_str = ft_strdup("");
 	first_turn = 1;
 	while (1)
 	{
-		temp = get_next_line(map->fd);
-		if (!temp)
-		{
-			free(temp);
+		map->temp = get_next_line(map->fd);
+		if (!map->temp)
 			break ;
-		}
 		if (first_turn)
 		{
-			good_len = s_len(temp);
+			good_len = s_len(map->temp);
 			first_turn = 0;
 		}
-		if (check_len_size(good_len, s_len(temp), temp))
-			map->map_str = ft_strjoin_gnl(map->map_str, temp);
+		if (check_len_size(good_len, s_len(map->temp), map->temp))
+			map->map_str = ft_strjoin_gnl(map->map_str, map->temp);
 		else
 		{
 			ft_putstr("ERROR : lines does not have the same size\n");
 			exit (1);
 		}
-		free(temp);
+		free(map->temp);
 	}
 }
 
@@ -77,5 +73,4 @@ void	get_map(t_map *map, t_parse *parse)
 	get_map_str(map);
 	is_a_valid_map(map->map_str, parse);
 	map->map = ft_split(map->map_str, '\n');
-	free(map->map_str);
 }
