@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 11:54:45 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/13 14:58:48 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/13 15:00:08 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	check_len_size(t_map *map, int actual_len)
 	if (map->temp[actual_len] == '\0' && map->temp[actual_len - 1] != '\n'
 		&& map->good_len == actual_len + 1)
 		return (1);
-	ft_putstr("coucou");
 	if (map->good_len == actual_len)
 		return (1);
 	return (0);

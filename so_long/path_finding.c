@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 12:59:02 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/13 14:44:15 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/13 16:04:07 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,44 @@ int	detect_exit(t_map *map, t_parse *parse)
 	return (0);
 }
 
-int	move(t_map *map)
+void	detect_path(t_map *map)
 {
 	if (map->map_path[map->y][map->x + 1] != '1'
 		&& map->map_path[map->y][map->x + 1] != 'o')
+	{
+		map->map_path[map->y][map->x + 1] = 'o';
 		map->x++;
-	return (0);
+		ft_putstr("je bouge à droite\n");
+		return ;
+	}
+	else if (map->map_path[map->y + 1][map->x] != '1'
+		&& map->map_path[map->y + 1][map->x] != 'o')
+	{
+		map->map_path[map->y + 1][map->x] = 'o';
+		map->y++;
+		ft_putstr("je bouge en bas\n");
+		return ;
+	}
+	else if (map->map_path[map->y][map->x - 1] != '1'
+		&& map->map_path[map->y][map->x - 1] != 'o')
+	{
+		map->map_path[map->y][map->x - 1] = 'o';
+		map->x--;
+		ft_putstr("je bouge à gauche\n");
+		return ;
+	}
+	else if (map->map_path[map->y - 1][map->x] != '1'
+		&& map->map_path[map->y - 1][map->x] != 'o')
+	{
+		map->map_path[map->y - 1][map->x] = 'o';
+		map->y--;
+		ft_putstr("je bouge en haut\n");
+		return ;
+	}
+	ft_putstr("BLOQUÉ\n");
 }
 
-int	detect_items(t_map *map, t_parse *parse)
+int	move_pathfinding(t_map *map, t_parse *parse)
 {
 	if (detect_coin(map))
 		parse->coin_get++;
@@ -87,5 +116,7 @@ int	detect_items(t_map *map, t_parse *parse)
 		ft_putstr("path finding check\n");
 		return (1);
 	}
+	detect_path(map);
+	ft_printf("Je suis en x :%d | y :%d\n", map->x, map->y);
 	return (0);
 }

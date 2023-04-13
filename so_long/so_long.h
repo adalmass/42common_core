@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:29:34 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/13 14:54:36 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/13 16:04:07 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,12 @@ int		check_len_size(t_map *map, int actual_len);
 // --- check_path.c
 int		direction_choosen(t_map *map, char value);
 void	copy_map(t_map *map, t_item_xy *item_xy);
-void	is_playable_map(t_map *map);
+void	is_playable_map(t_map *map, t_parse *parse, t_item_xy *item_xy);
 
 // --- path_finding.c
 int		detect_coin(t_map *map);
 int		detect_exit(t_map *map, t_parse *parse);
-int		move(t_map *map);
-int		detect_items(t_map *map, t_parse *parse);
+int		move_pathfinding(t_map *map, t_parse *parse);
+void	detect_path(t_map *map);
 
 #endif
