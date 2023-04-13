@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aldalmas <aldalmas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 17:02:36 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/02/05 18:12:48 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/10 17:15:52 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*if_find_newline(int fd, int ret, char **stock, char *temp)
 	while (ret > 0 || search_backslash_n(*stock) >= 0)
 	{
 		temp[ret] = '\0';
-		*stock = ft_strjoin(*stock, temp);
+		*stock = ft_strjoin_gnl(*stock, temp);
 		if (!(*stock))
 			return (NULL);
 		idx_newline = search_backslash_n(*stock);

@@ -5,7 +5,9 @@ SRC = main.c \
 	  startup_checks.c \
 	  utils.c\
 	  initialize.c \
-	  errors.c
+	  errors.c \
+	  check_path.c \
+	  path_finding.c
 	  
 
 LIBPATH = libft/
