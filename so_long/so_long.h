@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:29:34 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/13 14:34:45 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/13 14:54:36 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ typedef struct s_item_xy {
 	int			spawn_y;
 }				t_item_xy;
 
-typedef struct	s_minilbx {
+typedef struct s_minilbx {
 	void		*img;
 	void		*mlx;
 	void		*window;
 }				t_mlx;
 
-typedef struct	s_map {
+typedef struct s_map {
 	int			x;
-	int 		y;
+	int			y;
 	int			fd;
 	int			good_len;
 	int			lines;
@@ -40,9 +40,9 @@ typedef struct	s_map {
 	char		*map_str;
 	char		**map;
 	char		**map_path;
-}			    t_map;
+}				t_map;
 
-typedef struct	s_parsing {
+typedef struct s_parsing {
 	int			wall;
 	int			path;
 	int			coin;
@@ -55,9 +55,9 @@ typedef struct	s_parsing {
 }				t_parse;
 
 //--- startup_checks.c
-int		check_args_nb(int ac);
-int		check_fd_format(char *av);
 int		check_fd_opening(int fd);
+void	check_args_nb(int ac);
+void	check_fd_format(char *av);
 void	startup_checks(int ac, char *av);
 
 // --- initialize.c
