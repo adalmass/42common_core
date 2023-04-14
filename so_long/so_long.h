@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:29:34 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/13 16:04:07 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/14 17:36:17 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_map {
 	int			fd;
 	int			good_len;
 	int			lines;
+	int			blocked; // a suppr
 	char		*temp;
 	char		*map_str;
 	char		**map;
@@ -78,16 +79,17 @@ int		search_char(char *haystack, char needle);
 int		check_if_errors2(t_parse *parse);
 int		check_if_errors(t_parse *parse);
 int		check_len_size(t_map *map, int actual_len);
+void	ft_exit(char *error_msg);
 
 // --- check_path.c
-int		direction_choosen(t_map *map, char value);
 void	copy_map(t_map *map, t_item_xy *item_xy);
 void	is_playable_map(t_map *map, t_parse *parse, t_item_xy *item_xy);
+void	print_map(t_map *map, t_parse *parse);
 
 // --- path_finding.c
 int		detect_coin(t_map *map);
 int		detect_exit(t_map *map, t_parse *parse);
-int		move_pathfinding(t_map *map, t_parse *parse);
-void	detect_path(t_map *map);
+void	pathfinding(t_map *map, t_parse *parse, t_item_xy *item_xy);
+void	try_to_move(t_map *map, t_item_xy *item_xy);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:08:34 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/13 14:52:04 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/14 17:36:49 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	initialize_map(t_map *map)
 	map->fd = 0;
 	map->good_len = 0;
 	map->lines = 0;
+	map->blocked = 0;
 }
 
 void	initialize_item_xy(t_item_xy *item_xy)

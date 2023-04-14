@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 17:35:27 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/13 16:04:07 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/14 17:44:22 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ void	copy_map(t_map *map, t_item_xy *item_xy)
 {
 	map->map_path = malloc(sizeof(char *) * map->lines + 1);
 	if (!map->map_path)
-		exit (1);
+		ft_exit("ERROR : malloc failed for **map_path (check_path.c)");
 	while (map->map[map->y])
 	{
 		map->map_path[map->y] = malloc(sizeof(char) * map->good_len + 1);
 		if (!map->map_path[map->y])
-			exit (1);
+			ft_exit("ERROR : malloc failed for map_path[y] (check_path.c)");
 		while (map->map[map->y][map->x])
 		{
 			map->map_path[map->y][map->x] = map->map[map->y][map->x];
@@ -47,29 +47,32 @@ void	copy_map(t_map *map, t_item_xy *item_xy)
 		map->y++;
 	}
 	map->map_path[map->y] = NULL;
-	map->y = 0;
-	map->x = 0;
 }
 
 void	is_playable_map(t_map *map, t_parse *parse, t_item_xy *item_xy)
 {
-	map->y = item_xy->spawn_y;
-	map->x = item_xy->spawn_x;
+	map->y = 1;
+	map->x = 1;
+	ft_printf("y : %d | x : %d\n", map->y, map->x);
 	int i = 0; // a suppr
-	while (i < 30)
+	while (map->blocked < 2)
 	{
-		move_pathfinding(map, parse);
+		ft_printf("tour n_%d\n", i + 1);
+		map->map_path[map->y][map->x] = 'o';
+		pathfinding(map, parse, item_xy);
+		print_map(map, parse); // a supp
 		i++;
 	}
-	
-	// debbug, a supp
-	map->x = 0;
-	map->y = 0;
-	while (map->map_path[map->y])
+}
+
+void	print_map(t_map *map, t_parse *parse)  // a supp
+{
+	int	y = 0;
+	while (map->map_path[y])
 	{
-		ft_putstr(map->map_path[map->y]);
+		ft_putstr(map->map_path[y]);
 		ft_putchar('\n');
-		map->y++;
+		y++;
 	}
 	ft_printf("Coin(s) recolté(s) : %d/%d\n", parse->coin_get, parse->coin);
 }

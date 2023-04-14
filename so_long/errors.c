@@ -6,11 +6,17 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 11:54:45 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/13 15:00:08 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/14 14:06:02 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	ft_exit(char *error_msg)
+{
+	ft_printf("%s\n", error_msg);
+	exit (1);
+}
 
 int	check_if_errors(t_parse *parse)
 {
