@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:35:24 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/13 11:48:59 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/19 15:08:29 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,39 +40,38 @@ int	is_a_valid_map(char *temp, t_parse *parse)
 	exit (1);
 }
 
-void	get_map_str(t_map *map)
+int	is_wall(t_map *map)
 {
-	int	first_turn;
-	int	good_len;
+	int		i;
+	char	*s;
 
-	map->map_str = ft_strdup("");
-	first_turn = 1;
-	while (1)
+	i = 0;
+	s = ft_strdup(map->map_path[map->y]);
+	while (s[i])
 	{
-		map->temp = get_next_line(map->fd);
-		if (!map->temp)
-			break ;
-		if (first_turn)
-		{
-			map->good_len = s_len(map->temp);
-			first_turn = 0;
-		}
-		if (check_len_size(map, s_len(map->temp)))
-			map->map_str = ft_strjoin_gnl(map->map_str, map->temp);
-		else
-		{
-			ft_putstr("ERROR : lines does not have the same size\n");
-			exit (1);
-		}
-		map->lines++;
-		free(map->temp);
+		if (map->y == 0 && s[i] != '1')
+			return (0);
+		if (map->y == map->lines - 1 && s[i] != '1')
+			return (0);
+		if (i == 0 && s[i] != '1')
+			return (0);
+		if (i == map->good_len && s[i] != '1')
+			return (0);
+		i++;
 	}
+	return (1);
 }
 
-void	get_map(t_map *map, t_parse *parse)
+void	check_walls(t_map *map)
 {
-	get_map_str(map);
-	is_a_valid_map(map->map_str, parse);
-	map->map = ft_split(map->map_str, '\n');
-	ft_putstr("_{- VALID MAP -}_\n");
+	map->y = 0;
+	while (map->map_path[map->y])
+	{
+		if (!is_wall(map))
+			ft_exit("ERROR : map not close\n");
+		map->y++;
+	}
+	ft_putstr("map ok\n");
+	map->y = 0;
 }
+

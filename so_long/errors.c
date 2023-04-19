@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 11:54:45 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/14 14:06:02 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/19 14:58:30 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,3 +66,4 @@ int	check_len_size(t_map *map, int actual_len)
 		return (1);
 	return (0);
 }
+

@@ -1,14 +1,14 @@
 NAME = so_long
 
 SRC = main.c \
-	  parsing.c \
 	  startup_checks.c \
-	  utils.c\
 	  initialize.c \
+	  manage_maps.c \
+	  parsing.c \
+	  utils.c\
 	  errors.c \
 	  check_path.c \
-	  path_finding.c
-	  
+	  pathfinding.c 	  
 
 LIBPATH = libft/
 LIBNAME = libft.a

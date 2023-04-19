@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:28:53 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/14 14:21:49 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/19 15:02:50 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int ac, char **av)
 		exit (1);
 	get_map(&map, &parse);
 	copy_map(&map, &item_xy);
+	map.good_len -= 2;
 	is_playable_map(&map, &parse, &item_xy);
 	//system("leaks so_long");
 	exit (0);

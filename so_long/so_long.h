@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:29:34 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/14 17:36:17 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/19 15:07:46 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,11 @@ typedef struct s_parsing {
 	int			wall;
 	int			path;
 	int			coin;
-	int			coin_get;
+	int			coin_found;
 	int			exit;
 	int			exit_found;
 	int			spawn;
+	int			spawn_found;
 	int			backslash_n;
 	int			other_char;
 }				t_parse;
@@ -67,29 +68,34 @@ void	initialize_map(t_map *map);
 void	initialize_item_xy(t_item_xy *item_xy);
 void	structs_initializer(t_parse *parse, t_map *map, t_item_xy *item_xy);
 
-// --- parsing.c
-int		is_a_valid_map(char *temp, t_parse *parse);
+// --- manage_maps.c
 void	get_map_str(t_map *map);
 void	get_map(t_map *map, t_parse *parse);
+void	copy_map(t_map *map, t_item_xy *item_xy);
+
+// --- parsing.c
+int		is_wall(t_map *map);
+int		is_a_valid_map(char *temp, t_parse *parse);
+void	check_walls(t_map *map);
 
 // --- utils.c
 int		search_char(char *haystack, char needle);
 
 // --- errors.c
-int		check_if_errors2(t_parse *parse);
 int		check_if_errors(t_parse *parse);
+int		check_if_errors2(t_parse *parse);
 int		check_len_size(t_map *map, int actual_len);
 void	ft_exit(char *error_msg);
 
 // --- check_path.c
-void	copy_map(t_map *map, t_item_xy *item_xy);
 void	is_playable_map(t_map *map, t_parse *parse, t_item_xy *item_xy);
 void	print_map(t_map *map, t_parse *parse);
 
-// --- path_finding.c
-int		detect_coin(t_map *map);
-int		detect_exit(t_map *map, t_parse *parse);
-void	pathfinding(t_map *map, t_parse *parse, t_item_xy *item_xy);
-void	try_to_move(t_map *map, t_item_xy *item_xy);
+// --- pathfinding.c
+void	search_coin(t_map *map, t_parse *parse);
+void	search_exit(t_map *map, t_parse *parse);
+void	search_spawn(t_map *map, t_parse *parse);
+void	travel_map(t_map *map, t_parse *parse);
+void	is_playable_map(t_map *map, t_parse *parse, t_item_xy *item_xy);
 
 #endif
