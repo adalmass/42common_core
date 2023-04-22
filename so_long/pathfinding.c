@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 12:59:02 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/22 15:17:01 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/22 15:24:19 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int pathfinding(t_map *map, t_parse *parse, t_item_xy *item_xy)
 {
-	int	modified = 1;
+	int	modified;
 	int x = 0;
 	int y = 0;
 
