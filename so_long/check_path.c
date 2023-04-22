@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 17:35:27 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/19 15:16:16 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/22 15:12:37 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,5 @@ void	print_map(t_map *map, t_parse *parse)  // a supp
 		y++;
 	}
 	ft_printf("Coin(s) recolté(s) : %d/%d\n", parse->coin_found, parse->coin);
-	ft_printf("Exit trouvée : %d\n", parse->exit_found);
-	ft_printf("Spawn trouvé : %d\n", parse->spawn_found);
+	ft_printf("Exit trouvée : %d/1\n", parse->exit_found);
 }
