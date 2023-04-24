@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 17:35:27 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/22 15:12:37 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/24 18:11:02 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	get_item_xy(t_map *map, t_item_xy *item_xy)
 }
 
 
-void	print_map(t_map *map, t_parse *parse)  // a supp
+void	DEBUG_print_map(t_map *map, t_parse *parse)  // a supp
 {
 	int	y = 0;
 	while (map->map_path[y])

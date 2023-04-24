@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:29:34 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/22 15:17:04 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/24 18:15:50 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_parsing {
 	int			spawn;
 	int			backslash_n;
 	int			other_char;
+	int			modified;
 }				t_parse;
 
 //--- startup_checks.c
@@ -87,17 +88,17 @@ void	ft_exit(char *error_msg);
 
 // --- check_path.c
 void	is_playable_map(t_map *map, t_parse *parse, t_item_xy *item_xy);
-void	print_map(t_map *map, t_parse *parse);
+void	DEBUG_print_map(t_map *map, t_parse *parse);
 
 // --- pathfinding.c
-int		pathfinding(t_map *map, t_parse *parse, t_item_xy *item_xy);
+int		last_verif(t_map *map, t_parse *parse, t_item_xy *item_xy);
+void	pathfinding(t_map *map, t_parse *parse, t_item_xy *item_xy);
 void	is_playable_map(t_map *map, t_parse *parse, t_item_xy *item_xy);
+void	verifications_y(t_map *map, t_parse *parse);
+void	verifications_x(t_map *map, t_parse *parse);
 
 // --- pathfinding2.c
+int		search_exit(t_map *map, t_parse *parse, t_item_xy *item);
 void	search_coin(t_map *map, t_parse *parse);
-void	search_spawn(t_map *map, t_parse *parse);
-void	search_exit(t_map *map, t_parse *parse);
-void	if_exit_multicounted(t_parse *parse);
-void	search_items(t_map *map, t_parse *parse);
 
 #endif
