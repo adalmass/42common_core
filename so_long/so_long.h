@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:29:34 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/24 18:15:50 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/24 18:26:08 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	structs_initializer(t_parse *parse, t_map *map, t_item_xy *item_xy);
 // --- manage_maps.c
 void	get_map_str(t_map *map);
 void	get_map(t_map *map, t_parse *parse);
+void	get_exit_xy(t_map *map, t_item_xy *item_xy);
 void	copy_map(t_map *map, t_item_xy *item_xy);
 
 // --- parsing.c
@@ -87,18 +88,16 @@ int		check_len_size(t_map *map, int actual_len);
 void	ft_exit(char *error_msg);
 
 // --- check_path.c
-void	is_playable_map(t_map *map, t_parse *parse, t_item_xy *item_xy);
 void	DEBUG_print_map(t_map *map, t_parse *parse);
 
 // --- pathfinding.c
 int		last_verif(t_map *map, t_parse *parse, t_item_xy *item_xy);
 void	pathfinding(t_map *map, t_parse *parse, t_item_xy *item_xy);
-void	is_playable_map(t_map *map, t_parse *parse, t_item_xy *item_xy);
 void	verifications_y(t_map *map, t_parse *parse);
 void	verifications_x(t_map *map, t_parse *parse);
+void	is_playable_map(t_map *map, t_parse *parse, t_item_xy *item_xy);
 
 // --- pathfinding2.c
 int		search_exit(t_map *map, t_parse *parse, t_item_xy *item);
-void	search_coin(t_map *map, t_parse *parse);
 
 #endif

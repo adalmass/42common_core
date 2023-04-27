@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:29:53 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/03 17:39:55 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/27 14:03:44 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ int	search_char(char *haystack, char needle)
 	while (haystack[i])
 	{
 		if (haystack[i] == needle)
+		{
+			if (haystack[i] == '\n' && haystack[i + 1] != '\0')
+				return (0);
 			return (1);
+		}
 		i++;
 	}
 	return (0);

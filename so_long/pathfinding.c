@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 12:59:02 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/24 18:15:37 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/27 13:55:14 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ void	is_playable_map(t_map *map, t_parse *parse, t_item_xy *item_xy)
 		&& parse->coin == parse->coin_found
 		&& parse->exit_found == 1)
 	{
-		ft_putstr("pathfinding OK\n");
 		DEBUG_print_map(map, parse);
+		ft_putstr("pathfinding OK\n");
 		return ;
 	}
 	else
