@@ -6,11 +6,25 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:35:24 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/20 11:27:10 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/27 15:24:38 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	search_char(char *haystack, char needle)
+{
+	size_t	i;
+
+	i = 0;
+	while (haystack[i])
+	{
+		if (haystack[i] == needle)
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 int	is_a_valid_map(char *temp, t_parse *parse)
 {
@@ -28,10 +42,7 @@ int	is_a_valid_map(char *temp, t_parse *parse)
 		else if (temp[i] == '\n' && temp[i + 1] == '\n')
 			parse->backslash_n++;
 		else if (!search_char("10PEC\n", temp[i]))
-		{
 			parse->other_char++;
-			ft_printf("other char detected : %c\n", temp[i]);
-		}
 		i++;
 	}
 	check_if_errors(parse);
@@ -49,20 +60,19 @@ int	is_wall(t_map *map)
 	s = ft_strdup(map->map_path[map->y]);
 	while (s[i])
 	{
-		if (map->y == 0 && s[i] != '1')
-			return (0);
-		if (map->y == map->lines - 1 && s[i] != '1')
-			return (0);
 		if (i == 0 && s[i] != '1')
 			return (0);
-		if (i == map->good_len && s[i] != '1')
+		if ((map->y == 0 && s[i] != '1')
+			|| (map->y == map->lines - 1 && s[i] != '1'))
+			return (0);
+		if (i == map->good_len - 2 && s[i] != '1')
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-void	check_walls(t_map *map)
+void	is_valids_walls(t_map *map)
 {
 	map->y = 0;
 	while (map->map_path[map->y])
@@ -71,6 +81,5 @@ void	check_walls(t_map *map)
 			ft_exit("ERROR : map not close\n");
 		map->y++;
 	}
-	ft_putstr("map ok\n");
 	map->y = 0;
 }

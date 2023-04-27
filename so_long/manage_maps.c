@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 15:06:50 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/24 18:25:44 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/27 15:24:07 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,5 @@ void	copy_map(t_map *map, t_item_xy *item_xy)
 		map->y++;
 	}
 	map->map_path[map->y] = NULL;
+	is_valids_walls(map);
 }

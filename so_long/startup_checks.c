@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:01:57 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/13 14:49:28 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/27 15:25:58 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	check_args_nb(int ac)
 
 void	check_fd_format(char *av)
 {
-	if (!ft_strnstr(av, ".ber", ft_strlen(av)))
+	if (!ft_strnstr(av, ".ber\0", ft_strlen(av)))
 	{
 		ft_putstr("ERROR : wrong map format (only .ber allowed)\n");
 		exit (1);
@@ -34,7 +34,7 @@ int	check_fd_opening(int fd)
 {
 	if (fd == -1)
 	{
-		ft_putstr("ERROR : file can't be read / does no exist\n");
+		ft_putstr("ERROR : file can't be read (does not exist or wrong map format)\n");
 		return (0);
 	}
 	return (1);

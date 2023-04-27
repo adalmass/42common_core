@@ -5,11 +5,12 @@ SRC = main.c \
 	  initialize.c \
 	  manage_maps.c \
 	  parsing.c \
-	  utils.c\
 	  errors.c \
 	  check_path.c \
 	  pathfinding.c \
-	  pathfinding2.c	  
+	  pathfinding2.c \
+	  mlx_init.c \
+	  key_events.c 
 
 LIBPATH = libft/
 LIBNAME = libft.a

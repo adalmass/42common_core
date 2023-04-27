@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:28:53 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/27 14:04:46 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/27 15:05:57 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(int ac, char **av)
 	t_map		map;
 	t_parse		parse;
 	t_item_xy	item_xy;
+	t_mlx		mlx;
 
 	startup_checks(ac, av[1]);
 	structs_initializer(&parse, &map, &item_xy);
@@ -28,5 +29,7 @@ int	main(int ac, char **av)
 	map.good_len -= 2;
 	is_playable_map(&map, &parse, &item_xy);
 	//system("leaks so_long");
+	//mlx_initializer(&mlx);
+	//mlx_loop(mlx.mlx);
 	exit (0);
 }

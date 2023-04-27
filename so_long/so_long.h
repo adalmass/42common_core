@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:29:34 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/24 18:26:08 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/27 15:24:07 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,10 @@ void	get_exit_xy(t_map *map, t_item_xy *item_xy);
 void	copy_map(t_map *map, t_item_xy *item_xy);
 
 // --- parsing.c
+int		search_char(char *haystack, char needle);
 int		is_wall(t_map *map);
 int		is_a_valid_map(char *temp, t_parse *parse);
-void	check_walls(t_map *map);
+void	is_valids_walls(t_map *map);
 
 // --- utils.c
 int		search_char(char *haystack, char needle);
@@ -99,5 +100,13 @@ void	is_playable_map(t_map *map, t_parse *parse, t_item_xy *item_xy);
 
 // --- pathfinding2.c
 int		search_exit(t_map *map, t_parse *parse, t_item_xy *item);
+
+// --- mlx_init.c
+void	mlx_initializer(t_mlx *mlx);
+
+// --- key_events.c
+int		shutdown(void);
+int		check_event(int key);
+
 
 #endif
