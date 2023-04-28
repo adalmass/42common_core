@@ -6,12 +6,14 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:29:34 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/27 15:24:07 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/28 16:02:29 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+
+# define SIZE 100
 
 # include "libft/libft.h"
 # include <mlx.h>
@@ -24,11 +26,15 @@ typedef struct s_item_xy {
 	int			spawn_y;
 }				t_item_xy;
 
-typedef struct s_minilbx {
-	void		*img;
-	void		*mlx;
-	void		*window;
-}				t_mlx;
+typedef struct s_image {
+	void		*wall;
+	void		*floor;
+	void		*coin;
+	void		*p_face;
+	void		*p_back;
+	void		*p_right;
+	void		*p_left;
+}				t_img;
 
 typedef struct s_map {
 	int			x;
@@ -54,6 +60,15 @@ typedef struct s_parsing {
 	int			other_char;
 	int			modified;
 }				t_parse;
+
+typedef struct s_game {
+	t_map		map;
+	t_parse		parse;
+	t_item_xy	item_xy;
+	t_img		img;
+	void		*mlx;
+	void		*window;
+}				t_game;
 
 //--- startup_checks.c
 int		check_fd_opening(int fd);
@@ -102,11 +117,12 @@ void	is_playable_map(t_map *map, t_parse *parse, t_item_xy *item_xy);
 int		search_exit(t_map *map, t_parse *parse, t_item_xy *item);
 
 // --- mlx_init.c
-void	mlx_initializer(t_mlx *mlx);
+void	mlx_initializer(t_game *game);
 
 // --- key_events.c
 int		shutdown(void);
-int		check_event(int key);
+int		key_press(int key, t_game *game);
+int		key_release(int key, t_game *game);
 
 
 #endif

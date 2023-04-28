@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:24:31 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/27 14:24:41 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/28 13:33:04 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,24 @@ int	shutdown(void)
 	return (0);
 }
 
-int	check_event(int key)
+int	key_press(int key, t_game *game)
 {
-	ft_printf("code de la touche : %d ->", key);
-	if (key == 1)
-		ft_printf("clic gauche\n");
-	else if (key == 2)
-		ft_printf("clic droit\n");
-	else if (key == 3)
-		ft_printf("clic molette\n");
-	else if (key == 4)
-		ft_printf("molette vers le bas\n");
-	else if (key == 5)
-		ft_printf("molette vers le haut\n");
-	else if (key == 17 || key == 53)
+	if (key == 53)
 		shutdown();
-	else if (key == 124)
-		ft_printf("fleche droite\n");
-	else if (key == 123)
-		ft_printf("fleche gauche\n");
-	else if (key == 126)
-		ft_printf("fleche haut\n");
-	else if (key == 125)
-		ft_printf("fleche bas\n");
+	if (key == 13)
+		ft_printf("appuie W\n");
+	else if (key == 1)
+		ft_printf("appuie A\n");
+	else if (key == 2)
+		ft_printf("appuie S\n");
+	else if (key == 3)
+		ft_printf("appuie D\n");
+	return (0);
+}
+
+int	key_release(int key, t_game *game)
+{
+	if (key == 13 || key == 1 || key == 2 || key == 3)
+		ft_printf("relache\n");
 	return (0);
 }
