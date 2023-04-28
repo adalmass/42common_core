@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:26:00 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/28 16:13:42 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:13:14 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	*save_img(t_game *game, char *img_path)
 void	print_img(t_game *game, void *img, int y, int x)
 {
 	mlx_put_image_to_window(game->mlx, game->window, img, x * SIZE, y * SIZE);
-
 }
 
 void	print_map(t_game *game)
@@ -35,18 +34,16 @@ void	print_map(t_game *game)
 	int	y;
 
 	y = 0;
-
 	while (game->map.map[y])
 	{
 		x = 0;
 		while (game->map.map[y][x])
 		{
-			// if (game->map.map[y][x] == '1')
-			// 	print_img(game, game->img.wall, y, x);
+			print_img(game, game->img.floor, y, x);
+			if (game->map.map[y][x] == '1')
+				print_img(game, game->img.wall, y, x);
 			if (game->map.map[y][x] == 'P')
 				print_img(game, game->img.p_face, y, x);
-			// if (game->map.map[y][x] == '0')
-			// 	print_img(game, game->img.floor, y, x);
 			if (game->map.map[y][x] == 'C')
 				print_img(game, game->img.coin, y, x);
 			x++;
@@ -63,14 +60,13 @@ int	run(t_game	*game)
 
 void	init_img(t_game *game)
 {
-	game->img.floor = save_img(game, "./images/test.xpm");
-	//game->img.wall = save_img(game, "./images/wall.xpm");
-	game->img.coin = save_img(game, "./images/coin.xpm");
+	game->img.floor = save_img(game, "./images/test_floor.xpm");
+	game->img.wall = save_img(game, "./images/test_wall.xpm");
+	game->img.coin = save_img(game, "./images/test_coin.xpm");
 	game->img.p_face = save_img(game, "./images/p_face.xpm");
 	game->img.p_back = save_img(game, "./images/p_back.xpm");
 	game->img.p_left = save_img(game, "./images/p_left.xpm");
 	game->img.p_right = save_img(game, "./images/p_right.xpm");
-
 }
 
 void	mlx_initializer(t_game *game)

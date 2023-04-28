@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:29:34 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/28 16:02:29 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:15:21 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,12 @@ void	is_playable_map(t_map *map, t_parse *parse, t_item_xy *item_xy);
 int		search_exit(t_map *map, t_parse *parse, t_item_xy *item);
 
 // --- mlx_init.c
+int		run(t_game	*game);
+void	init_img(t_game *game);
+void	*save_img(t_game *game, char *img_path);
 void	mlx_initializer(t_game *game);
+void	print_img(t_game *game, void *img, int y, int x);
+void	print_map(t_game *game);
 
 // --- key_events.c
 int		shutdown(void);

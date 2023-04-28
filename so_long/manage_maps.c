@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 15:06:50 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/27 15:24:07 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/28 17:22:56 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	get_exit_xy(t_map *map, t_item_xy *item_xy)
 
 void	copy_map(t_map *map, t_item_xy *item_xy)
 {
+	
 	map->map_path = malloc(sizeof(char *) * map->lines + 1);
 	if (!map->map_path)
 		ft_exit("ERROR : malloc failed for **map_path (check_path.c)");
