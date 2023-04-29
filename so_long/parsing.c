@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:35:24 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/28 17:24:38 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/29 13:40:59 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	is_valids_walls(t_map *map)
 	while (map->map_path[map->y])
 	{
 		if (!is_wall(map))
-			ft_exit("ERROR : map not close\n");
+			ft_exit("Map not close\n");
 		map->y++;
 	}
 	map->y = 0;

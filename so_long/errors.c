@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 11:54:45 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/19 14:58:30 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/29 13:39:15 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_exit(char *error_msg)
 {
+	ft_putstr("Error\n");
 	ft_printf("%s\n", error_msg);
 	exit (1);
 }
@@ -25,17 +26,20 @@ int	check_if_errors(t_parse *parse)
 	error_detected = 0;
 	if (parse->spawn != 1)
 	{
-		ft_putstr("ERROR : incorrect SPAWN value (P != 1)\n");
+		ft_putstr("Error\n");
+		ft_putstr("Incorrect SPAWN value (P != 1)\n");
 		error_detected++;
 	}
 	if (parse->exit != 1)
 	{
-		ft_putstr("ERROR : incorrect EXIT value (E != 1)\n");
+		ft_putstr("Error\n");
+		ft_putstr("Incorrect EXIT value (E != 1)\n");
 		error_detected++;
 	}
 	if (parse->coin < 1)
 	{
-		ft_putstr("ERROR : no COIN found in the map (need 1 coin or more)\n");
+		ft_putstr("Error\n");
+		ft_putstr("No COIN found in the map (need 1 coin or more)\n");
 		error_detected++;
 	}
 	error_detected += check_if_errors2(parse);
@@ -51,7 +55,8 @@ int	check_if_errors2(t_parse *parse)
 	error_detected = 0;
 	if (parse->other_char > 0)
 	{
-		ft_putstr("ERROR : unknow char in map (only '01PEC', case-sensitive)\n");
+		ft_putstr("Error\n");
+		ft_putstr("Unknow char in map (only '01PEC', case-sensitive)\n");
 		error_detected++;
 	}
 	return (error_detected);

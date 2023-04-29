@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:08:34 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/24 18:17:58 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/29 16:33:50 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ void	initialize_map(t_map *map)
 	map->lines = 0;
 }
 
-void	initialize_item_xy(t_item_xy *item_xy)
+void	initialize_item_xy(t_p_xy *p_xy)
 {
-	item_xy->exit_x = 0;
-	item_xy->exit_y = 0;
-	item_xy->spawn_x = 0;
-	item_xy->spawn_y = 0;
+	p_xy->exit_x = 0;
+	p_xy->exit_y = 0;
+	p_xy->spawn_x = 0;
+	p_xy->spawn_y = 0;
 }
 
-void	structs_initializer(t_parse *parse, t_map *map, t_item_xy *item_xy)
+void	structs_initializer(t_parse *parse, t_map *map, t_p_xy *p_xy)
 {
 	initialize_parse(parse);
 	initialize_map(map);
-	initialize_item_xy(item_xy);
+	initialize_item_xy(p_xy);
 }

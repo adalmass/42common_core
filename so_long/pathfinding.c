@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 12:59:02 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/27 13:55:14 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/29 16:28:24 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ void	verifications_x(t_map *map, t_parse *parse)
 	}
 }
 
-void pathfinding(t_map *map, t_parse *parse, t_item_xy *item_xy)
+void pathfinding(t_map *map, t_parse *parse, t_p_xy *p_xy)
 {
-	map->y = item_xy->spawn_y;
-	map->x = item_xy->spawn_x;
+	map->y = p_xy->spawn_y;
+	map->x = p_xy->spawn_x;
 	map->map_path[map->y][map->x] = 'x';
 	parse->modified = 1;
 	while (parse->modified)
@@ -79,17 +79,17 @@ void pathfinding(t_map *map, t_parse *parse, t_item_xy *item_xy)
 	}
 }
 
-int	last_verif(t_map *map, t_parse *parse, t_item_xy *item_xy)
+int	last_verif(t_map *map, t_parse *parse, t_p_xy *p_xy)
 {
-	if (search_exit(map, parse, item_xy))
+	if (search_exit(map, parse, p_xy))
 		return (1);
 	return (0);
 }
 
-void	is_playable_map(t_map *map, t_parse *parse, t_item_xy *item_xy)
+void	is_playable_map(t_map *map, t_parse *parse, t_p_xy *p_xy)
 {
-	pathfinding(map, parse, item_xy);
-	if (last_verif(map, parse, item_xy)
+	pathfinding(map, parse, p_xy);
+	if (last_verif(map, parse, p_xy)
 		&& parse->coin == parse->coin_found
 		&& parse->exit_found == 1)
 	{
@@ -100,6 +100,6 @@ void	is_playable_map(t_map *map, t_parse *parse, t_item_xy *item_xy)
 	else
 	{
 		DEBUG_print_map(map, parse);
-		ft_exit("ERROR : the player won't be able to reach coin(s) or exit\n");
+		ft_exit("The player won't be able to reach coin(s) or exit\n");
 	}
 }

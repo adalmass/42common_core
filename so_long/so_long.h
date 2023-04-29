@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:29:34 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/28 17:15:21 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/04/29 18:08:15 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 # include <mlx.h>
 # include <fcntl.h>
 
-typedef struct s_item_xy {
+typedef struct s_p_xy {
 	int			exit_x;
 	int			exit_y;
 	int			spawn_x;
 	int			spawn_y;
-}				t_item_xy;
+}				t_p_xy;
 
 typedef struct s_image {
 	void		*wall;
@@ -64,8 +64,10 @@ typedef struct s_parsing {
 typedef struct s_game {
 	t_map		map;
 	t_parse		parse;
-	t_item_xy	item_xy;
+	t_p_xy		p_xy;
 	t_img		img;
+	int			step_counter;
+	int			spawn_placed;
 	void		*mlx;
 	void		*window;
 }				t_game;
@@ -79,14 +81,14 @@ void	startup_checks(int ac, char *av);
 // --- initialize.c
 void	initialize_parse(t_parse *parse);
 void	initialize_map(t_map *map);
-void	initialize_item_xy(t_item_xy *item_xy);
-void	structs_initializer(t_parse *parse, t_map *map, t_item_xy *item_xy);
+void	initialize_item_xy(t_p_xy *p_xy);
+void	structs_initializer(t_parse *parse, t_map *map, t_p_xy *p_xy);
 
 // --- manage_maps.c
 void	get_map_str(t_map *map);
 void	get_map(t_map *map, t_parse *parse);
-void	get_exit_xy(t_map *map, t_item_xy *item_xy);
-void	copy_map(t_map *map, t_item_xy *item_xy);
+void	get_exit_xy(t_map *map, t_p_xy *p_xy);
+void	copy_map(t_map *map, t_p_xy *p_xy);
 
 // --- parsing.c
 int		search_char(char *haystack, char needle);
@@ -107,14 +109,14 @@ void	ft_exit(char *error_msg);
 void	DEBUG_print_map(t_map *map, t_parse *parse);
 
 // --- pathfinding.c
-int		last_verif(t_map *map, t_parse *parse, t_item_xy *item_xy);
-void	pathfinding(t_map *map, t_parse *parse, t_item_xy *item_xy);
+int		last_verif(t_map *map, t_parse *parse, t_p_xy *p_xy);
+void	pathfinding(t_map *map, t_parse *parse, t_p_xy *p_xy);
 void	verifications_y(t_map *map, t_parse *parse);
 void	verifications_x(t_map *map, t_parse *parse);
-void	is_playable_map(t_map *map, t_parse *parse, t_item_xy *item_xy);
+void	is_playable_map(t_map *map, t_parse *parse, t_p_xy *p_xy);
 
 // --- pathfinding2.c
-int		search_exit(t_map *map, t_parse *parse, t_item_xy *item);
+int		search_exit(t_map *map, t_parse *parse, t_p_xy *item);
 
 // --- mlx_init.c
 int		run(t_game	*game);
@@ -124,10 +126,15 @@ void	mlx_initializer(t_game *game);
 void	print_img(t_game *game, void *img, int y, int x);
 void	print_map(t_game *game);
 
-// --- key_events.c
+// --- mlx_key_events.c
 int		shutdown(void);
 int		key_press(int key, t_game *game);
 int		key_release(int key, t_game *game);
 
+// --- mlx_movements.c
+void	move_up(t_game *game);
+void	move_down(t_game *game);
+void	move_left(t_game *game);
+void	move_right(t_game *game);
 
 #endif
