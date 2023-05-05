@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:29:34 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/29 18:08:15 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/05 14:11:11 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,13 @@ typedef struct s_image {
 	void		*wall;
 	void		*floor;
 	void		*coin;
+	void		*portal;
+	void		*enemy;
 	void		*p_face;
 	void		*p_back;
 	void		*p_right;
 	void		*p_left;
+	void		*img_memory;
 }				t_img;
 
 typedef struct s_map {
@@ -67,7 +70,7 @@ typedef struct s_game {
 	t_p_xy		p_xy;
 	t_img		img;
 	int			step_counter;
-	int			spawn_placed;
+	int			exit_state;
 	void		*mlx;
 	void		*window;
 }				t_game;
@@ -83,6 +86,7 @@ void	initialize_parse(t_parse *parse);
 void	initialize_map(t_map *map);
 void	initialize_item_xy(t_p_xy *p_xy);
 void	structs_initializer(t_parse *parse, t_map *map, t_p_xy *p_xy);
+void	initialize_mlx(t_game *game);
 
 // --- manage_maps.c
 void	get_map_str(t_map *map);
@@ -118,23 +122,30 @@ void	is_playable_map(t_map *map, t_parse *parse, t_p_xy *p_xy);
 // --- pathfinding2.c
 int		search_exit(t_map *map, t_parse *parse, t_p_xy *item);
 
-// --- mlx_init.c
+// --- run.c
 int		run(t_game	*game);
+int		if_get_all_coins(t_game *game);
+void	print_text(t_game *game, int y, int x);
+void	print_map(t_game *game);
+void	animate_exit(t_game *game);
+
+// --- mlx_imgs.c
 void	init_img(t_game *game);
 void	*save_img(t_game *game, char *img_path);
-void	mlx_initializer(t_game *game);
 void	print_img(t_game *game, void *img, int y, int x);
-void	print_map(t_game *game);
 
 // --- mlx_key_events.c
 int		shutdown(void);
 int		key_press(int key, t_game *game);
-int		key_release(int key, t_game *game);
+//int		key_release(int key, t_game *game);
 
 // --- mlx_movements.c
 void	move_up(t_game *game);
 void	move_down(t_game *game);
 void	move_left(t_game *game);
 void	move_right(t_game *game);
+
+// --- mlx_animations.c
+void	exit_animation(t_game *game);
 
 #endif

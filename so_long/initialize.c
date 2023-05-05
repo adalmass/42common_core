@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:08:34 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/29 16:33:50 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/05 14:38:40 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,27 @@ void	initialize_item_xy(t_p_xy *p_xy)
 
 void	structs_initializer(t_parse *parse, t_map *map, t_p_xy *p_xy)
 {
+	t_game	*game;
+
+	game->exit_state = 1;
+	game->step_counter = 0;
 	initialize_parse(parse);
 	initialize_map(map);
 	initialize_item_xy(p_xy);
+}
+
+void	initialize_mlx(t_game *game)
+{
+	game->mlx = mlx_init();
+	if (!game->mlx)
+		ft_exit("Mlx can't be initialized\n");
+	game->window = mlx_new_window(game->mlx, (game->map.good_len + 1) * SIZE,
+			game->map.lines * SIZE, "so_long");
+	if (!game->window)
+		ft_exit("Mlx.window can't be opened\n");
+	init_img(game);
+	mlx_loop_hook(game->mlx, run, game);
+	mlx_hook(game->window, 2, 0, key_press, game);
+	//mlx_hook(game->window, 3, 0, key_release, game);
+	mlx_hook(game->window, 17, 0, shutdown, (void *)0);
 }

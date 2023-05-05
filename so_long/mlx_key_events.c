@@ -23,10 +23,3 @@ int	key_press(int key, t_game *game)
 		move_left(game);
 	return (0);
 }
-
-int	key_release(int key, t_game *game)
-{
-	if (key == 13 || key == 1 || key == 2 || key == 3)
-		ft_printf("relache\n");
-	return (0);
-}

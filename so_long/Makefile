@@ -9,9 +9,11 @@ SRC = main.c \
 	  check_path.c \
 	  pathfinding.c \
 	  pathfinding2.c \
-	  mlx_init.c \
+	  run.c \
 	  mlx_key_events.c \
-	  mlx_movements.c
+	  mlx_movements.c \
+	  mlx_imgs.c \
+	  mlx_animations.c
 
 LIBPATH = libft/
 LIBNAME = libft.a

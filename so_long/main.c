@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:28:53 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/29 16:28:24 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/05 11:46:54 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int ac, char **av)
 	copy_map(&game.map, &game.p_xy);
 	game.map.good_len -= 2;
 	is_playable_map(&game.map, &game.parse, &game.p_xy);
-	mlx_initializer(&game);
+	initialize_mlx(&game);
 	mlx_loop(game.mlx);
 	exit (0);
 }

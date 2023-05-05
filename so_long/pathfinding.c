@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 12:59:02 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/29 16:28:24 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:21:43 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,9 @@ void	is_playable_map(t_map *map, t_parse *parse, t_p_xy *p_xy)
 		&& parse->coin == parse->coin_found
 		&& parse->exit_found == 1)
 	{
-		DEBUG_print_map(map, parse);
-		ft_putstr("pathfinding OK\n");
+		parse->coin_found = 0;
 		return ;
 	}
 	else
-	{
-		DEBUG_print_map(map, parse);
 		ft_exit("The player won't be able to reach coin(s) or exit\n");
-	}
 }

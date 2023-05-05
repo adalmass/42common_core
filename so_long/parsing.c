@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:35:24 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/29 13:40:59 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/05 10:45:17 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	is_a_valid_map(char *temp, t_parse *parse)
 			parse->exit++;
 		else if (temp[i] == '\n' && temp[i + 1] == '\n')
 			parse->backslash_n++;
-		else if (!search_char("10PEC\n", temp[i]))
+		else if (!search_char("10PECV\n", temp[i]))
 			parse->other_char++;
 		i++;
 	}
