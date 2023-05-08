@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:39:33 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/05 13:03:52 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/08 13:30:15 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	print_img(t_game *game, void *img, int y, int x)
 
 void	init_img(t_game *game)
 {
-	game->img.floor = save_img(game, "./images/DEBUG_floor.xpm");
-	game->img.wall = save_img(game, "./images/DEBUG_wall.xpm");
+	game->img.floor = save_img(game, "./images/floor.xpm");
+	game->img.wall = save_img(game, "./images/wall.xpm");
 	game->img.coin = save_img(game, "./images/coin.xpm");
-	game->img.portal = save_img(game, "./images/closed_portal.xpm");
+	game->img.exit = save_img(game, "./images/closed_portal.xpm");
 	game->img.enemy = save_img(game, "./images/enemy.xpm");
 	game->img.p_face = save_img(game, "./images/p_face.xpm");
 	game->img.p_back = save_img(game, "./images/p_back.xpm");

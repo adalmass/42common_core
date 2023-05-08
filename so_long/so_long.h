@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:29:34 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/05 14:11:11 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/08 13:27:41 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_image {
 	void		*wall;
 	void		*floor;
 	void		*coin;
-	void		*portal;
+	void		*exit;
 	void		*enemy;
 	void		*p_face;
 	void		*p_back;
@@ -144,8 +144,12 @@ void	move_up(t_game *game);
 void	move_down(t_game *game);
 void	move_left(t_game *game);
 void	move_right(t_game *game);
+void	if_can_exit(t_game *game);
 
 // --- mlx_animations.c
 void	exit_animation(t_game *game);
+void	exit_animation2(t_game *game);
+void	exit_animation3(t_game *game);
+void	exit_animation4(t_game *game);
 
 #endif

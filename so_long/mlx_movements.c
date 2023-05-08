@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 13:48:04 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/05 13:50:56 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:47:13 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ void	move_up(t_game *game)
 	game->img.img_memory = game->img.p_back;
 	if (game->map.map[game->p_xy.spawn_y - 1][game->p_xy.spawn_x] == 'V')
 	{
-		ft_putstr("You lost !\n");
+		ft_putstr("You got killed. Try again !\n");
 		exit (0);
 	}
+	else if (game->map.map[game->p_xy.spawn_y - 1][game->p_xy.spawn_x] == 'E')
+		if_can_exit(game);
 	else if (game->map.map[game->p_xy.spawn_y - 1][game->p_xy.spawn_x] != '1'
 		&& game->map.map[game->p_xy.spawn_y - 1][game->p_xy.spawn_x] != 'E')
 	{
@@ -41,9 +43,11 @@ void	move_down(t_game *game)
 	game->img.img_memory = game->img.p_face;
 	if (game->map.map[game->p_xy.spawn_y + 1][game->p_xy.spawn_x] == 'V')
 	{
-		ft_putstr("You lost !\n");
+		ft_putstr("You got killed. Try again !\n");
 		exit (0);
 	}
+	else if (game->map.map[game->p_xy.spawn_y + 1][game->p_xy.spawn_x] == 'E')
+		if_can_exit(game);
 	else if (game->map.map[game->p_xy.spawn_y + 1][game->p_xy.spawn_x] != '1'
 		&& game->map.map[game->p_xy.spawn_y + 1][game->p_xy.spawn_x] != 'E')
 	{
@@ -65,9 +69,11 @@ void	move_left(t_game *game)
 	game->img.img_memory = game->img.p_left;
 	if (game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x - 1] == 'V')
 	{
-		ft_putstr("You lost !\n");
+		ft_putstr("You got killed. Try again !\n");
 		exit (0);
 	}
+	else if (game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x - 1] == 'E')
+		if_can_exit(game);
 	else if (game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x - 1] != '1'
 		&& game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x - 1] != 'E')
 	{
@@ -89,9 +95,11 @@ void	move_right(t_game *game)
 	game->img.img_memory = game->img.p_right;
 	if (game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x + 1] == 'V')
 	{
-		ft_putstr("You lost !\n");
+		ft_putstr("You got killed. Try again !\n");
 		exit (0);
 	}
+	else if (game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x + 1] == 'E')
+		if_can_exit(game);
 	else if (game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x + 1] != '1'
 		&& game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x + 1] != 'E')
 	{
@@ -105,5 +113,14 @@ void	move_right(t_game *game)
 		game->p_xy.spawn_x += 1;
 		game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x] = 'P';
 		game->step_counter++;
+	}
+}
+-
+void	if_can_exit(t_game *game)
+{
+	if (game->exit_state >= 11)
+	{
+		ft_putstr("All souls have been brought back to the underworld ! GG\n");
+		exit (0);
 	}
 }

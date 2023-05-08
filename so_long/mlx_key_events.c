@@ -4,7 +4,6 @@
 int	shutdown(void)
 {
 	ft_printf("[Sortie du programme]\n");
-	//system("leaks so_long");
 	exit(0);
 	return (0);
 }
