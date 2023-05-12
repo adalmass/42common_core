@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:08:34 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/05 14:38:40 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:44:52 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,5 @@ void	initialize_mlx(t_game *game)
 	init_img(game);
 	mlx_loop_hook(game->mlx, run, game);
 	mlx_hook(game->window, 2, 0, key_press, game);
-	//mlx_hook(game->window, 3, 0, key_release, game);
 	mlx_hook(game->window, 17, 0, shutdown, (void *)0);
 }

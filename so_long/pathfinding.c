@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 12:59:02 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/05 16:21:43 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:45:43 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	verifications_x(t_map *map, t_parse *parse)
 	}
 }
 
-void pathfinding(t_map *map, t_parse *parse, t_p_xy *p_xy)
+void	pathfinding(t_map *map, t_parse *parse, t_p_xy *p_xy)
 {
 	map->y = p_xy->spawn_y;
 	map->x = p_xy->spawn_x;

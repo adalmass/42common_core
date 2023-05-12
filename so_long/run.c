@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:26:00 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/08 15:39:05 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:13:21 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,6 @@ void	print_text(t_game *game, int y, int x)
 	mlx_string_put(game->mlx, game->window, x, y, -1, final_str);
 	free(s_steps);
 	free(final_str);
-}
-
-int	if_get_all_coins(t_game *game)
-{
-	if (game->parse.coin == game->parse.coin_found)
-		return (1);
-	return (0);
 }
 
 void	print_map(t_game *game)
@@ -51,10 +44,10 @@ void	print_map(t_game *game)
 				print_img(game, game->img.coin, y, x);
 			if (game->map.map[y][x] == 'P')
 				print_img(game, game->img.img_memory, y, x);
-			if (game->map.map[y][x] == 'E')
+			if (game->map.map[y][x] == 'E' && game->exit_state == 0)
 				print_img(game, game->img.exit, y, x);
-			if (game->map.map[y][x] == 'V')
-				print_img(game, game->img.enemy, y, x);
+			else if (game->map.map[y][x] == 'E' && game->exit_state == 1)
+				print_img(game, game->img.exit_open, y, x);
 			x++;
 		}
 		y++;
@@ -64,8 +57,7 @@ void	print_map(t_game *game)
 int	run(t_game	*game)
 {
 	print_map(game);
-	print_text(game, 0, 0);
-	if (game->exit_state < 11)
-		exit_animation(game);
+	if (game->parse.coin_found == game->parse.coin)
+		game->exit_state = 1;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 10:29:34 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/08 13:27:41 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:11:47 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_image {
 	void		*floor;
 	void		*coin;
 	void		*exit;
-	void		*enemy;
+	void		*exit_open;
 	void		*p_face;
 	void		*p_back;
 	void		*p_right;
@@ -124,7 +124,6 @@ int		search_exit(t_map *map, t_parse *parse, t_p_xy *item);
 
 // --- run.c
 int		run(t_game	*game);
-int		if_get_all_coins(t_game *game);
 void	print_text(t_game *game, int y, int x);
 void	print_map(t_game *game);
 void	animate_exit(t_game *game);
@@ -137,7 +136,6 @@ void	print_img(t_game *game, void *img, int y, int x);
 // --- mlx_key_events.c
 int		shutdown(void);
 int		key_press(int key, t_game *game);
-//int		key_release(int key, t_game *game);
 
 // --- mlx_movements.c
 void	move_up(t_game *game);
@@ -145,11 +143,5 @@ void	move_down(t_game *game);
 void	move_left(t_game *game);
 void	move_right(t_game *game);
 void	if_can_exit(t_game *game);
-
-// --- mlx_animations.c
-void	exit_animation(t_game *game);
-void	exit_animation2(t_game *game);
-void	exit_animation3(t_game *game);
-void	exit_animation4(t_game *game);
 
 #endif

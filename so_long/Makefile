@@ -6,7 +6,6 @@ SRC = main.c \
 	  manage_maps.c \
 	  parsing.c \
 	  errors.c \
-	  check_path.c \
 	  pathfinding.c \
 	  pathfinding2.c \
 	  run.c \
@@ -29,6 +28,7 @@ $(NAME): $(OBJ)
 	@make -C ${LIBPATH}
 	@mv ${LIBPATH}${LIBNAME} ${LIBNAME}
 	@${CC} ${FLAGSMLX} ${LIBNAME} $(OBJ) -o $(NAME)
+	@mv ${LIBNAME} ${LIBPATH}
 	@echo "Archivage terminé [so_long]"
 
 all: $(NAME)

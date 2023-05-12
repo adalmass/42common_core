@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 13:01:57 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/29 13:39:15 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:45:57 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	check_fd_opening(int fd)
 {
 	if (fd == -1)
 	{
-		ft_putstr("Error : file can't be read (does not exist or wrong map format)\n");
+		ft_putstr("Error : file does not exist or wrong map format\n");
 		return (0);
 	}
 	return (1);

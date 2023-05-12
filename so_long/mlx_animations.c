@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 14:00:45 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/08 13:35:39 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/08 16:15:18 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,26 +73,22 @@ void	exit_animation(t_game *game)
 {
 	if (game->parse.coin_found == game->parse.coin)
 	{
-		while (game->exit_state < 11)
+		game->exit_state++;
+		if (game->exit_state == 1)
 		{
-			game->exit_state++;
-			if (game->exit_state == 1)
-			{
-				game->img.exit = save_img(game, "./images/animation/exit1.xpm");
-				print_img(game,
-					game->img.exit, game->p_xy.exit_y, game->p_xy.exit_x);
-			}
-			if (game->exit_state == 2)
-			{
-				game->img.exit = save_img(game, "./images/animation/exit2.xpm");
-				print_img(game,
-					game->img.exit, game->p_xy.exit_y, game->p_xy.exit_x);
-			}
-			exit_animation2(game);
-			exit_animation3(game);
-			exit_animation4(game);
-			mlx_do_sync(game->mlx);
-			usleep(100050);
+			game->img.exit = save_img(game, "./images/animation/exit1.xpm");
+			print_img(game,
+				game->img.exit, game->p_xy.exit_y, game->p_xy.exit_x);
 		}
+		if (game->exit_state == 2)
+		{
+			game->img.exit = save_img(game, "./images/animation/exit2.xpm");
+			print_img(game,
+				game->img.exit, game->p_xy.exit_y, game->p_xy.exit_x);
+		}
+		exit_animation2(game);
+		exit_animation3(game);
+		exit_animation4(game);
+		mlx_do_sync(game->mlx);
 	}
 }

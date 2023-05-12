@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_path.c                                       :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/10 17:35:27 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/04/27 13:56:07 by aldalmas         ###   ########.fr       */
+/*   Created: 2023/02/06 11:14:51 by aldalmas          #+#    #+#             */
+/*   Updated: 2023/04/13 14:54:53 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	DEBUG_print_map(t_map *map, t_parse *parse)  // a supp
+void	ft_putstr(char *s)
 {
-	int	y = 0;
-	while (map->map_path[y])
+	int	i;
+
+	i = 0;
+	while (s[i])
 	{
-		ft_putstr(map->map_path[y]);
-		ft_putchar('\n');
-		y++;
+		ft_putchar(s[i]);
+		i++;
 	}
-	ft_printf("coins : %d/%d\nexit_found : %d/1\n", parse->coin_found, parse->coin, parse->exit_found);
 }

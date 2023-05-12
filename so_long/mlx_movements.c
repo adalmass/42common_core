@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 13:48:04 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/08 15:47:13 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:45:20 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	move_up(t_game *game)
 		game->p_xy.spawn_y -= 1;
 		game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x] = 'P';
 		game->step_counter++;
+		ft_printf("steps counter : %d\n", game->step_counter);
 	}
 }
 
@@ -61,6 +62,7 @@ void	move_down(t_game *game)
 		game->p_xy.spawn_y += 1;
 		game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x] = 'P';
 		game->step_counter++;
+		ft_printf("steps counter : %d\n", game->step_counter);
 	}
 }
 
@@ -87,6 +89,7 @@ void	move_left(t_game *game)
 		game->p_xy.spawn_x -= 1;
 		game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x] = 'P';
 		game->step_counter++;
+		ft_printf("steps counter : %d\n", game->step_counter);
 	}
 }
 
@@ -113,12 +116,13 @@ void	move_right(t_game *game)
 		game->p_xy.spawn_x += 1;
 		game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x] = 'P';
 		game->step_counter++;
+		ft_printf("steps counter : %d\n", game->step_counter);
 	}
 }
--
+
 void	if_can_exit(t_game *game)
 {
-	if (game->exit_state >= 11)
+	if (game->exit_state)
 	{
 		ft_putstr("All souls have been brought back to the underworld ! GG\n");
 		exit (0);

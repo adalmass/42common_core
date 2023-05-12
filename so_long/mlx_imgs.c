@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:39:33 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/08 13:30:15 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/12 10:56:39 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	init_img(t_game *game)
 	game->img.wall = save_img(game, "./images/wall.xpm");
 	game->img.coin = save_img(game, "./images/coin.xpm");
 	game->img.exit = save_img(game, "./images/closed_portal.xpm");
-	game->img.enemy = save_img(game, "./images/enemy.xpm");
+	game->img.exit_open = save_img(game, "./images/opened_portal.xpm");
 	game->img.p_face = save_img(game, "./images/p_face.xpm");
 	game->img.p_back = save_img(game, "./images/p_back.xpm");
 	game->img.p_left = save_img(game, "./images/p_left.xpm");
