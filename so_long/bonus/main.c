@@ -6,16 +6,17 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:28:53 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/12 11:33:13 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/12 15:38:37 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 int	main(int ac, char **av)
 {
 	t_game	game;
 
+	srand(time(NULL));
 	startup_checks(ac, av[1]);
 	structs_initializer(&game.parse, &game.map, &game.p_xy);
 	game.map.fd = open(av[1], O_RDONLY);

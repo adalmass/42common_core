@@ -6,11 +6,11 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 12:59:02 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/12 11:40:32 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/12 15:38:37 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 void	verifications_y(t_map *map, t_parse *parse)
 {

@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:08:34 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/12 11:44:52 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/12 12:03:36 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	structs_initializer(t_parse *parse, t_map *map, t_p_xy *p_xy)
 {
 	t_game	*game;
 
-	game->exit_state = 1;
+	game->exit_state = 0;
 	game->step_counter = 0;
 	initialize_parse(parse);
 	initialize_map(map);

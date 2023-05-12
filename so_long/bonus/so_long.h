@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_bonus.h                                    :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:43:25 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/12 11:43:27 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/12 15:35:58 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_BONUS_H
-# define SO_LONG_BONUS_H
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
 # define SIZE 100
 
 # include "libft/libft.h"
 # include <mlx.h>
 # include <fcntl.h>
+# include <ranlib.h>
+# include <time.h>
 
 typedef struct s_p_xy {
 	int			exit_x;
@@ -69,8 +71,10 @@ typedef struct s_game {
 	t_parse		parse;
 	t_p_xy		p_xy;
 	t_img		img;
+	int			frame;
 	int			step_counter;
 	int			exit_state;
+	char		enemy_mark;
 	void		*mlx;
 	void		*window;
 }				t_game;
@@ -109,9 +113,6 @@ int		check_if_errors2(t_parse *parse);
 int		check_len_size(t_map *map, int actual_len);
 void	ft_exit(char *error_msg);
 
-// --- check_path.c
-void	DEBUG_print_map(t_map *map, t_parse *parse);
-
 // --- pathfinding.c
 int		last_verif(t_map *map, t_parse *parse, t_p_xy *p_xy);
 void	pathfinding(t_map *map, t_parse *parse, t_p_xy *p_xy);
@@ -136,7 +137,6 @@ void	print_img(t_game *game, void *img, int y, int x);
 // --- mlx_key_events.c
 int		shutdown(void);
 int		key_press(int key, t_game *game);
-//int		key_release(int key, t_game *game);
 
 // --- mlx_movements.c
 void	move_up(t_game *game);
@@ -150,5 +150,15 @@ void	exit_animation(t_game *game);
 void	exit_animation2(t_game *game);
 void	exit_animation3(t_game *game);
 void	exit_animation4(t_game *game);
+
+// --- mlx_movements_enemy.c
+void	enemy_move_up(t_game *game, int x, int y);
+void	enemy_move_down(t_game *game, int x, int y);
+void	enemy_move_right(t_game *game, int x, int y);
+void	enemy_move_left(t_game *game, int x, int y);
+
+// --- mlx_movements_enemy2.c
+void	move_all_enemy(t_game *game);
+void	move_enemy(t_game *game, int x, int y);
 
 #endif

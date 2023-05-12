@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors_bonus.c                                     :+:      :+:    :+:   */
+/*   check_errors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 11:54:45 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/12 11:39:04 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/12 15:38:37 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 void	ft_exit(char *error_msg)
 {
@@ -56,7 +56,7 @@ int	check_if_errors2(t_parse *parse)
 	if (parse->other_char > 0)
 	{
 		ft_putstr("Error\n");
-		ft_putstr("Unknow char in map (only '01PEC', case-sensitive)\n");
+		ft_putstr("Unknow char in map (only '01PECV', case-sensitive)\n");
 		error_detected++;
 	}
 	return (error_detected);

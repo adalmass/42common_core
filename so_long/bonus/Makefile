@@ -1,18 +1,20 @@
-NAME = so_long_bonus
+NAME = so_long
 
-SRC = main_bonus.c \
-	  startup_checks_bonus.c \
-	  initialize_bonus.c \
-	  manage_maps_bonus.c \
-	  parsing_bonus.c \
-	  errors_bonus.c \
-	  pathfinding_bonus.c \
-	  pathfinding2_bonus.c \
-	  run_bonus.c \
-	  mlx_key_events_bonus.c \
-	  mlx_movements_bonus.c \
-	  mlx_imgs_bonus.c \
-	  mlx_animations_bonus.c
+SRC = main.c \
+	  startup_checks.c \
+	  initialize_structs.c \
+	  manage_maps.c \
+	  parsing.c \
+	  check_errors.c \
+	  pathfinding.c \
+	  pathfinding2.c \
+	  run.c \
+	  key_events.c \
+	  player_moves.c \
+	  img_load_and_print.c \
+	  exit_animation.c \
+	  enemy_moves.c \
+	  enemy_moves2.c
 
 LIBPATH = ./libft/
 LIBNAME = libft.a
@@ -29,7 +31,7 @@ $(NAME): $(OBJ)
 	@mv ${LIBPATH}${LIBNAME} ${LIBNAME}
 	@${CC} ${FLAGSMLX} ${LIBNAME} $(OBJ) -o $(NAME)
 	@mv ${LIBNAME} ${LIBPATH}
-	@echo "Archivage terminé [so_long_bonus]"
+	@echo "Archivage terminé [so_long]"
 
 all: $(NAME)
 

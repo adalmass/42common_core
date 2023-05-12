@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_movements_bonus.c                              :+:      :+:    :+:   */
+/*   player_moves.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 13:48:04 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/12 11:40:05 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/12 15:38:37 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 void	move_up(t_game *game)
 {
 	game->img.img_memory = game->img.p_back;
-	if (game->map.map[game->p_xy.spawn_y - 1][game->p_xy.spawn_x] == 'V')
+	if (game->map.map[game->p_xy.spawn_y - 1][game->p_xy.spawn_x] == 'V'
+		|| game->map.map[game->p_xy.spawn_y - 1][game->p_xy.spawn_x] == 'A')
 	{
 		ft_putstr("You got killed. Try again !\n");
 		exit (0);
@@ -41,7 +42,8 @@ void	move_up(t_game *game)
 void	move_down(t_game *game)
 {
 	game->img.img_memory = game->img.p_face;
-	if (game->map.map[game->p_xy.spawn_y + 1][game->p_xy.spawn_x] == 'V')
+	if (game->map.map[game->p_xy.spawn_y + 1][game->p_xy.spawn_x] == 'V'
+		|| game->map.map[game->p_xy.spawn_y + 1][game->p_xy.spawn_x] == 'A')
 	{
 		ft_putstr("You got killed. Try again !\n");
 		exit (0);
@@ -67,7 +69,8 @@ void	move_down(t_game *game)
 void	move_left(t_game *game)
 {
 	game->img.img_memory = game->img.p_left;
-	if (game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x - 1] == 'V')
+	if (game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x - 1] == 'V'
+		|| game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x - 1] == 'A')
 	{
 		ft_putstr("You got killed. Try again !\n");
 		exit (0);
@@ -93,7 +96,8 @@ void	move_left(t_game *game)
 void	move_right(t_game *game)
 {
 	game->img.img_memory = game->img.p_right;
-	if (game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x + 1] == 'V')
+	if (game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x + 1] == 'V'
+		|| game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x + 1] == 'A')
 	{
 		ft_putstr("You got killed. Try again !\n");
 		exit (0);

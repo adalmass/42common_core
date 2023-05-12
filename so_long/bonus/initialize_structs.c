@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize_bonus.c                                 :+:      :+:    :+:   */
+/*   initialize_structs.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:08:34 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/12 11:39:25 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/12 15:38:37 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#include "so_long.h"
 
 void	initialize_parse(t_parse *parse)
 {
@@ -49,6 +49,8 @@ void	structs_initializer(t_parse *parse, t_map *map, t_p_xy *p_xy)
 
 	game->exit_state = 1;
 	game->step_counter = 0;
+	game->frame = 0;
+	game->enemy_mark = 'A';
 	initialize_parse(parse);
 	initialize_map(map);
 	initialize_item_xy(p_xy);
@@ -60,7 +62,7 @@ void	initialize_mlx(t_game *game)
 	if (!game->mlx)
 		ft_exit("Mlx can't be initialized\n");
 	game->window = mlx_new_window(game->mlx, (game->map.good_len + 1) * SIZE,
-			game->map.lines * SIZE, "so_long_bonus");
+			game->map.lines * SIZE, "so_long");
 	if (!game->window)
 		ft_exit("Mlx.window can't be opened\n");
 	init_img(game);
