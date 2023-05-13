@@ -2,17 +2,16 @@ NAME = so_long
 
 SRC = main.c \
 	  startup_checks.c \
-	  initialize.c \
+	  initialize_structs.c \
 	  manage_maps.c \
 	  parsing.c \
-	  errors.c \
+	  check_errors.c \
 	  pathfinding.c \
 	  pathfinding2.c \
 	  run.c \
 	  mlx_key_events.c \
-	  mlx_movements.c \
-	  mlx_imgs.c \
-	  mlx_animations.c
+	  player_moves.c \
+	  img_load_and_print.c 
 
 LIBPATH = libft/
 LIBNAME = libft.a

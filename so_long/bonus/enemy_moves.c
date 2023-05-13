@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 13:48:04 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/12 15:38:37 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/13 10:12:21 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	enemy_move_up(t_game *game, int x, int y)
 	if (game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x] == 'V'
 		|| game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x] == 'A')
 	{
-		ft_putstr("You got killed. Try again !\n");
+		ft_putstr("An enemy trapped you. RIP !\n");
 		exit (0);
 	}
 }
@@ -43,7 +43,7 @@ void	enemy_move_down(t_game *game, int x, int y)
 	if (game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x] == 'V'
 		|| game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x] == 'A')
 	{
-		ft_putstr("You got killed. Try again !\n");
+		ft_putstr("An enemy trapped you. RIP !\n");
 		exit (0);
 	}
 }
@@ -61,7 +61,7 @@ void	enemy_move_right(t_game *game, int x, int y)
 	if (game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x] == 'V'
 		|| game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x] == 'A')
 	{
-		ft_putstr("You got killed. Try again !\n");
+		ft_putstr("An enemy trapped you. RIP !\n");
 		exit (0);
 	}
 }
@@ -79,7 +79,7 @@ void	enemy_move_left(t_game *game, int x, int y)
 	if (game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x] == 'V'
 		|| game->map.map[game->p_xy.spawn_y][game->p_xy.spawn_x] == 'A')
 	{
-		ft_putstr("You got killed. Try again !\n");
+		ft_putstr("An enemy trapped you. RIP !\n");
 		exit (0);
 	}
 }

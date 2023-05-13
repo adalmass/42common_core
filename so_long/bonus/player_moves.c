@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 13:48:04 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/12 15:38:37 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/13 11:10:10 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ void	if_can_exit(t_game *game)
 {
 	if (game->exit_state >= 11)
 	{
+		game->step_counter++;
 		ft_putstr("All souls have been brought back to the underworld ! GG\n");
 		exit (0);
 	}

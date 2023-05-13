@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:28:53 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/12 11:28:58 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/13 10:27:19 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	main(int ac, char **av)
 	if (!check_fd_opening(game.map.fd))
 		exit (1);
 	get_map(&game.map, &game.parse);
-	close(game.map.fd);
 	copy_map(&game.map, &game.p_xy);
+	close(game.map.fd);
 	game.map.good_len -= 2;
 	is_playable_map(&game.map, &game.parse, &game.p_xy);
 	ft_printf("steps counter : 0\n");
