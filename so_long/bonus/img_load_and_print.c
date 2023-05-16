@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:39:33 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/12 15:38:37 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/13 11:15:46 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	print_img(t_game *game, void *img, int y, int x)
 	mlx_put_image_to_window(game->mlx, game->window, img, x * SIZE, y * SIZE);
 }
 
-void	init_img(t_game *game)
+void	load_images(t_game *game)
 {
 	game->img.floor = save_img(game, "./images/floor.xpm");
 	game->img.wall = save_img(game, "./images/wall.xpm");

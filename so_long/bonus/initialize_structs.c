@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 15:08:34 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/12 15:38:37 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/13 11:15:46 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	initialize_mlx(t_game *game)
 			game->map.lines * SIZE, "so_long");
 	if (!game->window)
 		ft_exit("Mlx.window can't be opened\n");
-	init_img(game);
+	load_images(game);
 	mlx_loop_hook(game->mlx, run, game);
 	mlx_hook(game->window, 2, 0, key_press, game);
 	mlx_hook(game->window, 17, 0, shutdown, (void *)0);

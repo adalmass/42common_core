@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 11:43:25 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/13 10:06:47 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/13 11:15:46 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ void	print_map(t_game *game);
 void	animate_exit(t_game *game);
 
 // --- mlx_imgs.c
-void	init_img(t_game *game);
+void	load_images(t_game *game);
 void	*save_img(t_game *game, char *img_path);
 void	print_img(t_game *game, void *img, int y, int x);
 
