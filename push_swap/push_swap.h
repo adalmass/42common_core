@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:13 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/22 18:26:28 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/24 21:45:43 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	ft_error(void);
 
 // --- parsing.c
 int		check_char_args(char c, char d);
+int		search_double(char *s1, char *s2);
 void	create_tab_a(char **av, t_parse *parse, t_tabs *tabs);
 void	check_if_double(t_parse *parse, t_tabs *tabs);
 

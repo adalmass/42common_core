@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:27:26 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/22 18:27:01 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/24 21:44:53 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,52 @@ int	check_char_args(char c, char d)
 	return (0);
 }
 
+int	search_double(char *s1, char *s2)
+{
+	int	i;
+	int	j;
+	int	len_s1;
+	int	len_s2;
+
+	i = 0;
+	len_s1 = s_len(s1);
+	len_s2 = s_len(s2);
+	if (len_s1 == len_s2)
+	{
+		while (s1[i])
+		{
+			j = 0;
+			while (s1[i + j] == s2[j] && s1[i] && s2[i])
+			{
+				if (j == len_s2)
+					return (1);
+				j++;
+			}
+			i++;
+		}
+	}
+	return (0);
+}
+
+void	find_double(t_tabs *tabs, char *chars_stocked, int here)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	(void) chars_stocked;
+	while (tabs->tab_a[y])
+	{
+		x = 0;
+		if (y != here)
+		{
+			if (search_double(tabs->tab_a[y], chars_stocked))
+				ft_error();
+		}
+		y++;
+	}
+}
+
 // je verifie s'il n'y a pas de doublons en stockant chaque caractere dans un tableau, 
 // qui me servira de reference pour un strchr maison dans find_double()
 void	check_if_double(t_parse *parse, t_tabs *tabs)
@@ -33,10 +79,11 @@ void	check_if_double(t_parse *parse, t_tabs *tabs)
 	while (tabs->tab_a[y])
 	{
 		chars_stocked = ft_strdup(tabs->tab_a[y]);
-		JE DOIS TROUVER COMMENT CHECKER LES DOUBLONS ICI
+		find_double(tabs, chars_stocked, y);
 		// chars_stocked = ft_strjoin_gnl(chars_stocked, tabs->tab_a[y + 1]);
 		// chars_stocked = ft_strjoin_gnl(chars_stocked, "\n");
 		// ft_putstr(chars_stocked);
+		free(chars_stocked);
 		y++;
 	}
 }
@@ -58,3 +105,4 @@ void	create_tab_a(char **av, t_parse *parse, t_tabs *tabs)
 	tabs->tab_a = ft_split(temp, '\n');
 	check_if_double(parse, tabs);
 }
+
