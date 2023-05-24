@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:27:26 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/24 21:44:53 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/24 21:48:12 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,6 @@ void	check_if_double(t_parse *parse, t_tabs *tabs)
 	{
 		chars_stocked = ft_strdup(tabs->tab_a[y]);
 		find_double(tabs, chars_stocked, y);
-		// chars_stocked = ft_strjoin_gnl(chars_stocked, tabs->tab_a[y + 1]);
-		// chars_stocked = ft_strjoin_gnl(chars_stocked, "\n");
-		// ft_putstr(chars_stocked);
 		free(chars_stocked);
 		y++;
 	}
