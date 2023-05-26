@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-int	search_double(char *s1, char *s2, int len_s2)
+int	if_double(char *s1, char *s2, int len_s2)
 {
 	int	i;
 	int	j;
@@ -28,5 +28,5 @@ int main(int ac, char **av)
 {
 	(void)ac;
 
-	printf("%d\n", search_double(av[1], av[2], strlen(av[2])));
+	printf("%d\n", if_double(av[1], av[2], strlen(av[2])));
 }

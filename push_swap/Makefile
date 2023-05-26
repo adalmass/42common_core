@@ -4,7 +4,9 @@ SRC = main.c \
 	  parsing.c \
 	  error_management.c \
 	  initialize.c \
-	  DEBUG_print_tab.c
+	  DEBUG_print_tab.c \
+	  manage_double.c \
+	  manage_zeros.c
 
 LIBPATH = libft/
 LIBNAME = libft.a
