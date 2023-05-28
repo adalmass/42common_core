@@ -6,38 +6,61 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:27:26 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/26 21:03:54 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/28 15:29:35 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// jai besoin de creer le tableau pour ensuite verifier 
-// si je nai pas des zeros devant mes chiffres et de doubles
-void	create_tab_a(t_parse *parse, t_tabs *tabs)
+void	handle_zeros(t_tabs *tab)
 {
-	char	*temp_tab_a;
-	char	*without_zeros;
+	int		y;
+	int		temp;
 
-	parse->y = 1;
-	temp_tab_a = ft_strdup("");
-	while (parse->args[parse->y])
+	y = 0;
+	while (tab->tab_a[y])
 	{
-		if (parse->args[parse->y][0] == '+')
-			parse->args[parse->y] = ft_strdup(parse->args[parse->y] + 1);
-		//if (av[y][0] == '-')
-			// l ecrire puis i++ jusqu a trouver un digit non 0 valide
-		if (parse->args[parse->y][0] == '0')
-			without_zeros = manage_zeros(parse);
-		else
-			without_zeros = ft_strdup(parse->args[parse->y]);
-		temp_tab_a = ft_strjoin_gnl(temp_tab_a, without_zeros);
-		temp_tab_a = ft_strjoin_gnl(temp_tab_a, "\n");
-		free(without_zeros);
-		parse->y++;
+		temp = ft_atoi(tab->tab_a[y]);
+		free(tab->tab_a[y]);
+		tab->tab_a[y] = ft_itoa(temp);
+		y++;
 	}
+}
 
-	tabs->tab_a = ft_split(temp_tab_a, '\n');
-	free(temp_tab_a);
-	check_if_double(tabs);
+void	handle_operators(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '+' || s[i] == '-')
+		{
+			if (!ft_isdigit(s[i + 1]))
+				ft_error("No digit after '-' or '+'\n");
+			if (i > 0 && s[i - 1] != ' ')
+				ft_error("'+' or '-' after digit\n");
+		}
+		i++;
+	}
+}
+
+void	create_tab_a(t_parse *parse, t_tabs *tab)
+{
+	int		y;
+	char	*str;
+
+	y = 1;
+	str = ft_strdup("");
+	while (parse->args[y])
+	{
+		str = ft_strjoin_gnl(str, parse->args[y]);
+		str = ft_strjoin_gnl(str, " ");
+		y++;
+	}
+	handle_operators(str);
+	tab->tab_a = ft_split(str, ' ');
+	handle_zeros(tab);
+	handle_doubles(tab);
+	free(str);
 }

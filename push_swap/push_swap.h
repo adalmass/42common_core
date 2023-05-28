@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:13 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/26 20:44:22 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/28 15:29:35 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ typedef struct s_parse{
 	int			len_to_find;
 	int			y;
 	int			x;
-	char		*temp;
+	int			minus_found;
+	char		*no_z_str;
 	char		**args;
 	char		*chars_stocked;
 	char		*char_to_find;
@@ -35,21 +36,23 @@ typedef struct s_parse{
 void	initialize_struct(t_parse *parse);
 
 // --- error_management.c
-int		check_char_args(char c, char d);
+int		check_char_args(char *str);
 void	is_valid_args(char **av);
-void	ft_error(void);
+void	ft_error(char *error_msg);
 
 // --- parsing.c
-int		check_char_args(char c, char d);
+void	handle_operators(char *s);
+void	handle_zeros(t_tabs *tab);
 void	create_tab_a(t_parse *parse, t_tabs *tabs);
 
 // --- manage_double.c
 int		if_double(char *s1, char *s2);
-void	check_if_double(t_tabs *tabs);
+void	handle_doubles(t_tabs *tabs);
 void	find_double(t_tabs *tabs, char *chars_stocked, int here);
 
 // --- manage_zeros.c
-char	*manage_zeros(t_parse *parse);
+int		find_len_nb(t_parse *parse);
+void	manage_zeros(t_parse *parse);
 
 // --- DEBUG_print_tab.c
 void	DEBUG_print_tab_a(t_tabs *tabs);

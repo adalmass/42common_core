@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:04:27 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/26 19:04:41 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/28 15:29:35 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	find_double(t_tabs *tabs, char *chars_stocked, int here)
 		if (y != here)
 		{
 			if (if_double(tabs->tab_a[y], chars_stocked))
-				ft_error();
+				ft_error("Double found\n");
 		}
 		y++;
 	}
@@ -60,7 +60,7 @@ void	find_double(t_tabs *tabs, char *chars_stocked, int here)
 
 // je verifie s'il n'y a pas de doublons en stockant chaque caractere dans un tableau, 
 // qui me servira de reference pour un strchr maison dans find_double()
-void	check_if_double(t_tabs *tabs)
+void	handle_doubles(t_tabs *tabs)
 {
 	int		y;
 	char	*chars_stocked;

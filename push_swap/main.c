@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:49:26 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/26 20:57:12 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/28 13:54:19 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,5 @@ int	main(int ac, char **av)
 	parse.args = av;
 	create_tab_a(&parse, &tabs);
 	DEBUG_print_tab_a(&tabs); // à suppr
-	//system("leaks push_swap");
 	exit (0);
 }

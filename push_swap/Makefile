@@ -2,19 +2,20 @@ NAME = push_swap
 
 SRC = main.c \
 	  parsing.c \
-	  error_management.c \
+	  manage_errors.c \
 	  initialize.c \
 	  DEBUG_print_tab.c \
 	  manage_double.c \
-	  manage_zeros.c
 
 LIBPATH = libft/
 LIBNAME = libft.a
 CC = gcc -Wall -Wextra -Werror
+CCsani = -g -fsanitize=address
 
 OBJ = $(SRC:.c=.o)
 
 .c.o = $(CC) -c -o $(OBJ)
+#.c.o = $(CC) $(CCsani) -c -o $(OBJ)
 
 $(NAME): $(OBJ)
 	@make -C ${LIBPATH}
