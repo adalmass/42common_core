@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_management.c                                 :+:      :+:    :+:   */
+/*   manage_errors.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:30:18 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/28 15:21:44 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/05/28 15:33:40 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_char_args(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i])
 	{
 		if (!ft_isdigit(str[i]) && str[i] != '-'
 			&& str[i] != '+' && str[i] != ' ')
@@ -36,13 +36,13 @@ int	check_char_args(char *str)
 
 void	is_valid_args(char **av)
 {
-	int	x;
+	int	y;
 
-	x = 1;
-	while (av[x] != NULL)
+	y = 1;
+	while (av[y])
 	{
-		if (!check_char_args(av[x]))
+		if (!check_char_args(av[y]))
 			ft_error("Invalid character\n");
-		x++;
+		y++;
 	}
 }

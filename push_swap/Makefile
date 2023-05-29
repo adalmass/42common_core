@@ -3,9 +3,10 @@ NAME = push_swap
 SRC = main.c \
 	  parsing.c \
 	  manage_errors.c \
-	  initialize.c \
-	  DEBUG_print_tab.c \
 	  manage_double.c \
+	  DEBUG_print_tab.c \
+	  sorting_swap.c \
+	  
 
 LIBPATH = libft/
 LIBNAME = libft.a
