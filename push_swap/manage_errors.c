@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:30:18 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/28 15:33:40 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/01 17:35:02 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int	check_char_args(char *str)
 	{
 		if (!ft_isdigit(str[i]) && str[i] != '-'
 			&& str[i] != '+' && str[i] != ' ')
+		{
+			ft_printf("s[i - 1] : $c\ns[i] : %c\n", str[i - 1], str[i]);
 			return (0);
+		}
 		i++;
 	}
 	return (1);

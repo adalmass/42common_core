@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:13 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/29 13:20:08 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/01 18:25:37 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,8 @@ typedef struct s_tabs{
 }				t_tabs;
 
 typedef struct s_parse{
-	char		**args;
-	char		*no_z_str;
 	char		*chars_stocked;
 }				t_parse;
-
 
 // --- DEBUG_print_tab.c
 void	DEBUG_print_tab_a(t_tabs *tabs);
@@ -38,7 +35,7 @@ void	ft_error(char *error_msg);
 // --- parsing.c
 void	check_operators(char *s);
 void	handle_zeros(t_tabs *tab);
-void	create_tab_a(t_parse *parse, t_tabs *tabs);
+void	parse_tab_a(t_tabs *tabs);
 
 // --- manage_double.c
 int		if_double(char *s1, char *s2);

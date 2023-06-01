@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:04:27 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/28 15:29:35 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/01 18:27:44 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	find_double(t_tabs *tabs, char *chars_stocked, int here)
 	int	y;
 
 	y = 0;
-	(void) chars_stocked;
 	while (tabs->tab_a[y])
 	{
 		x = 0;

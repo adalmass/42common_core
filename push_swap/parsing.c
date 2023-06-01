@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:27:26 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/05/29 16:29:04 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/01 18:49:54 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	handle_zeros(t_tabs *tab)
 	while (tab->tab_a[y])
 	{
 		temp = ft_atoi(tab->tab_a[y]);
-		free(tab->tab_a[y]);
 		tab->tab_a[y] = ft_itoa(temp);
 		y++;
 	}
@@ -45,15 +44,26 @@ void	check_operators(char *s)
 	}
 }
 
-void	handle_int_limit(char *s)
+void	handle_int_limit(t_tabs *tab)
 {
-	if ((s[0] == '-' && s_len(s) > s_len("-2147483648"))
-		|| (s[0] != '-' && s_len(s) > s_len("2147483647")))
-		ft_error("Int limit reached\n");
-	// if (len_s == int_min || len_s == int_max)
-	// {
-	// 	if (ft_strncmp(s, int_max, s_len(s)) || ft_strncmp(s, int_min, s_len(s)))
-	// }
+	int	y;
+	int	len_s;
+	int	int_min;
+	int	int_max;
+
+	y = 0;
+	len_s = 0;
+	int_min = s_len("-2147483648");
+	int_max = s_len("2147483647");
+	while (tab->tab_a[y])
+	{
+		len_s = s_len(tab->tab_a[y]);
+		ft_printf("len_s : %d\nlen_max :%d\nlen_min : %d\n", len_s, int_max, int_min);
+		if ((tab->tab_a[y][0] == '-' && len_s > int_min)
+			|| (tab->tab_a[y][0] != '-' && len_s > int_max))
+			ft_error("Int limit reached\n");
+		y++;
+	}
 }
 
 void	rewrite_str(char *s)
@@ -71,7 +81,8 @@ void	rewrite_str(char *s)
 				minus_found = 1;
 			s[i] = ' ';
 		}
-		if (s[i] == '0' && s[i + 1] == '0')
+		if (ft_isdigit(s[i - 1]) == 0 && s[i] == '0'
+			&& ft_isdigit(s[i + 1]) == 1)
 		{
 			while (s[i] == '0' && s[i + 1] != ' ')
 					s[i++] = ' ';
@@ -83,29 +94,18 @@ void	rewrite_str(char *s)
 	}
 }
 
-void	create_tab_a(t_parse *parse, t_tabs *tab)
+void	parse_tab_a(t_tabs *tab)
 {
 	int		y;
-	char	*str;
 
 	y = 1;
-	str = ft_strdup("");
-	while (parse->args[y])
-	{
-		str = ft_strjoin_gnl(str, parse->args[y]);
-		str = ft_strjoin_gnl(str, " ");
-		y++;
-	}
-	check_operators(str);
-	rewrite_str(str);
-	tab->tab_a = ft_split(str, ' ');
-	y = 0;
 	while (tab->tab_a[y])
 	{
-		handle_int_limit(tab->tab_a[y]);
+		check_operators(tab->tab_a[y]);
+		rewrite_str(tab->tab_a[y]);
 		y++;
 	}
 	handle_zeros(tab);
+	handle_int_limit(tab);
 	handle_doubles(tab);
-	free(str);
 }
