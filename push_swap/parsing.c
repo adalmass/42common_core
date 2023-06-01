@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:27:26 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/01 18:49:54 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/01 19:36:09 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	handle_int_limit(t_tabs *tab)
 	while (tab->tab_a[y])
 	{
 		len_s = s_len(tab->tab_a[y]);
-		ft_printf("len_s : %d\nlen_max :%d\nlen_min : %d\n", len_s, int_max, int_min);
+		ft_printf("len de '%s': %d\n", tab->tab_a[y], len_s);
 		if ((tab->tab_a[y][0] == '-' && len_s > int_min)
 			|| (tab->tab_a[y][0] != '-' && len_s > int_max))
 			ft_error("Int limit reached\n");
@@ -106,6 +106,6 @@ void	parse_tab_a(t_tabs *tab)
 		y++;
 	}
 	handle_zeros(tab);
-	handle_int_limit(tab);
+	handle_int_limit(tab); // a fix
 	handle_doubles(tab);
 }
