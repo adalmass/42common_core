@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:04:27 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/01 18:27:44 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/02 18:02:15 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,11 @@ int	if_double(char *s1, char *s2)
 
 void	find_double(t_tabs *tabs, char *chars_stocked, int here)
 {
-	int	x;
 	int	y;
 
 	y = 0;
 	while (tabs->tab_a[y])
 	{
-		x = 0;
 		if (y != here)
 		{
 			if (if_double(tabs->tab_a[y], chars_stocked))

@@ -6,24 +6,31 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:27:26 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/01 19:36:09 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:38:57 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	handle_zeros(t_tabs *tab)
+char	*rewrite_str(char *s)
 {
-	int		y;
-	int		temp;
+	int		i;
+	int		j;
+	char	*temp;
 
-	y = 0;
-	while (tab->tab_a[y])
+	i = 0;
+	j = 0;
+	temp = ft_strdup("");
+	while (s[i])
 	{
-		temp = ft_atoi(tab->tab_a[y]);
-		tab->tab_a[y] = ft_itoa(temp);
-		y++;
+		while (s[i] == ' ')
+			i++;
+		temp[j] = s[i];
+		j++;
+		i++;
 	}
+	temp[j] = '\0';
+	return (temp);
 }
 
 void	check_operators(char *s)
@@ -44,29 +51,26 @@ void	check_operators(char *s)
 	}
 }
 
-void	handle_int_limit(t_tabs *tab)
+void	handle_int_limit(char *s)
 {
-	int	y;
 	int	len_s;
-	int	int_min;
-	int	int_max;
 
-	y = 0;
-	len_s = 0;
-	int_min = s_len("-2147483648");
-	int_max = s_len("2147483647");
-	while (tab->tab_a[y])
+	len_s = s_len(s);
+	if (len_s > 11)
+		ft_error("INT LIMIT reached\n");
+	if (s[0] != '-')
 	{
-		len_s = s_len(tab->tab_a[y]);
-		ft_printf("len de '%s': %d\n", tab->tab_a[y], len_s);
-		if ((tab->tab_a[y][0] == '-' && len_s > int_min)
-			|| (tab->tab_a[y][0] != '-' && len_s > int_max))
-			ft_error("Int limit reached\n");
-		y++;
+		if (len_s == 10 && ft_strncmp(s, "2147483647", 10) > 0)
+			ft_error("INT MAX reached\n");
+	}
+	else
+	{
+		if (len_s == 11 && ft_strncmp(s, "-2147483648", 11) > 0)
+			ft_error("INT MIN reached\n");
 	}
 }
 
-void	rewrite_str(char *s)
+void	handle_zeros(char *s)
 {
 	int	i;
 	int	minus_found;
@@ -96,16 +100,16 @@ void	rewrite_str(char *s)
 
 void	parse_tab_a(t_tabs *tab)
 {
-	int		y;
+	int	y;
 
-	y = 1;
+	y = 0;
 	while (tab->tab_a[y])
 	{
 		check_operators(tab->tab_a[y]);
-		rewrite_str(tab->tab_a[y]);
+		handle_zeros(tab->tab_a[y]);
+		tab->tab_a[y] = rewrite_str(tab->tab_a[y]);
+		handle_int_limit(tab->tab_a[y]);
 		y++;
 	}
-	handle_zeros(tab);
-	handle_int_limit(tab); // a fix
 	handle_doubles(tab);
 }

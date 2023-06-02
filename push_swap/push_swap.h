@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:13 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/01 18:25:37 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:49:38 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ void	is_valid_args(char **av);
 void	ft_error(char *error_msg);
 
 // --- parsing.c
+char	*rewrite_str(char *s);
+void	handle_int_limit(char *s);
+void	handle_zeros(char *s);
 void	check_operators(char *s);
-void	handle_zeros(t_tabs *tab);
 void	parse_tab_a(t_tabs *tabs);
 
 // --- manage_double.c
@@ -47,5 +49,10 @@ void	find_double(t_tabs *tabs, char *chars_stocked, int here);
 // --- sorting_swap.c
 void	swap_a(t_tabs *tab);
 void	swap_b(t_tabs *tab);
+void	swap_s(t_tabs *tab);
+
+// --- pushing_swap.c
+void	push_a(t_tabs *tab);
+void	push_b(t_tabs *tab);
 
 #endif

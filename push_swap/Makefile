@@ -6,6 +6,7 @@ SRC = main.c \
 	  manage_double.c \
 	  DEBUG_print_tab.c \
 	  sorting_swap.c \
+	  pushing_swap.c \
 	  
 
 LIBPATH = libft/
