@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate_swap.c                                      :+:      :+:    :+:   */
+/*   rotating_swap.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 07:28:48 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/03 09:29:49 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/03 12:34:13 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	rotate_a(t_tabs *tab)
 		y++;
 	}
 	tab->tab_a[size] = temp;
+	tab->count++;
 	ft_putstr("ra\n");
 }
 
@@ -52,6 +53,7 @@ void	rotate_b(t_tabs *tab)
 		y++;
 	}
 	tab->tab_b[size - 1] = temp;
+	tab->count++;
 	ft_putstr("rb\n");
 }
 

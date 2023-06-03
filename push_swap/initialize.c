@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   initialize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/18 10:49:26 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/03 13:01:36 by aldalmas         ###   ########.fr       */
+/*   Created: 2023/06/03 12:42:22 by aldalmas          #+#    #+#             */
+/*   Updated: 2023/06/03 12:44:02 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int ac, char **av)
+void	initialize(t_tabs *tab, int ac, char **av)
 {
-	t_tabs	tab;
-
-	if (ac == 1)
-		ft_error("Args must be > 1\n");
-	is_valid_args(av);
-	initialize(&tab, ac, av);
-	parse_tab_a(&tab);
-	sort_three(&tab);
-	DEBUG_print_tab_a(&tab);
-	ft_printf("-[Tri effectué en %d coup(s)]-\n", tab.count);
-	exit (0);
+	tab->count = 0;
+	tab->len_tab_a = 0;
+	tab->tab_a = av + 1;
+	tab->tab_b = ft_calloc(ac, sizeof(char *));
+	if (!tab->tab_b)
+		ft_error("tab_b : calloc failed\n");
 }
-
-	//DEBUG_print_tab_b(&tab);
