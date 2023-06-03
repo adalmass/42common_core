@@ -7,6 +7,8 @@ SRC = main.c \
 	  DEBUG_print_tab.c \
 	  sorting_swap.c \
 	  pushing_swap.c \
+	  rotating_swap.c \
+	  r_rotating_swap.c \
 	  
 
 LIBPATH = libft/

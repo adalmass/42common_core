@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 10:49:26 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/02 17:59:05 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/03 10:03:47 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,18 @@ int	main(int ac, char **av)
 		ft_error("Args must be > 1\n");
 	is_valid_args(av);
 	tabs.tab_a = av + 1;
+	tabs.tab_b = ft_calloc(ac, sizeof(char *));
+	if (!tabs.tab_b)
+		ft_error("tab_b : calloc failed\n");
 	parse_tab_a(&tabs);
-
-	ft_printf("[before sorting]\n");
-	DEBUG_print_tab_a(&tabs); // à suppr
-	tabs.tab_b[0] = "45";
-	push_a(&tabs);
-	ft_printf("\n[after sorting]\n");
 	DEBUG_print_tab_a(&tabs);
-	//system("leaks push_swap");
+	r_rotate_a(&tabs);
+	DEBUG_print_tab_a(&tabs);
 	exit (0);
 }
+
+	// tabs.tab_b[0] = "3";
+	// tabs.tab_b[1] = "45";
+	// tabs.tab_b[2] = "13";
+	// tabs.tab_b[2] = "98";
+	// tabs.tab_b[3] = "7";

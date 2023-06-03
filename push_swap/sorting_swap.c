@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:43:50 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/02 15:47:47 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/03 09:30:31 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	swap_b(t_tabs *tab)
 	}
 }
 
-void	swap_s(t_tabs *tab)
+void	swap_ss(t_tabs *tab)
 {
 	swap_a(tab);
 	swap_b(tab);
