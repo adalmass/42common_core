@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:13 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/03 09:44:22 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/03 11:06:16 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_parse{
 	char		*chars_stocked;
 }				t_parse;
 
+// --------------PARSING--------------
 // --- DEBUG_print_tab.c
 void	DEBUG_print_tab_a(t_tabs *tabs);
 void	DEBUG_print_tab_b(t_tabs *tabs);
@@ -45,8 +46,7 @@ int		if_double(char *s1, char *s2);
 void	handle_doubles(t_tabs *tabs);
 void	find_double(t_tabs *tabs, char *chars_stocked, int here);
 
-// ---------------------------
-
+// --------------SWAP--------------
 // --- sorting_swap.c
 void	swap_a(t_tabs *tab);
 void	swap_b(t_tabs *tab);
@@ -63,5 +63,7 @@ void	rotate_rr(t_tabs *tab);
 
 // --- r_rotating_swap.c
 void	r_rotate_a(t_tabs *tab);
+void	r_rotate_b(t_tabs *tab);
+void	r_rotate_rrr(t_tabs *tab);
 
 #endif
