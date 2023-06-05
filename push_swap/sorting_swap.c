@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:43:50 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/03 12:34:21 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/05 10:40:23 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ void	swap_ss(t_tabs *tab)
 {
 	swap_a(tab);
 	swap_b(tab);
+	tab->count--;
 	ft_putstr("ss\n");
 }

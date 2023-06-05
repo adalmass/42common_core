@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:13 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/03 13:17:46 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/05 17:17:46 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 typedef struct s_tabs{
 	int			count;
 	int			len_tab_a;
+	int			max;
+	int			*tab_idx;
 	char		**tab_a;
 	char		**tab_b;
 }				t_tabs;
@@ -30,6 +32,7 @@ typedef struct s_parse{
 // --- DEBUG_print_tab.c
 void	DEBUG_print_tab_a(t_tabs *tabs);
 void	DEBUG_print_tab_b(t_tabs *tabs);
+void	DEBUG_print_tab_idx(t_tabs *tab);
 
 // --- initialize.c
 void	initialize(t_tabs *tab, int ac, char **av);
@@ -71,9 +74,14 @@ void	r_rotate_a(t_tabs *tab);
 void	r_rotate_b(t_tabs *tab);
 void	r_rotate_rrr(t_tabs *tab);
 
-// --- sort_algo.c
+// --- sort_small_stack.c
+
+// --- sort_big_stack.c
 int		compare_str(t_tabs *tab, int idx);
 void	swap_str(t_tabs *tab, int idx);
-void	sort_three(t_tabs *tab);
+void	sort_two(t_tabs *tab);
+//void	sort_three(t_tabs *tab);
+//void	sort_five(t_tabs *tab);
+void	sort_big_stack(t_tabs *tab);
 
 #endif

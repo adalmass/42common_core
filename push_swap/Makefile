@@ -10,7 +10,8 @@ SRC = main.c \
 	  pushing_swap.c \
 	  rotating_swap.c \
 	  r_rotating_swap.c \
-	  sort_algo.c \
+	  sort_small_stack.c \
+	  sort_big_stack.c \
 	  
 
 LIBPATH = libft/

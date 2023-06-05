@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 07:28:48 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/03 12:34:13 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/05 10:40:33 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ void	rotate_rr(t_tabs *tab)
 {
 	rotate_a(tab);
 	rotate_b(tab);
+	tab->count--;
 	ft_putstr("rr\n");
 }

@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize.c                                       :+:      :+:    :+:   */
+/*   sort_small_stack.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/03 12:42:22 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/05 16:35:02 by aldalmas         ###   ########.fr       */
+/*   Created: 2023/06/05 10:43:07 by aldalmas          #+#    #+#             */
+/*   Updated: 2023/06/05 11:15:10 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	initialize(t_tabs *tab, int ac, char **av)
+void	sort_two(t_tabs *tab)
 {
-	tab->max = 2147483647;
-	tab->count = 0;
-	tab->len_tab_a = 0;
-	tab->tab_a = av + 1;
-	tab->tab_b = ft_calloc(ac, sizeof(char *));
-	if (!tab->tab_b)
-		ft_error("tab_b : calloc failed\n");
-	tab->tab_idx = ft_calloc(ac - 1, sizeof(int));
-	if (!tab->tab_idx)
-		ft_error("tab_idx : calloc failed\n");
+	if (ft_atoi(tab->tab_a[0]) > ft_atoi(tab->tab_a[1]))
+		swap_a(tab);
 }
+
+void	sort_three(t_tabs *tab)
+{
+	int	str1;
+	int	str2;
+	int	str3;
+
+	str1 = ft_atoi(tab->tab_a[0]);
+	str2 = ft_atoi(tab->tab_a[1]);
+	str3 = ft_atoi(tab->tab_a[2]);
+	if (str1 > str2)
+		swap_a(tab);
+}
+
+// void	sort_five(t_tabs *tab)
+// {
+	
+// }
