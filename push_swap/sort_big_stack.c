@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_big_stack.c                                   :+:      :+:    :+:   */
+/*   simplify_nb.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 12:29:46 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/05 17:25:35 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/07 08:38:46 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,54 +36,32 @@ int	compare_str(t_tabs *tab, int idx)
 	return (0);
 }
 
-void	sort_big_stack(t_tabs *tab)
+
+void	search_max(t_tabs *tab)
 {
 	int	y;
-	int	modified;
+	int	max;
+	int	idx_max;
 
-	y = 0;
-	modified = 1;
-	while (modified)
+	max = ft_atoi(tab->tab_a[0]);
+	y = 1;
+	idx_max = 0;
+	while (tab->tab_a[y])
 	{
-		modified = 0;
-		y = 0;
-		while (tab->tab_a[y])
+		if (ft_atoi(tab->tab_a[y]) > max)
 		{
-			if (ft_atoi(tab->tab_a[y]) < tab->max)
-			{
-				modified = 1;
-				tab->max = ft_atoi(tab->tab_a[y]);
-				tab->tab_idx[tab->len_tab_a] = tab->len_tab_a;
-				tab->len_tab_a--;
-			}
-			y++;
+			max = ft_atoi(tab->tab_a[y]);
+			idx_max = y;
 		}
+		y++;
 	}
-	// quand on a fini de bouclé plus haut, on verifie s'il y a des elements dans tab_idx. 
-	// s'il n'est pas completement rempli ca veut dire qu'il reste des max a chercher donc on rappelera sort_big_Stack()
-	DEBUG_print_tab_idx(tab);
+	ft_printf("max: %d\nidx_max: %d\n", max, idx_max);
 }
 
-// void	sort_big_stack(t_tabs *tab)
-// {
-// 	int		y;
-// 	int		modified;
-// 	modified = 1;
-// 	while (modified)
-// 	{
-// 		y = 0;
-// 		modified = 0;
-// 		while (tab->tab_a[y])
-// 		{
-// 			if (tab->tab_a[y + 1] != '\0')
-// 			{
-// 				if (compare_str(tab, y))
-// 				{
-// 					tab->count++;
-// 					modified = 1;
-// 				}
-// 			}
-// 			y++;
-// 		}
-// 	}
-// }
+void	simplify_nb(t_tabs *tab)
+{
+	// il faut lancer une boucle qui va enregister l'idx du max dans un
+	// tableau afin de simplifier les nb. 
+	// ex : 145 est a la 3e position dans tab_a (taille de 5), 
+	// il aura donc la valeur de 5 a l'idx 2 du tab_idx.
+}
