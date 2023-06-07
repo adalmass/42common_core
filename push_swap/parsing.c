@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:27:26 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/05 16:39:40 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/07 16:33:39 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	parse_tab_a(t_tabs *tab)
 	y = 0;
 	while (tab->tab_a[y])
 	{
-		check_operators(tab->tab_a[y]);
+		//check_operators(tab->tab_a[y]);
 		handle_zeros(tab->tab_a[y]);
 		tab->tab_a[y] = rewrite_str(tab->tab_a[y]);
 		handle_int_limit(tab->tab_a[y]);

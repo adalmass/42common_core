@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:13 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/07 08:57:27 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/07 15:51:34 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ typedef struct s_tabs{
 	int			count;
 	int			len_tab_a;
 	int			max;
-	char		**tab_max_idx;
+	int			max_idx;
+	int			*tab_max_idx;
+	int			*copy_a;
 	char		**tab_a;
 	char		**tab_b;
 }				t_tabs;
@@ -32,10 +34,11 @@ typedef struct s_parse{
 // --- DEBUG_print_tab.c
 void	DEBUG_print_tab_a(t_tabs *tabs);
 void	DEBUG_print_tab_b(t_tabs *tabs);
-void	DEBUG_print_tab_max_idx(t_tabs *tab);
+void	DEBUG_print_copy_a(t_tabs *tab);
 
 // --- initialize.c
 void	initialize(t_tabs *tab, int ac, char **av);
+void	make_copy_a(t_tabs *tab);
 
 // --- error_management.c
 int		check_char_args(char *str);
@@ -82,8 +85,7 @@ void	swap_str(t_tabs *tab, int idx);
 void	sort_two(t_tabs *tab);
 //void	sort_three(t_tabs *tab);
 //void	sort_five(t_tabs *tab);
-//void	simplify_nb(t_tabs *tab);
+void	simplify_nb(t_tabs *tab);
 void	search_max(t_tabs *tab);
-
 
 #endif

@@ -36,32 +36,55 @@ int	compare_str(t_tabs *tab, int idx)
 	return (0);
 }
 
-
 void	search_max(t_tabs *tab)
 {
-	int	y;
-	int	max;
-	int	idx_max;
+	int	i;
+	int	temp;
+	int	modified;
 
-	max = ft_atoi(tab->tab_a[0]);
-	y = 1;
-	idx_max = 0;
-	while (tab->tab_a[y])
+	i = 0;
+	temp = 0;
+	modified = 0;
+	tab->max = 0;
+	while (tab->copy_a[i])
 	{
-		if (ft_atoi(tab->tab_a[y]) > max)
+		if (tab->copy_a[i] > tab->max)
 		{
-			max = ft_atoi(tab->tab_a[y]);
-			idx_max = y;
+			tab->max = i;
+			modified = 1;
+			ft_printf("max found at idx %d\n", tab->max);
 		}
-		y++;
+		i++;
 	}
-	ft_printf("max: %d\nidx_max: %d\n", max, idx_max);
+	if (modified || i == 0)
+	{
+		tab->copy_a[tab->max] = tab->len_tab_a;
+		tab->len_tab_a--;
+	}
 }
 
 void	simplify_nb(t_tabs *tab)
 {
+	int	i;
+	int	search_again;
+
+	i = 0;
+	search_again = 1;
+	while (search_again)
+	{
+		search_again = 0;
+		if ((!tab->copy_a[i]) && (i != tab->len_tab_a)) // il faut modif cette condition qui n'est plus bonne avec copy_a (tab d'int)
+		{
+			search_again = 1;
+			break ;
+		}
+		i++;
+	}
+	if (search_again)
+		search_max(tab);
+}
 	// il faut lancer une boucle qui va enregister l'idx du max dans un
 	// tableau afin de simplifier les nb. 
 	// ex : 145 est a la 3e position dans tab_a (taille de 5), 
 	// il aura donc la valeur de 5 a l'idx 2 du tab_idx.
-}
+
