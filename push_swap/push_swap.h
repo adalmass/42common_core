@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:13 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/07 15:51:34 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/09 16:47:38 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_tabs{
 	int			max;
 	int			max_idx;
 	int			*tab_max_idx;
-	int			*copy_a;
+	int			*simple_tab_a;
 	char		**tab_a;
 	char		**tab_b;
 }				t_tabs;
@@ -34,11 +34,11 @@ typedef struct s_parse{
 // --- DEBUG_print_tab.c
 void	DEBUG_print_tab_a(t_tabs *tabs);
 void	DEBUG_print_tab_b(t_tabs *tabs);
-void	DEBUG_print_copy_a(t_tabs *tab);
+void	DEBUG_print_simple_tab_a(t_tabs *tab);
 
 // --- initialize.c
 void	initialize(t_tabs *tab, int ac, char **av);
-void	make_copy_a(t_tabs *tab);
+void	simplify_tab_a(t_tabs *tab);
 
 // --- error_management.c
 int		check_char_args(char *str);
@@ -78,14 +78,14 @@ void	r_rotate_b(t_tabs *tab);
 void	r_rotate_rrr(t_tabs *tab);
 
 // --- sort_small_stack.c
-
-// --- simplify_nb.c
 int		compare_str(t_tabs *tab, int idx);
 void	swap_str(t_tabs *tab, int idx);
+void	simplify_nb(t_tabs *tab);
+
+// --- simplify_nb.c
+int		search_max(t_tabs *tab);
 void	sort_two(t_tabs *tab);
 //void	sort_three(t_tabs *tab);
 //void	sort_five(t_tabs *tab);
-void	simplify_nb(t_tabs *tab);
-void	search_max(t_tabs *tab);
 
 #endif

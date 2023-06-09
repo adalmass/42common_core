@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 13:32:19 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/07 15:58:20 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/09 11:30:54 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,15 @@ void	DEBUG_print_tab_b(t_tabs *tabs)
 	ft_putstr("--END\n\n");
 }
 
-void	DEBUG_print_copy_a(t_tabs *tab)
+void	DEBUG_print_simple_tab_a(t_tabs *tab)
 {
 	int	i;
 
 	i = 0;
 	ft_putstr("~TAB MAX IDX--\n");
-	while (tab->copy_a[i])
+	while (tab->simple_tab_a[i])
 	{
-		ft_printf("%d\n", tab->copy_a[i], i);
+		ft_printf("%d\n", tab->simple_tab_a[i], i);
 		i++;
 	}
 	ft_putstr("--END\n\n");

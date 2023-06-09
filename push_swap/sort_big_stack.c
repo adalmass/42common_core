@@ -36,44 +36,52 @@ int	compare_str(t_tabs *tab, int idx)
 	return (0);
 }
 
-void	search_max(t_tabs *tab)
+int	search_max(t_tabs *tab)
 {
-	int	i;
+	int	y;
 	int	temp;
 	int	modified;
 
-	i = 0;
+	y = 0;
 	temp = 0;
 	modified = 0;
-	tab->max = 0;
-	while (tab->copy_a[i])
+	while (tab->tab_a[y])
 	{
-		if (tab->copy_a[i] > tab->max)
+		if (ft_atoi(tab->tab_a[y]) > tab->max)
 		{
-			tab->max = i;
+			tab->max = ft_atoi(tab->tab_a[y]);
+			tab->max_idx = y;
 			modified = 1;
-			ft_printf("max found at idx %d\n", tab->max);
 		}
-		i++;
+		y++;
 	}
-	if (modified || i == 0)
+	if (modified || y == 0)
 	{
-		tab->copy_a[tab->max] = tab->len_tab_a;
+		tab->simple_tab_a[tab->max_idx] = tab->len_tab_a;
 		tab->len_tab_a--;
+		return (1);
 	}
+	if (!modified)
+	{
+		ft_printf("!modified\n");
+		return (0);
+	}
+	return (0);
 }
 
 void	simplify_nb(t_tabs *tab)
 {
 	int	i;
+	int	finish;
 	int	search_again;
 
 	i = 0;
+	finish = 1;
 	search_again = 1;
 	while (search_again)
 	{
 		search_again = 0;
-		if ((!tab->copy_a[i]) && (i != tab->len_tab_a)) // il faut modif cette condition qui n'est plus bonne avec copy_a (tab d'int)
+		if ((tab->simple_tab_a[i] == -1) && (i != tab->len_tab_a))
 		{
 			search_again = 1;
 			break ;
@@ -81,10 +89,11 @@ void	simplify_nb(t_tabs *tab)
 		i++;
 	}
 	if (search_again)
-		search_max(tab);
+	{
+		while (finish)
+		{
+			finish = search_max(tab);
+			ft_printf("valeur finish: %d\n", finish);
+		}
+	}
 }
-	// il faut lancer une boucle qui va enregister l'idx du max dans un
-	// tableau afin de simplifier les nb. 
-	// ex : 145 est a la 3e position dans tab_a (taille de 5), 
-	// il aura donc la valeur de 5 a l'idx 2 du tab_idx.
-

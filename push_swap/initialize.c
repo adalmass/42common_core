@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 12:42:22 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/07 16:08:57 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/09 11:30:54 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ void	initialize(t_tabs *tab, int ac, char **av)
 		ft_error("tab_b : calloc failed\n");
 }
 
-void	make_copy_a(t_tabs *tab)
+void	simplify_tab_a(t_tabs *tab)
 {
 	int	y;
 
 	y = 0;
-	tab->copy_a = ft_calloc(tab->len_tab_a - 1, sizeof(int));
-	if (!tab->copy_a)
-		ft_error("copy_a failed\n");
+	tab->simple_tab_a = ft_calloc(tab->len_tab_a - 1, sizeof(int));
+	if (!tab->simple_tab_a)
+		ft_error("simple_tab_a failed\n");
 	while (tab->tab_a[y])
 	{
-		tab->copy_a[y] = ft_atoi(tab->tab_a[y]);
+		tab->simple_tab_a[y] = -1;
 		y++;
 	}
 }
