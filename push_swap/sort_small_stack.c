@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 10:43:07 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/05 11:15:10 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/10 23:25:43 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	sort_two(t_tabs *tab)
 {
 	if (ft_atoi(tab->tab_a[0]) > ft_atoi(tab->tab_a[1]))
-		swap_a(tab);
+		sa(tab);
 }
 
 void	sort_three(t_tabs *tab)
@@ -28,7 +28,7 @@ void	sort_three(t_tabs *tab)
 	str2 = ft_atoi(tab->tab_a[1]);
 	str3 = ft_atoi(tab->tab_a[2]);
 	if (str1 > str2)
-		swap_a(tab);
+		sa(tab);
 }
 
 // void	sort_five(t_tabs *tab)

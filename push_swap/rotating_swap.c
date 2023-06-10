@@ -6,13 +6,13 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 07:28:48 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/05 10:40:33 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/10 23:25:27 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate_a(t_tabs *tab)
+void	ra(t_tabs *tab)
 {
 	int		y;
 	int		size;
@@ -35,7 +35,7 @@ void	rotate_a(t_tabs *tab)
 	ft_putstr("ra\n");
 }
 
-void	rotate_b(t_tabs *tab)
+void	rb(t_tabs *tab)
 {
 	int		y;
 	int		size;
@@ -57,10 +57,10 @@ void	rotate_b(t_tabs *tab)
 	ft_putstr("rb\n");
 }
 
-void	rotate_rr(t_tabs *tab)
+void	rr(t_tabs *tab)
 {
-	rotate_a(tab);
-	rotate_b(tab);
+	ra(tab);
+	rb(tab);
 	tab->count--;
 	ft_putstr("rr\n");
 }

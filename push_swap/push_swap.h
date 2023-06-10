@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:13 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/09 16:47:38 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/11 00:35:09 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 typedef struct s_tabs{
 	int			count;
 	int			len_tab_a;
+	int			len_int_tab_a;
 	int			max;
 	int			max_idx;
-	int			*tab_max_idx;
-	int			*simple_tab_a;
 	char		**tab_a;
 	char		**tab_b;
+	char		**copy_a;
 }				t_tabs;
 
 typedef struct s_parse{
@@ -34,11 +34,10 @@ typedef struct s_parse{
 // --- DEBUG_print_tab.c
 void	DEBUG_print_tab_a(t_tabs *tabs);
 void	DEBUG_print_tab_b(t_tabs *tabs);
-void	DEBUG_print_simple_tab_a(t_tabs *tab);
+void	DEBUG_print_copy_a(t_tabs *tab);
 
 // --- initialize.c
-void	initialize(t_tabs *tab, int ac, char **av);
-void	simplify_tab_a(t_tabs *tab);
+void	initialize(t_tabs *tab, char **av);
 
 // --- error_management.c
 int		check_char_args(char *str);
@@ -59,32 +58,35 @@ void	parse_tab_a(t_tabs *tabs);
 
 // --------------SWAP--------------
 // --- sorting_swap.c
-void	swap_a(t_tabs *tab);
-void	swap_b(t_tabs *tab);
-void	swap_ss(t_tabs *tab);
+void	sa(t_tabs *tab);
+void	sb(t_tabs *tab);
+void	ss(t_tabs *tab);
 
 // --- pushing_swap.c
-void	push_a(t_tabs *tab);
-void	push_b(t_tabs *tab);
+void	pa(t_tabs *tab);
+void	pb(t_tabs *tab);
 
 // --- rotating_swap.c
-void	rotate_a(t_tabs *tab);
-void	rotate_b(t_tabs *tab);
-void	rotate_rr(t_tabs *tab);
+void	ra(t_tabs *tab);
+void	rb(t_tabs *tab);
+void	rr(t_tabs *tab);
 
 // --- r_rotating_swap.c
-void	r_rotate_a(t_tabs *tab);
-void	r_rotate_b(t_tabs *tab);
-void	r_rotate_rrr(t_tabs *tab);
+void	rra(t_tabs *tab);
+void	rrb(t_tabs *tab);
+void	rrr(t_tabs *tab);
 
 // --- sort_small_stack.c
-int		compare_str(t_tabs *tab, int idx);
-void	swap_str(t_tabs *tab, int idx);
-void	simplify_nb(t_tabs *tab);
 
-// --- simplify_nb.c
-int		search_max(t_tabs *tab);
-void	sort_two(t_tabs *tab);
+// --- sort_big_stack.c
+void	sort_copy_a(t_tabs *tab);
+void	simplify_tab_a(t_tabs *tab);
+// void	search_max(t_tabs *tab);
+// void	jsp(t_tabs *tab);
+// void	update_int_tab_a(t_tabs *tab);
+// void	sort_two(t_tabs *tab);
+// void	new_max(t_tabs *tab);
+// void	simplify_nb(t_tabs *tab);
 //void	sort_three(t_tabs *tab);
 //void	sort_five(t_tabs *tab);
 

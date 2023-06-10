@@ -6,13 +6,13 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:43:50 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/05 10:40:23 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/10 23:26:02 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_a(t_tabs *tab)
+void	sa(t_tabs *tab)
 {
 	int		y;
 	char	*temp;
@@ -33,7 +33,7 @@ void	swap_a(t_tabs *tab)
 	}
 }
 
-void	swap_b(t_tabs *tab)
+void	sb(t_tabs *tab)
 {
 	int		y;
 	char	*temp;
@@ -54,10 +54,10 @@ void	swap_b(t_tabs *tab)
 	}
 }
 
-void	swap_ss(t_tabs *tab)
+void	ss(t_tabs *tab)
 {
-	swap_a(tab);
-	swap_b(tab);
+	sa(tab);
+	sb(tab);
 	tab->count--;
 	ft_putstr("ss\n");
 }

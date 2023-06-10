@@ -6,13 +6,13 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:49:58 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/03 07:24:52 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/10 23:26:48 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_a(t_tabs *tab)
+void	pa(t_tabs *tab)
 {
 	int		y;
 
@@ -27,7 +27,7 @@ void	push_a(t_tabs *tab)
 	ft_putstr("pa\n");
 }
 
-void	push_b(t_tabs *tab)
+void	pb(t_tabs *tab)
 {
 	int		y;
 
