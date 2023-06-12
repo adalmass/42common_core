@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:13 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/11 00:35:09 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/12 15:11:41 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 typedef struct s_tabs{
 	int			count;
 	int			len_tab_a;
-	int			len_int_tab_a;
 	int			max;
 	int			max_idx;
 	char		**tab_a;
@@ -78,16 +77,14 @@ void	rrr(t_tabs *tab);
 
 // --- sort_small_stack.c
 
-// --- sort_big_stack.c
+// --- simplify_stack.c
 void	sort_copy_a(t_tabs *tab);
 void	simplify_tab_a(t_tabs *tab);
-// void	search_max(t_tabs *tab);
-// void	jsp(t_tabs *tab);
-// void	update_int_tab_a(t_tabs *tab);
-// void	sort_two(t_tabs *tab);
-// void	new_max(t_tabs *tab);
-// void	simplify_nb(t_tabs *tab);
-//void	sort_three(t_tabs *tab);
-//void	sort_five(t_tabs *tab);
+void	init_copy_a(t_tabs *tab);
+void	handle_tab_a(t_tabs *tab);
+
+// --- sort_big_stack.c
+void	push_to_b(t_tabs *tab, int filter);
+
 
 #endif

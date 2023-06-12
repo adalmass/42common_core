@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 07:28:48 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/10 23:25:27 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/12 17:53:05 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,16 @@ void	ra(t_tabs *tab)
 void	rb(t_tabs *tab)
 {
 	int		y;
-	int		size;
 	char	*temp;
 
 	y = 0;
-	size = 0;
 	temp = tab->tab_b[0];
-	while (tab->tab_b[size])
-		size++;
-	while (y < size - 1)
+	while (tab->tab_b[y])
 	{
-		if (tab->tab_b[y + 1])
-			tab->tab_b[y] = tab->tab_b[y + 1];
+		tab->tab_b[y] = tab->tab_b[y + 1];
 		y++;
 	}
-	tab->tab_b[size - 1] = temp;
+	tab->tab_b[y - 1] = temp;
 	tab->count++;
 	ft_putstr("rb\n");
 }

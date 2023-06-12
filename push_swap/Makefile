@@ -12,11 +12,12 @@ SRC = main.c \
 	  r_rotating_swap.c \
 	  sort_small_stack.c \
 	  sort_big_stack.c \
+	  simplify_stack.c \
 	  
 
 LIBPATH = libft/
 LIBNAME = libft.a
-CC = gcc -Wall -Wextra -Werror
+CC = gcc
 CCsani = -g -fsanitize=address
 
 OBJ = $(SRC:.c=.o)
