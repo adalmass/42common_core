@@ -45,7 +45,8 @@ SRC_LIBFT = ft_putchar.c \
 			ft_lstdelone.c \
 			ft_lstclear.c \
 			ft_lstiter.c \
-			ft_lstmap.c
+			ft_lstmap.c \
+			ft_strcpy.c \
 
 SRC_PTF = ft_printf.c \
 		  number_len_ptf.c \

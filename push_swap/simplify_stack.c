@@ -66,7 +66,10 @@ void	simplify_tab_a(t_tabs *tab)
 		while (tab->copy_a[z])
 		{
 			if (ft_atoi(tab->tab_a[y]) == ft_atoi(tab->copy_a[z]))
+			{
 				tab->tab_a[y] = ft_itoa(z + 1);
+				break ;
+			}
 			z++;
 		}
 		y++;
@@ -78,5 +81,4 @@ void	handle_tab_a(t_tabs *tab)
 	init_copy_a(tab);
 	sort_copy_a(tab);
 	simplify_tab_a(tab);
-
 }
