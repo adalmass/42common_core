@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 12:42:22 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/16 14:16:36 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/18 10:35:12 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,5 @@ void	initialize(t_tabs *tab, char **av)
 	tab->tab_b = ft_calloc(tab->len_tab_a + 1, sizeof(char *));
 	if (!tab->tab_b)
 		ft_error("tab_b : calloc failed\n");
-	// while (tab->tab_b[i])
-	// {
-	// 	tab->tab_b[i] = ft_strdup(" ");
-	// 	i++;
-	// }
 	free(temp);
 }

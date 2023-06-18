@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 16:27:26 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/16 15:28:38 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/18 14:49:32 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,15 +100,20 @@ void	handle_zeros(char *s)
 
 void	parse_tab_a(t_tabs *tab)
 {
-	int	y;
+	int		y;
+	char	*temp;
 
+	temp = NULL;
 	y = 0;
 	while (tab->tab_a[y])
 	{
 		check_operators(tab->tab_a[y]);
 		handle_zeros(tab->tab_a[y]);
-		tab->tab_a[y] = rewrite_str(tab->tab_a[y]);
+		temp = ft_strdup(tab->tab_a[y]);
+		free(tab->tab_a[y]);
+		tab->tab_a[y] = rewrite_str(temp);
 		handle_int_limit(tab->tab_a[y]);
+		free(temp);
 		y++;
 	}
 	handle_doubles(tab);

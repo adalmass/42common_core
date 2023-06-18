@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:13 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/16 17:19:32 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/18 16:47:57 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ void	check_operators(char *s);
 void	parse_tab_a(t_tabs *tabs);
 
 // --------------SWAP--------------
+// --- main.c
+int		is_sorted(t_tabs *tab);
+
 // --- sorting_swap.c
 void	sa(t_tabs *tab);
 void	sb(t_tabs *tab);
@@ -76,6 +79,11 @@ void	rrb(t_tabs *tab);
 void	rrr(t_tabs *tab);
 
 // --- sort_small_stack.c
+int		search_max(t_tabs *tab);
+void	sort_two(t_tabs *tab);
+void	sort_three(t_tabs *tab);
+void	sort_five(t_tabs *tab);
+void	sort_five2(t_tabs *tab);
 
 // --- simplify_stack.c
 void	sort_copy_a(t_tabs *tab);

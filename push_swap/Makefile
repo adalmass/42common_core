@@ -6,10 +6,10 @@ SRC = main.c \
 	  manage_errors.c \
 	  manage_double.c \
 	  DEBUG_print_tab.c \
-	  sorting_swap.c \
-	  pushing_swap.c \
-	  rotating_swap.c \
-	  r_rotating_swap.c \
+	  swap_sorting.c \
+	  swap_pushing.c \
+	  swap_rotating.c \
+	  swap_r_rotating.c \
 	  sort_small_stack.c \
 	  sort_big_stack.c \
 	  simplify_stack.c \
