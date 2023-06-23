@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:49:58 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/18 10:35:57 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/19 10:54:25 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	pa(t_tabs *tab)
 			y++;
 		}
 	}
+	ft_printf("pa\n");
 }
 
 void	pb(t_tabs *tab)
@@ -56,4 +57,5 @@ void	pb(t_tabs *tab)
 			y++;
 		}
 	}
+	ft_printf("pb\n");
 }

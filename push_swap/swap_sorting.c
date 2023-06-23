@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 15:43:50 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/18 10:26:19 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/22 17:01:02 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	sa(t_tabs *tab)
 		tab->tab_a[1] = ft_strdup(temp);
 		free(temp);
 		tab->count++;
-		ft_putstr("sa\n");
+		ft_printf("sa\n");
 	}
 }
 
@@ -50,7 +50,7 @@ void	sb(t_tabs *tab)
 		tab->tab_b[1] = ft_strdup(temp);
 		free(temp);
 		tab->count++;
-		ft_putstr("sb\n");
+		ft_printf("sb\n");
 	}
 }
 

@@ -12,22 +12,6 @@
 
 #include "push_swap.h"
 
-void	init_copy_a(t_tabs *tab)
-{
-	int	y;
-
-	y = 0;
-	tab->copy_a = ft_calloc(tab->len_tab_a + 1, sizeof(char *));
-	if (!tab->tab_b)
-		ft_error("tab_b : calloc failed\n");
-	while (tab->tab_a[y])
-	{
-		tab->copy_a[y] = tab->tab_a[y];
-		y++;
-	}
-	tab->copy_a[y] = NULL;
-}
-
 void	sort_copy_a(t_tabs *tab)
 {
 	int		y;
@@ -67,6 +51,7 @@ void	simplify_tab_a(t_tabs *tab)
 		{
 			if (ft_atoi(tab->tab_a[y]) == ft_atoi(tab->copy_a[z]))
 			{
+				free(tab->tab_a[y]);
 				tab->tab_a[y] = ft_itoa(z + 1);
 				break ;
 			}
@@ -78,7 +63,6 @@ void	simplify_tab_a(t_tabs *tab)
 
 void	handle_tab_a(t_tabs *tab)
 {
-	init_copy_a(tab);
 	sort_copy_a(tab);
 	simplify_tab_a(tab);
 }

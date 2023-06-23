@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 12:44:13 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/18 16:47:57 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/23 11:51:44 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,24 @@ typedef struct s_tabs{
 	char		**copy_a;
 }				t_tabs;
 
+typedef struct s_push{
+	int			max;
+	int			idx_max;
+	int			len_tab_b;
+	int			filter;
+}				t_push;
+
 typedef struct s_parse{
 	char		*chars_stocked;
 }				t_parse;
 
-// --------------PARSING--------------
-// --- DEBUG_print_tab.c
-void	DEBUG_print_tab_a(t_tabs *tabs);
-void	DEBUG_print_tab_b(t_tabs *tabs);
-void	DEBUG_print_copy_a(t_tabs *tab);
+// --- main.c
+int		is_sorted(t_tabs *tab);
+int		search_max(t_tabs *tab);
 
+// --------------PARSING--------------
 // --- initialize.c
+void	create_tab_b(t_tabs *tab);
 void	initialize(t_tabs *tab, char **av);
 
 // --- error_management.c
@@ -56,9 +63,6 @@ void	check_operators(char *s);
 void	parse_tab_a(t_tabs *tabs);
 
 // --------------SWAP--------------
-// --- main.c
-int		is_sorted(t_tabs *tab);
-
 // --- sorting_swap.c
 void	sa(t_tabs *tab);
 void	sb(t_tabs *tab);
@@ -79,20 +83,21 @@ void	rrb(t_tabs *tab);
 void	rrr(t_tabs *tab);
 
 // --- sort_small_stack.c
-int		search_max(t_tabs *tab);
 void	sort_two(t_tabs *tab);
 void	sort_three(t_tabs *tab);
+void	sort_four(t_tabs *tab);
 void	sort_five(t_tabs *tab);
 void	sort_five2(t_tabs *tab);
 
 // --- simplify_stack.c
 void	sort_copy_a(t_tabs *tab);
 void	simplify_tab_a(t_tabs *tab);
-void	init_copy_a(t_tabs *tab);
 void	handle_tab_a(t_tabs *tab);
 
 // --- sort_big_stack.c
-void	push_to_b(t_tabs *tab, int filter);
-
+void	push_to_b(t_tabs *tab, t_push *push);
+void	push_to_a(t_tabs *tab, t_push *push);
+void	sort_big_stack(t_tabs *tab, t_push *push);
+void	search_b_max(t_tabs *tab, t_push *push);
 
 #endif

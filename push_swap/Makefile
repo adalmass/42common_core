@@ -5,7 +5,6 @@ SRC = main.c \
 	  parsing.c \
 	  manage_errors.c \
 	  manage_double.c \
-	  DEBUG_print_tab.c \
 	  swap_sorting.c \
 	  swap_pushing.c \
 	  swap_rotating.c \
@@ -13,17 +12,14 @@ SRC = main.c \
 	  sort_small_stack.c \
 	  sort_big_stack.c \
 	  simplify_stack.c \
-	  
 
 LIBPATH = libft/
 LIBNAME = libft.a
-CC = gcc
-CCsani = -g -fsanitize=address
+CC = gcc -Wall -Wextra -Werror
 
 OBJ = $(SRC:.c=.o)
 
 .c.o = $(CC) -c -o $(OBJ)
-#.c.o = $(CC) $(CCsani) -c -o $(OBJ)
 
 $(NAME): $(OBJ)
 	@make -C ${LIBPATH}

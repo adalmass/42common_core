@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:04:27 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/05 16:41:07 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/22 17:01:48 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ void	find_double(t_tabs *tabs, char *chars_stocked, int here)
 	}
 }
 
-// je verifie s'il n'y a pas de doublons en stockant chaque caractere dans un tableau, 
-// qui me servira de reference pour un strchr maison dans find_double()
 void	handle_doubles(t_tabs *tabs)
 {
 	int		y;

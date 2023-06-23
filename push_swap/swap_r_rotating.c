@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 09:31:20 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/18 17:02:29 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/19 10:53:57 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	rra(t_tabs *tab)
 	}
 	tab->tab_a[0] = temp;
 	tab->count++;
-	ft_putstr("rra\n");
+	ft_printf("rra\n");
 }
 
 void	rrb(t_tabs *tab)
@@ -47,7 +47,7 @@ void	rrb(t_tabs *tab)
 	}
 	tab->tab_b[0] = temp;
 	tab->count++;
-	ft_putstr("rrb\n");
+	ft_printf("rrb\n");
 }
 
 void	rrr(t_tabs *tab)
