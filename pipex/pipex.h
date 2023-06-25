@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 17:42:12 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/25 11:32:24 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/25 11:47:49 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct s_pipex{
 char	*check_command(t_pipex *pp, char *command);
 
 // --- utils.c
-int		search_str(char	*haystack, char *needle);
 
 // --- init.c
 void	init_tabs(t_pipex *pp, char **envp);

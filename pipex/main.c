@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 17:46:21 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/25 11:36:02 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/25 12:45:41 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,28 @@ char	*check_command(t_pipex *pp, char *command)
 {
 	int		i;
 	char	*temp;
+	char	*temp2;
+	char	*cmd_path;
 
 	i = 0;
 	temp = NULL;
+	temp2 = NULL;
+	cmd_path = NULL;
 	while (pp->path[i])
 	{
-		temp = ft_strjoin(pp->path[i], "/");
-		temp = ft_strjoin(temp, command);
-		if ((access(temp, X_OK) == 0))
+		temp = ft_strdup(pp->path[i]);
+		temp2 = ft_strjoin(temp, "/");
+		free(temp);
+		free(temp2);
+		cmd_path = ft_strjoin(temp2, command);
+		if ((access(cmd_path, X_OK) == 0))
 			break ;
+		free(cmd_path);
 		i++;
 	}
-	if (!pp->path[i] && (access(temp, X_OK) == -1))
+	if (!pp->path[i] && (access(cmd_path, X_OK) == -1))
 		return (NULL);
-	return (temp);
+	return (cmd_path);
 }
 
 int	main(int ac, char **av, char **envp)
@@ -49,15 +57,15 @@ int	main(int ac, char **av, char **envp)
 	if (access(av[2], X_OK) == -1)
 	{
 		pp.cmd1 = check_command(&pp, av[2]);
-		if (pp.cmd1 == NULL)
+		if (!pp.cmd1)
 			pp.cmd1 = ft_strdup(av[2]);
 	}
 	if (access(av[3], X_OK) == -1)
 	{
 		pp.cmd2 = check_command(&pp, av[3]);
-		if (pp.cmd2 == NULL)
+		if (!pp.cmd2)
 			pp.cmd2 = ft_strdup(av[3]);
 	}
-	ft_printf("cmd1: %s\n", pp.cmd1);
-	ft_printf("cmd2: %s\n", pp.cmd2);
+	system("leaks pipex");
+	exit (0);
 }

@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 11:35:22 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/25 11:31:43 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/25 12:45:36 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ char	*concat_and_copy(char *d, char *s, char *memory)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	len_s1;
-	size_t	len_s2;
+	int		len_s1;
+	int		len_s2;
 	char	*memory;
 
 	if (!s1 || !s2)

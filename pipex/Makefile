@@ -6,6 +6,7 @@ SRC = main.c \
 	  manage_errors.c \
 	  mini_libft/ft_strdup.c \
 	  mini_libft/ft_strjoin.c \
+	  mini_libft/ft_strjoin_free.c \
 	  mini_libft/ft_strncmp.c \
 	  mini_libft/ft_strlen.c \
 	  mini_libft/ft_memcpy.c \
