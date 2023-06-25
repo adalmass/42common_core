@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   search_format_ptf.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aldalmas <aldalmas@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:13:19 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/02/05 18:55:01 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/24 12:09:03 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../pipex.h"
 
 void	hexa_format(char c, long long arg, int *len)
 {

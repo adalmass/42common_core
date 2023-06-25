@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 17:42:12 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/24 11:35:08 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/25 11:32:24 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
 # include <string.h>
 # include <strings.h>
 # include <stdarg.h>
@@ -29,17 +26,24 @@ typedef struct s_pipex{
 	int			outfile_fd;
 	int			len_envp;
 	int			path_found;
+	int			path_idx;
 	char		**envp;
 	char		**copy_envp;
+	char		**path;
 	char		*cmd1;
 	char		*cmd2;
 }				t_pipex;
+
+// --- main.c
+char	*check_command(t_pipex *pp, char *command);
 
 // --- utils.c
 int		search_str(char	*haystack, char *needle);
 
 // --- init.c
-void	init(t_pipex *pp, char **envp);
+void	init_tabs(t_pipex *pp, char **envp);
+void	init_int(t_pipex *pp);
+void	check_files(t_pipex *pp, char **av);
 
 // --- manage_errors.c
 void	ft_error(char *error_msg);
@@ -52,6 +56,8 @@ void	ft_putstr_fd(char *s, int fd);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	**ft_split(char const *s, char c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin_free(char *stock, char *temp);
 
 int		ft_printf(const char *s, ...);
 int		ft_putchar_ptf(char c);

@@ -5,6 +5,7 @@ SRC = main.c \
 	  init.c \
 	  manage_errors.c \
 	  mini_libft/ft_strdup.c \
+	  mini_libft/ft_strjoin.c \
 	  mini_libft/ft_strncmp.c \
 	  mini_libft/ft_strlen.c \
 	  mini_libft/ft_memcpy.c \
@@ -34,8 +35,7 @@ clean:
 	@echo "Suppression des .o" 
 
 fclean: clean
-	make fclean -C $(OBJ)
-	@rm -f $(NAME)
+	@rm -f $(OBJ) $(NAME)
 	@echo "Suppression du .a effectuée"
 
 re: fclean all
