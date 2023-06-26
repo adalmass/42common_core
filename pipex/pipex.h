@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 17:42:12 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/25 11:47:49 by aldalmas         ###   ########.fr       */
+/*   Updated: 2023/06/26 19:19:43 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,31 @@
 # include <string.h>
 # include <strings.h>
 # include <stdarg.h>
+# include <sys/types.h>
+# include <errno.h>
 
 typedef struct s_pipex{
-	int			infile_fd;
-	int			outfile_fd;
 	int			len_envp;
 	int			path_found;
-	int			path_idx;
-	char		**envp;
 	char		**copy_envp;
 	char		**path;
-	char		*cmd1;
-	char		*cmd2;
+
+	int			infile_fd;
+	int			outfile_fd;
+	char		**envp;
+	char		**cmd1;
+	char		**cmd2;
 }				t_pipex;
 
 // --- main.c
 char	*check_command(t_pipex *pp, char *command);
+void	ft_execute(char **cmd, char **av, char **envp);
 
 // --- utils.c
 
 // --- init.c
 void	init_tabs(t_pipex *pp, char **envp);
-void	init_int(t_pipex *pp);
+void	init_int(t_pipex *pp, char **av);
 void	check_files(t_pipex *pp, char **av);
 
 // --- manage_errors.c

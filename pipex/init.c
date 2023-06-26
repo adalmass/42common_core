@@ -12,15 +12,14 @@
 
 #include "pipex.h"
 
-void	init_int(t_pipex *pp)
+void	init_int(t_pipex *pp, char **av)
 {
 	pp->infile_fd = 0;
 	pp->outfile_fd = 0;
 	pp->len_envp = 0;
-	pp->path_idx = 0;
 	pp->path_found = 0;
-	pp->cmd1 = NULL;
-	pp->cmd2 = NULL;
+	pp->cmd1 = ft_split(av[2], ' ');
+	pp->cmd2 = ft_split(av[3], ' ');
 }
 
 void	init_tabs(t_pipex *pp, char **envp)
@@ -37,8 +36,8 @@ void	init_tabs(t_pipex *pp, char **envp)
 	{
 		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
 		{
+			pp->path = ft_split(envp[i], ':');
 			pp->path_found = 1;
-			pp->path_idx = i;
 		}
 		pp->copy_envp[i] = ft_strdup(envp[i]);
 		i++;
@@ -50,7 +49,7 @@ void	init_tabs(t_pipex *pp, char **envp)
 void	check_files(t_pipex *pp, char **av)
 {
 	pp->infile_fd = open(av[1], O_RDONLY);
-	if (!pp->infile_fd)
+	if (pp->infile_fd == -1)
 		perror("infile_fd");
 	pp->outfile_fd = open(av[4], O_TRUNC | O_CREAT | O_WRONLY);
 }
