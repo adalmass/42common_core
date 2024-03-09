@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 17:42:12 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/07/04 15:39:41 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/03/09 11:42:32 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,10 @@
 
 typedef struct s_pipex
 {
-	int			path_found;
-	char		**copy_envp;
-	char		**path;
 	int			infile;
 	int			outfile;
-	int			**multi;
+	int			path_found;
+	char		**path;
 	char		**cmd1;
 	char		**cmd2;
 }				t_pipex;
@@ -42,13 +40,13 @@ void	pipex(t_pipex *pp, char **envp);
 void	ft_execute(char **cmd, char **envp);
 
 // --- init.c
-void	init_tabs(t_pipex *pp, char **envp);
-void	init_int(t_pipex *pp, char **av);
+void	get_path(t_pipex *pp, char **envp);
+void	init_struct(t_pipex *pp, char **av);
 void	check_files(t_pipex *pp, char **av);
 
-// --- manage_errors.c
+// --- tools.c
 void	ft_error(char *error_msg);
-void	ft_free(char **split);
+void	ft_free(char **tab);
 void	multi_free(char **cmd1, char **cmd2, char **path);
 
 // --- mini_libft/
@@ -60,7 +58,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	**ft_split(char const *s, char c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strjoin_free(char *stock, char *temp);
-
+// --- mini_libft ft_printf
 int		ft_printf(const char *s, ...);
 int		ft_putchar_ptf(char c);
 int		ft_putstr_ptf(char *s);

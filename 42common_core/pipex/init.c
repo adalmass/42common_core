@@ -6,13 +6,13 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 14:46:07 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/30 17:31:10 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/03/09 11:42:12 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	init_int(t_pipex *pp, char **av)
+void	init_struct(t_pipex *pp, char **av)
 {
 	pp->infile = 0;
 	pp->outfile = 0;
@@ -21,7 +21,7 @@ void	init_int(t_pipex *pp, char **av)
 	pp->cmd2 = ft_split(av[3], ' ');
 }
 
-void	init_tabs(t_pipex *pp, char **envp)
+void	get_path(t_pipex *pp, char **envp)
 {
 	int	i;
 

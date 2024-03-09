@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 17:46:21 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/07/04 14:45:21 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/03/09 12:11:55 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*check_command(t_pipex *pp, char *command)
 	char	*cmd_path;
 
 	i = 0;
-	if (access(command, X_OK) == 0)
+	if (!command[1] && access(command, X_OK) == 0)
 		return (command);
 	while (pp->path[i])
 	{
@@ -29,13 +29,13 @@ char	*check_command(t_pipex *pp, char *command)
 		cmd_path = ft_strjoin_free(temp2, command);
 		if (access(cmd_path, X_OK) == 0)
 		{
-			free (command);
+			free(command);
 			return (cmd_path);
 		}
 		free(cmd_path);
 		i++;
 	}
-	return (command);
+	return (cmd_path);
 }
 
 void	ft_execute(char **cmd, char **envp)
@@ -77,17 +77,19 @@ int	main(int ac, char **av, char **envp)
 {
 	t_pipex	pp;
 
-	if (ac < 5)
-		ft_error("Need 'infile cmd1 cmd2 outfile' (outfile is optional)'");
+	if (ac < 4 || ac > 5)
+		ft_error("Need 'infile cmd1 cmd2 outfile' (outfile is optional)");
 	if (!envp)
 		perror("No envp");
-	init_int(&pp, av);
+	init_struct(&pp, av);
 	check_files(&pp, av);
-	init_tabs(&pp, envp);
+	get_path(&pp, envp);
 	pp.cmd1[0] = check_command(&pp, pp.cmd1[0]);
 	pp.cmd2[0] = check_command(&pp, pp.cmd2[0]);
 	if (access(pp.cmd1[0], X_OK) == 0 && access(pp.cmd2[0], X_OK) == 0)
 		pipex(&pp, envp);
+	else
+		perror("command not found");
 	multi_free(pp.cmd1, pp.cmd2, pp.path);
 	exit (0);
 }

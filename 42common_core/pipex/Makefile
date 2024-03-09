@@ -2,7 +2,7 @@ NAME = pipex
 
 SRC = main.c \
 	  init.c \
-	  manage_errors.c \
+	  tools.c \
 	  mini_libft/ft_strdup.c \
 	  mini_libft/ft_strjoin_free.c \
 	  mini_libft/ft_strncmp.c \
@@ -19,7 +19,7 @@ SRC = main.c \
 
 OBJ = $(SRC:.c=.o)
 
-CC = gcc -Wall -Wextra -Werror -fsanitize=address
+CC = gcc -Wall -Wextra -Werror
 
 .c.o = $(CC) -c -o $(OBJ)
 
@@ -39,4 +39,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY : all clean fclean re bonus
+.PHONY : all clean fclean re
