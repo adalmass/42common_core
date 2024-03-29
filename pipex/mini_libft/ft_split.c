@@ -6,11 +6,12 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 14:47:20 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/24 10:00:32 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/03/15 11:37:12 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../minishell.h"
+
 
 size_t	w_count(char const *s, char sep)
 {
@@ -89,9 +90,9 @@ char	**ft_split(char const *s, char c)
 	size_t	i;
 	char	**words;
 
-	i = 0;
 	if (!s)
 		return (NULL);
+	i = 0;
 	words = malloc((w_count((char *)s, c) + 1) * sizeof(char *));
 	if (!words)
 		return (NULL);

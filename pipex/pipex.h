@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 17:42:12 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/26 19:19:43 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/03/12 16:36:27 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,34 +21,33 @@
 # include <strings.h>
 # include <stdarg.h>
 # include <sys/types.h>
+# include <sys/wait.h>
 # include <errno.h>
 
-typedef struct s_pipex{
-	int			len_envp;
+typedef struct s_pipex
+{
+	int			infile;
+	int			outfile;
 	int			path_found;
-	char		**copy_envp;
 	char		**path;
-
-	int			infile_fd;
-	int			outfile_fd;
-	char		**envp;
 	char		**cmd1;
 	char		**cmd2;
 }				t_pipex;
 
 // --- main.c
 char	*check_command(t_pipex *pp, char *command);
-void	ft_execute(char **cmd, char **av, char **envp);
-
-// --- utils.c
+void	pipex(t_pipex *pp, char **envp);
+void	ft_execute(char **cmd, char **envp);
 
 // --- init.c
-void	init_tabs(t_pipex *pp, char **envp);
-void	init_int(t_pipex *pp, char **av);
+void	get_path(t_pipex *pp, char **envp);
+void	init_struct(t_pipex *pp, char **av);
 void	check_files(t_pipex *pp, char **av);
 
-// --- manage_errors.c
+// --- tools.c
 void	ft_error(char *error_msg);
+void	ft_free(char **tab);
+void	multi_free(char **cmd1, char **cmd2, char **path);
 
 // --- mini_libft/
 int		ft_strlen(const char *s);
@@ -58,9 +57,8 @@ void	ft_putstr_fd(char *s, int fd);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	**ft_split(char const *s, char c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strjoin_free(char *stock, char *temp);
-
+// --- mini_libft ft_printf
 int		ft_printf(const char *s, ...);
 int		ft_putchar_ptf(char c);
 int		ft_putstr_ptf(char *s);

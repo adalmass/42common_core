@@ -6,11 +6,12 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 19:46:58 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/23 20:24:23 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/03/15 11:37:12 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../minishell.h"
+
 
 int	ft_strlen(const char *s)
 {

@@ -6,11 +6,12 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 16:18:47 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/24 09:59:34 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/03/15 11:37:12 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../minishell.h"
+
 
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {

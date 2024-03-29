@@ -6,11 +6,12 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:10:07 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/24 10:00:55 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/03/15 11:37:12 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../minishell.h"
+
 
 int	ft_putchar_ptf(char c)
 {

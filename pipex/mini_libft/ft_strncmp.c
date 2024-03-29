@@ -6,11 +6,12 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 17:56:14 by aldalmas          #+#    #+#             */
-/*   Updated: 2023/06/24 11:34:51 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/03/15 11:37:12 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../minishell.h"
+
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {

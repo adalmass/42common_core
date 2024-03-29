@@ -1,11 +1,9 @@
 NAME = pipex
 
 SRC = main.c \
-	  utils.c \
 	  init.c \
-	  manage_errors.c \
+	  tools.c \
 	  mini_libft/ft_strdup.c \
-	  mini_libft/ft_strjoin.c \
 	  mini_libft/ft_strjoin_free.c \
 	  mini_libft/ft_strncmp.c \
 	  mini_libft/ft_strlen.c \
@@ -19,9 +17,9 @@ SRC = main.c \
 	  mini_libft/number_len_ptf.c \
 	  mini_libft/search_format_ptf.c \
 
-CC = gcc -Wall -Wextra -Werror
-
 OBJ = $(SRC:.c=.o)
+
+CC = gcc -Wall -Wextra -Werror
 
 .c.o = $(CC) -c -o $(OBJ)
 
@@ -41,4 +39,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY : all clean fclean re 
+.PHONY : all clean fclean re
