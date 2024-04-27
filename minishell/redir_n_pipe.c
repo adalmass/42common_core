@@ -38,9 +38,9 @@ void    check_first_char(t_parse *p)
     int i;
 
     i = 0;
-    i = check_jsp(p, i, '|');
-    i = check_jsp(p, i, '<');
-    i = check_jsp(p, i, '>');
+    // i = check_jsp(p, i, '|');
+    // i = check_jsp(p, i, '<');
+    // i = check_jsp(p, i, '>');
 }
 
 // sert a verifier les lignes de commandes comme "ls >", qui terminent par une redir ou un pipe

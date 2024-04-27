@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 17:57:13 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/03/29 09:58:15 by aldalmas         ###   ########.fr       */
+/*   Created: 2022/11/07 17:55:30 by aldalmas          #+#    #+#             */
+/*   Updated: 2022/11/07 17:55:31 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../parsing.h"
 
-char	*ft_strchr(const char *s, int c)
+int	ft_isalnum(int c)
 {
-	size_t	i;
-
-	i = 0;
-	while (c >= 256)
-		c -= 256;
-	while (s[i] != '\0')
-	{
-		if (s[i] == c)
-			return ((char *)s + i);
-		i++;
-	}
-	if (c == '\0' && s[i] == '\0')
-		return ((char *)s + i);
-	return (NULL);
+	if ((ft_isalpha(c) != 0) || (ft_isdigit(c) != 0))
+		return (1);
+	return (0);
 }

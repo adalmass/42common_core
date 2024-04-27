@@ -66,6 +66,9 @@ void    prompt(void);
 
 // --- mini_libft/
 int	ft_strlen(const char *s);
+int	ft_isalnum(int c);
+int	ft_isalpha(int c);
+int	ft_isdigit(int c);
 char	*ft_strdup(const char *s1);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	ft_putstr_fd(char *s, int fd);

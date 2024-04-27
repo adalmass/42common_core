@@ -6,6 +6,9 @@ SRC = main.c \
 	  redir_n_pipe.c \
 	  handle_spaces.c \
 	  mini_libft/ft_strdup.c \
+	  mini_libft/ft_isalpha.c \
+	  mini_libft/ft_isalnum.c \
+	  mini_libft/ft_isdigit.c \
 	  mini_libft/ft_strjoin_free.c \
 	  mini_libft/ft_strncmp.c \
 	  mini_libft/ft_strlen.c \

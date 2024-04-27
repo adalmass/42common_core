@@ -31,7 +31,7 @@ void    create_cmds_table(t_parse *p)
         // verifier le bon nb d'espace entre les < ou > sinon refaire comme il faut
         // verifier si la commande n'est pas collee, si oui, rajouter un espace entre chaque mot et redir
      
-        printf("temp:%s\nlen: %d\n", temp, ft_strlen(temp));
+        //printf("temp:%s\nlen: %d\n", temp, ft_strlen(temp));
         y++;
     }
     if (temp)
@@ -57,5 +57,5 @@ void    parsing(t_parse *p)
 // main a supprimer apres avoir fini et renommer ce fichier en parse.c
 int main()
 {
-    prompt();   
+    prompt();
 }
