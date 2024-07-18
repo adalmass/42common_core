@@ -31,13 +31,36 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <pthread.h>
-#include <sys/time.h>
+# include <sys/time.h>
 
+typedef struct s_philo
+{
+	int				philo_nb;
+	int				t_eating;
+	int				t_thinking;
+	int				t_sleeping;
+	int				t_dying;
+	int				eat_counter;
+	pthread_t		*philo;
+	pthread_mutex_t	*mutex;
 
+}					t_philo;
 
-// typedef struct s_parse
-// {
+// --- parsing.c
+void	parsing(int ac, char **av);
 
-// }				t_parse;
+// --- utils.c
+void	error_found(char *msg);
+void	print_time(struct timeval *time);
+
+// --- microlibft.c
+int		ft_isdigit(int c);
+int		ft_atoi(const char *str);
+
+// --- activities.c
+void	try_activity(t_philo *philo);
+void	eating(t_philo *philo);
+void	thinking(t_philo *philo);
+void	sleeping(t_philo *philo);
 
 #endif

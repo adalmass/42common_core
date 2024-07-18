@@ -1,6 +1,8 @@
 NAME = philo
 
 SRC = main.c \
+	  microlibft.c \
+	  utils.c \
 	  
 OBJ = $(SRC:.c=.o)
 
