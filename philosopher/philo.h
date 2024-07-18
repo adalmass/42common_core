@@ -49,6 +49,11 @@ typedef struct s_philo
 // --- parsing.c
 void	parsing(int ac, char **av);
 
+// --- init.c
+void    init_struct(t_philo *philo, char **av);
+void    create_philo(t_philo *philo);
+void    create_fork(t_philo *philo);
+
 // --- utils.c
 void	error_found(char *msg);
 void	print_time(struct timeval *time);
