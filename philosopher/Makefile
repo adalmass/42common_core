@@ -1,6 +1,7 @@
 NAME = philo
 
 SRC = main.c \
+	  activities.c \
 	  init.c \
 	  microlibft.c \
 	  utils.c \
