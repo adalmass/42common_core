@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef phi_H
+# define phi_H
 
 # define RED     "\x1b[31m"
 # define GREEN   "\x1b[32m"
@@ -33,26 +33,32 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-typedef struct s_philo
+typedef struct s_infos
 {
-	int				philo_nb;
 	int				t_eating;
 	int				t_thinking;
 	int				t_sleeping;
 	int				t_dying;
 	int				eat_counter;
-	pthread_t		*philo;
-	pthread_mutex_t	*mutex;
+}					t_infos;
 
-}					t_philo;
+typedef struct s_phi
+{
+	int				phi_nb;
+	pthread_t		*phi;
+	pthread_mutex_t	*forks;
+
+}					t_ph;
 
 // --- parsing.c
-void	parsing(int ac, char **av);
+int		parsing(int ac, char **av);
+int		check_arg(char *arg);
 
 // --- init.c
-void    init_struct(t_philo *philo, char **av);
-void    create_philo(t_philo *philo);
-void    create_fork(t_philo *philo);
+int		init_struct(t_ph *phi, t_infos *inf, char **av);
+void    create_phi(t_ph *phi);
+void    create_fork(t_ph *phi);
+void	philo_join(t_ph *phi);
 
 // --- utils.c
 void	error_found(char *msg);
@@ -61,11 +67,13 @@ void	print_time(struct timeval *time);
 // --- microlibft.c
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
+int		handle_int_limit(char *s);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 // --- activities.c
-void	try_activity(t_philo *philo);
-void	eating(t_philo *philo);
-void	thinking(t_philo *philo);
-void	sleeping(t_philo *philo);
+void	try_activity(t_ph *phi);
+void    eating(t_ph *phi, int idx_philo);
+void	thinking(t_ph *phi, int idx_philo);
+void	sleeping(t_ph *phi, int idx_philo);
 
 #endif

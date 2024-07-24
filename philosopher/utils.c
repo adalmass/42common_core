@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:09:04 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/07/18 17:15:19 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/07/24 23:57:29 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void    error_found(char *msg)
 {
-    printf(RED "ERROR: %s\n" RESET, msg);
-    exit (1);
+    printf(YELLOW "PHILO ERROR: %s\n" RESET, msg);
 }
 
 void    print_time(struct timeval *time)

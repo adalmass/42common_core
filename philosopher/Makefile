@@ -1,10 +1,10 @@
 NAME = philo
 
 SRC = main.c \
-	  activities.c \
 	  init.c \
-	  microlibft.c \
 	  utils.c \
+	  activities.c \
+	  microlibft.c \
 	  
 OBJ = $(SRC:.c=.o)
 
@@ -14,7 +14,7 @@ CC = gcc -Wall -Wextra -Werror #-fsanitize=address
 
 $(NAME): $(OBJ)
 	@${CC} $(OBJ) -o $(NAME) -lreadline -D_REENTRANT
-	@echo "Archivage terminé [philosopher]"
+	@echo "Archivage terminé [phisopher]"
 
 all: $(NAME)
 

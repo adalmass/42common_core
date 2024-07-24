@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:21:36 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/07/18 17:07:36 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/07/25 01:15:53 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,16 @@ int	ft_isdigit(int c)
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	ft_strlen(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
 int	get_result(const char *str, size_t i)
 {
@@ -73,3 +83,47 @@ int	ft_atoi(const char *str)
 	return (result);
 }
 
+int	handle_int_limit(char *s)
+{
+	int	len_s;
+
+	len_s = ft_strlen(s);
+	if (len_s > 11)
+	{
+		error_found("INT LIMIT reached");
+		return (0);
+	}
+	if (s[0] != '-')
+	{
+		if (len_s == 10 && ft_strncmp(s, "2147483647", 10) > 0)
+		{
+			error_found("INT MAX reached");
+			return (0);
+		}
+	}
+	else
+	{
+		if (len_s == 11 && ft_strncmp(s, "-2147483648", 11) > 0)
+		{
+			error_found("INT MIN reached\n");
+			return (0);
+		}
+	}
+	return (1);
+}
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t		i;
+
+	i = 0;
+	if (!n)
+		return (0);
+	while ((i < (n - 1)) && (s1[i] || s2[i]))
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
