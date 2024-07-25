@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   activities.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:30:00 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/07/25 04:02:06 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/07/25 19:11:32 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,16 @@ void	philo_join(t_ph *phi)
 	{
 		pthread_join(phi->phi[i], NULL);
 		i++;
-	}	
+	}
 }
 
 void    *try_activity(void *infos)
 {
 	t_infos *inf = (t_infos *) infos;
 	(void) inf;
-	//printf("%ld\n", ph->phi[0]);
+	//eating(infos, idx_philo);
+	//thinking(infos, idx_philo);
+	//sleeping(infos, idx_philo);
 	return (NULL);
 }
 

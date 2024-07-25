@@ -35,6 +35,7 @@
 
 typedef struct s_infos
 {
+	int				phi_id;
 	int				t_eating;
 	int				t_sleeping;
 	int				t_dying;

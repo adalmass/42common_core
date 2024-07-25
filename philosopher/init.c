@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 19:21:44 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/07/25 04:16:26 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/07/25 19:14:22 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	init_struct(t_ph *phi, t_infos *inf, char **av)
 		return (0);
 	}
 	phi->infos = malloc(sizeof(t_infos *) * phi->phi_nb);
+	inf->phi_id = 0;
 	return (1);
 }
 
@@ -46,8 +47,10 @@ void	create_phi(t_ph *phi, t_infos *inf)
 	i = 0;
 	while (i < phi->phi_nb)
 	{
-		phi->infos[i] = malloc(sizeof(t_ph *));
+		phi->infos[i] = malloc(sizeof(t_infos));
 		pthread_create(&phi->phi[i], NULL, (void *)try_activity, (void *)&phi->infos[i]);
+		phi->infos[i]->phi_id = i + 1;
+		printf("infos: %d\n", phi->infos[i]->phi_id);
 		i++;
 	}
 }
