@@ -36,7 +36,6 @@
 typedef struct s_infos
 {
 	int				t_eating;
-	int				t_thinking;
 	int				t_sleeping;
 	int				t_dying;
 	int				eat_counter;
@@ -45,6 +44,7 @@ typedef struct s_infos
 typedef struct s_phi
 {
 	int				phi_nb;
+	t_infos			**infos;
 	pthread_t		*phi;
 	pthread_mutex_t	*forks;
 
@@ -56,8 +56,8 @@ int		check_arg(char *arg);
 
 // --- init.c
 int		init_struct(t_ph *phi, t_infos *inf, char **av);
-void    create_phi(t_ph *phi);
-void    create_fork(t_ph *phi);
+void	create_phi(t_ph *phi, t_infos *inf);
+void	create_fork(t_ph *phi);
 void	philo_join(t_ph *phi);
 
 // --- utils.c
@@ -71,7 +71,7 @@ int		handle_int_limit(char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 // --- activities.c
-void	try_activity(t_ph *phi);
+void    *try_activity(void *infos);
 void    eating(t_ph *phi, int idx_philo);
 void	thinking(t_ph *phi, int idx_philo);
 void	sleeping(t_ph *phi, int idx_philo);

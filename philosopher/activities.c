@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:30:00 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/07/25 01:38:54 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/07/25 04:02:06 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,16 @@ void	philo_join(t_ph *phi)
 	}	
 }
 
-void    try_activity(t_ph *phi)
+void    *try_activity(void *infos)
 {
-	(void) phi;
-	//printf("%ld\n", phi->phi[0]);
-	return ;
+	t_infos *inf = (t_infos *) infos;
+	(void) inf;
+	//printf("%ld\n", ph->phi[0]);
+	return (NULL);
 }
 
 void    eating(t_ph *phi, int idx_philo)
-{	
+{
 	(void) phi;
 	(void) idx_philo;
 	//pthread_mutex_lock(&mutex); //fourchette de gauche

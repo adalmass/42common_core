@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:14:06 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/07/25 01:37:44 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/07/25 02:09:22 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	main(int ac, char **av)
 		return (1);
 	if (!init_struct(&phi, &inf, av))
 		return (1);
-	create_phi(&phi);
+	create_phi(&phi, &inf);
 	create_fork(&phi);
 	print_time(&time);
 	usleep(1000000);
