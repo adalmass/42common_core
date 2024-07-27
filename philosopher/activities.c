@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:30:00 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/07/26 12:30:50 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/07/27 20:06:21 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,38 +23,56 @@ void	philo_join(t_ph *phi)
 		i++;
 	}
 }
-
-void    *try_activity(void *infos)
+//void    *try_activity(void *infos)
+void    *try_activity(void *phi)
 {
-	printf(RED "routine\n" RESET);
-	t_infos *inf = (t_infos *) infos;
-	eating(inf);
-	thinking(inf);
-	sleeping(inf);
+	//t_ph *philo = (t_ph *) phi;
+	t_infos *philo = (t_infos *) phi;
+	// philo = phi;
+	//printf("ICI Philo %d is eating\n", philo->infos->phi_id);
+	eating(philo);
+	printf("fini manger\n");
+	thinking(philo);
+	printf("fini penser\n");
+	sleeping(philo);
+	printf("fini dormir\n");
 	return (NULL);
 }
 
-void    eating(t_infos *inf)
+void    eating(t_infos *philo)
 {
-	printf("Philo %d is eating\n", inf->phi_id);
-	//pthread_mutex_lock(&mutex); //fourchette de gauche
-	//pthread_mutex_lock(&mutex); //fourchette de droite
-	//printf("phi %d is eating\n", idx_philo);
-	//usleep(phi->t_eating);
-	//pthread_mutex_unlock(&mutex); //fourchette de gauche
-	//pthread_mutex_unlock(&mutex); //fourchette de droite
+	printf("essaye de manger\n");
+	//pthread_mutex_lock(&philo->forks[0]);
+	printf("Philo %d is eating\n", philo->phi_id);
+	// usleep(philo->infos[0]->t_eating);
+	usleep(1000);
+	//pthread_mutex_unlock(&philo->forks[0]);
+	printf("c est bon hamdoullah\n");
 }
 
-void	thinking(t_infos *inf)
+// void    eating(t_ph *philo)
+// {
+// 	printf("essaye de manger\n");
+// 	pthread_mutex_lock(&philo->forks[0]);
+// 	printf("Philo %d is eating\n", philo->infos->phi_id);
+// 	// usleep(philo->infos[0]->t_eating);
+// 	usleep(1000);
+// 	pthread_mutex_unlock(&philo->forks[0]);
+// 	printf("c est bon hamdoullah");
+// }
+
+void	thinking(t_infos *philo)
 {
-	printf("Philo %d is thinking\n", inf->phi_id);
+	printf("Philo %d is thinking\n", philo->phi_id);
 	//printf("phi %d is thinking\n", idx_philo);
 	//usleep(phi->t_thinking);
 }
 
-void	sleeping(t_infos *inf)
+void	sleeping(t_infos *philo)
 {
-	printf("Philo %d is sleeping\n", inf->phi_id);
+	printf("Philo %d is sleeping\n", philo->phi_id);
+	// usleep(phi->infos[0]->t_sleeping);
+	usleep(1000);
 	//printf("phi %d is sleeping\n", idx_philo);
 	//usleep(phi->t_sleeping);
 }

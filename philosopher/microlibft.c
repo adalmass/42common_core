@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:21:36 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/07/25 01:15:53 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/07/27 19:53:08 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ int	get_result(const char *str, size_t i)
 
 int	ft_atoi(const char *str)
 {
-	size_t	i;
-	size_t	result;
-	size_t	minus_count;
+	int	i;
+	int	result;
+	int	minus_count;
 
 	i = 0;
 	result = 0;

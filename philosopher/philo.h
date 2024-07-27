@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef phi_H
-# define phi_H
+#ifndef PHILO_H
+# define PHILO_H
 
 # define RED     "\x1b[31m"
 # define GREEN   "\x1b[32m"
@@ -40,15 +40,15 @@ typedef struct s_infos
 	int				t_sleeping;
 	int				t_dying;
 	int				eat_counter;
+	t_ph			*phi;
 }					t_infos;
 
 typedef struct s_phi
 {
 	int				phi_nb;
-	t_infos			**infos;
+	t_infos			*infos;
 	pthread_t		*phi;
 	pthread_mutex_t	*forks;
-
 }					t_ph;
 
 // --- parsing.c
@@ -72,9 +72,12 @@ int		handle_int_limit(char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 // --- activities.c
-void    *try_activity(void *infos);
-void    eating(t_infos *phi);
-void	thinking(t_infos *phi);
-void	sleeping(t_infos *phi);
+void    *try_activity(void *phi);
+void    eating(t_infos *philo);
+void    sleeping(t_infos *philo);
+void    thinking(t_infos *philo);
+// void    eating(t_ph *phi);
+// void	thinking(t_ph *phi);
+// void	sleeping(t_ph *phi);
 
 #endif
