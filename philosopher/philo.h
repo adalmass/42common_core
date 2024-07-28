@@ -33,6 +33,9 @@
 # include <pthread.h>
 # include <sys/time.h>
 
+typedef struct s_ph t_ph;
+typedef struct s_infos t_infos;
+
 typedef struct s_infos
 {
 	int				phi_id;
@@ -43,7 +46,7 @@ typedef struct s_infos
 	t_ph			*phi;
 }					t_infos;
 
-typedef struct s_phi
+typedef struct s_ph
 {
 	int				phi_nb;
 	t_infos			*infos;
@@ -57,9 +60,13 @@ int		check_arg(char *arg);
 
 // --- init.c
 int		init_struct(t_ph *phi, t_infos *inf, char **av);
-void	create_phi(t_ph *phi);
-void	create_fork(t_ph *phi);
+int		init_phi(t_ph *phi, char **av);
+void	init_infos(t_ph *phi, char **av);
+void	create_threads(t_ph *phi);
+void	start_simulation(t_ph *phi);
+void	create_mutex(t_ph *phi);
 void	philo_join(t_ph *phi);
+void	destroy_mutex(t_ph *phi);
 
 // --- utils.c
 void	error_found(char *msg);
@@ -72,12 +79,9 @@ int		handle_int_limit(char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 // --- activities.c
-void    *try_activity(void *phi);
-void    eating(t_infos *philo);
-void    sleeping(t_infos *philo);
-void    thinking(t_infos *philo);
-// void    eating(t_ph *phi);
-// void	thinking(t_ph *phi);
-// void	sleeping(t_ph *phi);
+void    *try_activity(void *infos);
+void    eating(t_infos *inf);
+void    sleeping(t_infos *inf);
+void    thinking(t_infos *inf);
 
 #endif

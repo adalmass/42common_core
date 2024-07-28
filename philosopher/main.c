@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:14:06 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/07/27 17:46:28 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/07/28 20:43:18 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,40 @@ int	parsing(int ac, char **av)
 	return (1);
 }
 
+void	create_threads(t_ph *phi)
+{
+	int	i;
+
+	i = 0;
+	while (i < phi->phi_nb)
+	{
+		printf(RED "boucle %d\n" RESET, i + 1);
+		//phi->infos[i] = (t_ph)malloc(sizeof(t_ph));
+		phi->infos->phi_id = i + 1;
+		pthread_create(&phi->phi[i], NULL, (void *)try_activity, (void *)&phi->infos[i]);
+		pthread_join(phi->phi[i], NULL);
+		i++;
+	}
+}
+
+void	destroy_mutex(t_ph *phi)
+{
+	int	i;
+
+	i = 0;
+	while (i < phi->phi_nb)
+	{
+		pthread_mutex_destroy(&phi->infos->phi->forks[i]);
+		i++;
+	}
+}
+
+void	start_simulation(t_ph *phi)
+{
+	create_mutex(phi);
+	create_threads(phi);
+}
+
 int	main(int ac, char **av)
 {
 	t_ph     	phi;
@@ -77,7 +111,7 @@ int	main(int ac, char **av)
 		return (1);
 	if (!init_struct(&phi, &inf, av))
 		return (1);
-	create_phi(&phi);
+	start_simulation(&phi);
 	//create_fork(&phi);
 	// print_time(&time);
 	// usleep(1000000);
