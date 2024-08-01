@@ -45,7 +45,9 @@ typedef struct s_infos
 	int				t_dying;
 	int				left_fork;
 	int				right_fork;
-	int				eat_counter;
+	int				eat_max;
+	int				eat_count;
+	int				stop_eat;
 	pthread_mutex_t	*fork;
 }					t_infos;
 
@@ -54,7 +56,7 @@ typedef struct s_ph
 	int				t_eating;
 	int				t_sleeping;
 	int				t_dying;
-	int				eat_counter;
+	int				eat_max;
 	int				phi_nb;
 	t_infos			*infos;
 }					t_ph;

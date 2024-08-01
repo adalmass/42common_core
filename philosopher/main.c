@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:14:06 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/01 19:25:09 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/01 21:29:15 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void	start_simulation(t_ph *phi)
 		pthread_create(&philo[i], NULL, (void *)try_activity, (void *)&phi->infos[i]);
 		i++;
 	}
-	printf(RED "CACA\n"RESET);
 	i = 0;
 	while (i < phi->phi_nb)
 	{
@@ -126,7 +125,16 @@ int	main(int ac, char **av)
 		return (1);
 	if (!init_phi(&phi, av))
 		return (1);
-	start_simulation(&phi);
+	while (1)
+	{
+		start_simulation(&phi);
+		printf("%d\n", phi.infos->stop_eat);
+		if (phi.infos->stop_eat == 1)
+		{
+			printf("A FINI\n");
+			return (0); 
+		}
+	}
 	//create_fork(&phi);
 	// print_time(&time);
 	// usleep(1000000);

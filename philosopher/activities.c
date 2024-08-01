@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:30:00 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/01 20:00:55 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/01 21:23:52 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@
 void    *try_activity(void *infos)
 {
 	t_infos *inf = (t_infos *) infos;
-	eating(inf);
-	// printf("fini manger\n");
+	if (inf->eat_count != inf->eat_max)
+		eating(inf);
+	if (inf->stop_eat == 1)
+		return (NULL);
 	thinking(inf);
-	// printf("fini penser\n");
 	sleeping(inf);
-	// printf("fini dormir\n");
 	return (NULL);
 }
 
@@ -50,27 +50,27 @@ void    eating(t_infos *inf)
 {
 	if (inf->phi_id % 2 != 0)
 		usleep(100);
-	// printf("Try to eat\n");
 	pthread_mutex_lock(&inf->fork[inf->left_fork]);
 	pthread_mutex_lock(&inf->fork[inf->right_fork]);
-
 	printf(GREEN"Philo %d is eating\n"RESET, inf->phi_id);
-	usleep(100000);
+	inf->eat_count++;
+	usleep(inf->t_eating);
 	pthread_mutex_unlock(&inf->fork[inf->left_fork]);
 	pthread_mutex_unlock(&inf->fork[inf->right_fork]);
+	if (inf->eat_count == inf->eat_max)
+	{
+		inf->stop_eat = 1;
+		printf(RED"ARRETE DE BOUFFER GROS PORC\n" RESET);
+	}
 }
 
 void	thinking(t_infos *inf)
 {
 	printf(YELLOW"Philo %d is thinking\n"RESET, inf->phi_id);
-	//printf("phi %d is thinking\n", idx_philo);
-	//usleep(phi->t_thinking);
-	usleep(100000);
 }
 
 void	sleeping(t_infos *inf)
 {
 	printf(CYAN"Philo %d is sleeping\n"RESET, inf->phi_id);
-	// usleep(phi->infos[0]->t_sleeping);
-	usleep(100000);
+	usleep(inf->t_sleeping);
 }
