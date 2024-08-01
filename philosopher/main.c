@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:14:06 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/07/28 20:43:18 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/01 19:25:09 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,49 +67,64 @@ int	parsing(int ac, char **av)
 	return (1);
 }
 
-void	create_threads(t_ph *phi)
-{
-	int	i;
+// void	destroy_mutex(t_ph *phi)
+// {
+// 	int	i;
 
-	i = 0;
-	while (i < phi->phi_nb)
-	{
-		printf(RED "boucle %d\n" RESET, i + 1);
-		//phi->infos[i] = (t_ph)malloc(sizeof(t_ph));
-		phi->infos->phi_id = i + 1;
-		pthread_create(&phi->phi[i], NULL, (void *)try_activity, (void *)&phi->infos[i]);
-		pthread_join(phi->phi[i], NULL);
-		i++;
-	}
-}
-
-void	destroy_mutex(t_ph *phi)
-{
-	int	i;
-
-	i = 0;
-	while (i < phi->phi_nb)
-	{
-		pthread_mutex_destroy(&phi->infos->phi->forks[i]);
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (i < phi->phi_nb)
+// 	{
+// 		pthread_mutex_destroy(&phi->infos->phi->forks[i]);
+// 		i++;
+// 	}
+// }
 
 void	start_simulation(t_ph *phi)
 {
-	create_mutex(phi);
-	create_threads(phi);
+	int				i;
+	pthread_t		*philo;
+	pthread_mutex_t	*forks;
+
+	i = 0;
+	philo = malloc(sizeof(pthread_t) * phi->phi_nb);
+	forks = malloc(sizeof(pthread_mutex_t) * phi->phi_nb);
+	//create_mutex(phi, forks);
+	while (i < phi->phi_nb)
+	{
+		pthread_mutex_init(&forks[i], NULL);
+		i++;
+	}
+	i = 0;
+	while (i < phi->phi_nb)
+	{
+		init_infos(phi, i);
+		phi->infos[i].fork = forks;
+		pthread_create(&philo[i], NULL, (void *)try_activity, (void *)&phi->infos[i]);
+		i++;
+	}
+	printf(RED "CACA\n"RESET);
+	i = 0;
+	while (i < phi->phi_nb)
+	{
+		pthread_join(philo[i], NULL);
+		i++;
+	}
+	i = 0;
+	while (i < phi->phi_nb)
+	{
+		pthread_mutex_destroy(&phi->infos->fork[i]);
+		i++;
+	}
 }
 
 int	main(int ac, char **av)
 {
 	t_ph     	phi;
-	t_infos		inf;
 	//struct timeval time;
 
 	if (!parsing(ac, av))
 		return (1);
-	if (!init_struct(&phi, &inf, av))
+	if (!init_phi(&phi, av))
 		return (1);
 	start_simulation(&phi);
 	//create_fork(&phi);

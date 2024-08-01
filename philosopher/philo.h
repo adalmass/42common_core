@@ -38,20 +38,25 @@ typedef struct s_infos t_infos;
 
 typedef struct s_infos
 {
+	int				phi_nb;
 	int				phi_id;
 	int				t_eating;
 	int				t_sleeping;
 	int				t_dying;
+	int				left_fork;
+	int				right_fork;
 	int				eat_counter;
-	t_ph			*phi;
+	pthread_mutex_t	*fork;
 }					t_infos;
 
 typedef struct s_ph
 {
+	int				t_eating;
+	int				t_sleeping;
+	int				t_dying;
+	int				eat_counter;
 	int				phi_nb;
 	t_infos			*infos;
-	pthread_t		*phi;
-	pthread_mutex_t	*forks;
 }					t_ph;
 
 // --- parsing.c
@@ -59,14 +64,11 @@ int		parsing(int ac, char **av);
 int		check_arg(char *arg);
 
 // --- init.c
-int		init_struct(t_ph *phi, t_infos *inf, char **av);
 int		init_phi(t_ph *phi, char **av);
-void	init_infos(t_ph *phi, char **av);
-void	create_threads(t_ph *phi);
+void	init_infos(t_ph *phi, int idx_philo);
 void	start_simulation(t_ph *phi);
-void	create_mutex(t_ph *phi);
-void	philo_join(t_ph *phi);
-void	destroy_mutex(t_ph *phi);
+void	create_mutex(t_ph *phi, pthread_mutex_t *forks);
+//void	destroy_mutex(t_ph *phi);
 
 // --- utils.c
 void	error_found(char *msg);
