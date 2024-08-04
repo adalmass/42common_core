@@ -14,7 +14,7 @@ CC = gcc -Wall -Wextra -Werror #-fsanitize=address
 
 $(NAME): $(OBJ)
 	@${CC} $(OBJ) -o $(NAME) -lreadline -D_REENTRANT
-	@echo "Archivage terminé [phisopher]"
+	@echo "Archivage terminé [philosopher]"
 
 all: $(NAME)
 

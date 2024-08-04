@@ -48,6 +48,9 @@ typedef struct s_infos
 	int				eat_max;
 	int				eat_count;
 	int				stop_eat;
+	long			last_time_eat;
+	struct timeval	time;
+	struct timeval	timer_eat;
 	pthread_mutex_t	*fork;
 }					t_infos;
 
@@ -64,6 +67,7 @@ typedef struct s_ph
 // --- parsing.c
 int		parsing(int ac, char **av);
 int		check_arg(char *arg);
+int 	count_eating_time(t_infos *inf);
 
 // --- init.c
 int		init_phi(t_ph *phi, char **av);
@@ -87,5 +91,6 @@ void    *try_activity(void *infos);
 void    eating(t_infos *inf);
 void    sleeping(t_infos *inf);
 void    thinking(t_infos *inf);
+void	fonction_qui_gere_la_mort(void *phi);
 
 #endif

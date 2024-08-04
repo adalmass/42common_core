@@ -6,37 +6,47 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:30:00 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/01 21:23:52 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/04 22:25:34 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// void    *try_activity(void *infos)
-// {
-// 	t_infos *inf = (t_infos *) infos; 
-// 	// printf("\nSleep %d\n", inf->t_sleeping);
-// 	// printf("dying %d\n", inf->t_dying);
-// 	// printf("eating %d\n", inf->t_eating);
-// 	// printf("eat_counter %d\n", inf->eat_counter);
-// 	// printf("Philo id %d\n\n", inf->phi_id);
-// 	//printf("Philo nb %d\n\n", inf->phi->phi_nb);
-// 	while (inf->eat_counter)
-// 	{
-// 		eating(inf);
-// 		// printf("fini manger\n");
-// 		thinking(inf);
-// 		// printf("fini penser\n");
-// 		sleeping(inf);
-// 		// printf("fini dormir\n");
-		
-// 	}
-// 	return (NULL);
-// }
+void	fonction_qui_gere_la_mort(void *infos)
+{
+	long	last_meal;
+	long	current_time;
+
+	t_infos *inf = (t_infos *) infos;
+
+	last_meal = inf->last_time_eat;
+	gettimeofday(&inf->time, NULL);
+	current_time = inf->time.tv_usec / 1000;
+	if (last_meal != current_time)
+	{
+		printf("lastmeal - current_time: %ld - %ld\n", last_meal, current_time);
+		if (last_meal < current_time)
+		{
+			current_time = (current_time - last_meal);
+			printf("philo %d last meal < : %ld\n", inf->phi_id, current_time);
+		}
+		else if (last_meal > current_time)
+		{
+			current_time = (last_meal - current_time);
+			printf("philo %d last meal > : %ld\n", inf->phi_id, current_time);
+		}
+	}
+	//i = inf->time.tv_sec;
+	//printf(" Philo %d lastmeal  : %ld,%ld\n", inf->phi_id,i, last_meal);
+	//printf("SALOPE: %ld\n", inf->last_time_eat);
+	//printf("temps: %ld\n", inf->timer_eat.tv_usec / 1000);
+	//printf("temps: %ld\n", inf->time.tv_usec / 1000);
+}
 
 void    *try_activity(void *infos)
 {
 	t_infos *inf = (t_infos *) infos;
+
 	if (inf->eat_count != inf->eat_max)
 		eating(inf);
 	if (inf->stop_eat == 1)
@@ -48,20 +58,20 @@ void    *try_activity(void *infos)
 
 void    eating(t_infos *inf)
 {
-	if (inf->phi_id % 2 != 0)
+	if (inf->phi_nb % 2 != 0 && inf->phi_id % 2 != 0)
 		usleep(100);
 	pthread_mutex_lock(&inf->fork[inf->left_fork]);
 	pthread_mutex_lock(&inf->fork[inf->right_fork]);
 	printf(GREEN"Philo %d is eating\n"RESET, inf->phi_id);
-	inf->eat_count++;
+	gettimeofday(&inf->time, NULL);
+	inf->last_time_eat = inf->time.tv_usec / 1000;
+	printf("Philo %d actualmeal: %ld,%ld\n", inf->phi_id, inf->time.tv_sec, inf->last_time_eat);
 	usleep(inf->t_eating);
+	inf->eat_count++;
 	pthread_mutex_unlock(&inf->fork[inf->left_fork]);
 	pthread_mutex_unlock(&inf->fork[inf->right_fork]);
 	if (inf->eat_count == inf->eat_max)
-	{
 		inf->stop_eat = 1;
-		printf(RED"ARRETE DE BOUFFER GROS PORC\n" RESET);
-	}
 }
 
 void	thinking(t_infos *inf)

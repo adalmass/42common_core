@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:14:06 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/01 21:29:15 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/04 22:13:15 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,28 +67,17 @@ int	parsing(int ac, char **av)
 	return (1);
 }
 
-// void	destroy_mutex(t_ph *phi)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i < phi->phi_nb)
-// 	{
-// 		pthread_mutex_destroy(&phi->infos->phi->forks[i]);
-// 		i++;
-// 	}
-// }
-
 void	start_simulation(t_ph *phi)
 {
 	int				i;
 	pthread_t		*philo;
+	pthread_t		*observe;
 	pthread_mutex_t	*forks;
 
 	i = 0;
 	philo = malloc(sizeof(pthread_t) * phi->phi_nb);
 	forks = malloc(sizeof(pthread_mutex_t) * phi->phi_nb);
-	//create_mutex(phi, forks);
+	observe = malloc(sizeof(pthread_t) * phi->phi_nb);
 	while (i < phi->phi_nb)
 	{
 		pthread_mutex_init(&forks[i], NULL);
@@ -100,12 +89,14 @@ void	start_simulation(t_ph *phi)
 		init_infos(phi, i);
 		phi->infos[i].fork = forks;
 		pthread_create(&philo[i], NULL, (void *)try_activity, (void *)&phi->infos[i]);
+		pthread_create(&observe[i], NULL, (void *)fonction_qui_gere_la_mort, (void *)&phi->infos[i]);
 		i++;
 	}
 	i = 0;
 	while (i < phi->phi_nb)
 	{
 		pthread_join(philo[i], NULL);
+		pthread_join(observe[i], NULL);
 		i++;
 	}
 	i = 0;
@@ -128,15 +119,11 @@ int	main(int ac, char **av)
 	while (1)
 	{
 		start_simulation(&phi);
-		printf("%d\n", phi.infos->stop_eat);
 		if (phi.infos->stop_eat == 1)
-		{
-			printf("A FINI\n");
 			return (0); 
-		}
 	}
-	//create_fork(&phi);
 	// print_time(&time);
-	// usleep(1000000);
+	// usleep(1001200);
 	// print_time(&time);
+	//count_eating_time(phi.infos);
 }
