@@ -67,18 +67,16 @@ typedef struct s_ph
 // --- parsing.c
 int		parsing(int ac, char **av);
 int		check_arg(char *arg);
-int 	count_eating_time(t_infos *inf);
 
 // --- init.c
 int		init_phi(t_ph *phi, char **av);
 void	init_infos(t_ph *phi, int idx_philo);
 void	start_simulation(t_ph *phi);
 void	create_mutex(t_ph *phi, pthread_mutex_t *forks);
-//void	destroy_mutex(t_ph *phi);
 
 // --- utils.c
 void	error_found(char *msg);
-void	print_time(struct timeval *time);
+long	get_time(t_infos *inf);
 
 // --- microlibft.c
 int		ft_isdigit(int c);
@@ -87,10 +85,10 @@ int		handle_int_limit(char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 // --- activities.c
+void	*fonction_qui_gere_la_mort(void *phi);
 void    *try_activity(void *infos);
 void    eating(t_infos *inf);
 void    sleeping(t_infos *inf);
 void    thinking(t_infos *inf);
-void	fonction_qui_gere_la_mort(void *phi);
 
 #endif

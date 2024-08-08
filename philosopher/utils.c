@@ -6,26 +6,22 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:09:04 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/03 16:01:44 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/08 21:22:05 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void    error_found(char *msg)
+void	error_found(char *msg)
 {
-    printf(YELLOW "PHILO ERROR: %s\n" RESET, msg);
-}
-int count_eating_time(t_infos *inf)
-{
-    gettimeofday(&inf->time, NULL);
-    printf("CACA: %ld\n", inf->time.tv_usec * 1000);
-    return (1);
+	printf(YELLOW "PHILO ERROR: %s\n" RESET, msg);
 }
 
-void    print_time(struct timeval *time)
+long	get_time(t_infos *inf)
 {
-    gettimeofday(time, NULL);
-    printf("millisec: ");
-    printf("%ld,%ld\n", time->tv_sec, time->tv_usec / 1000);
+	long	current_time;
+
+	gettimeofday(&inf->time, NULL);
+	current_time = (inf->time.tv_sec * 1000000) + inf->time.tv_usec;
+	return (current_time);
 }

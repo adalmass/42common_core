@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 19:21:44 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/04 20:31:11 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/08 21:23:24 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,7 @@ void	init_infos(t_ph *phi, int p_id)
 	else
 		phi->infos[p_id].right_fork = phi->infos[p_id].phi_id;
 	phi->infos[p_id].left_fork = phi->infos[p_id].phi_id - 1;
-	//phi->infos[p_id].timer_eat.tv_usec = phi->infos->time.tv_usec;
-	//printf("philo %d: %ld\n", phi->infos[p_id].phi_id, phi->infos[p_id].timer_eat.tv_usec / 1000);
-	phi->infos[p_id].last_time_eat = phi->infos[p_id].time.tv_usec;
+	phi->infos[p_id].last_time_eat = phi->infos->last_time_eat;
 }
 
 void	create_mutex(t_ph *phi, pthread_mutex_t *forks)

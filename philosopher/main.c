@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:14:06 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/04 22:13:15 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/08 22:02:54 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,11 @@ void	start_simulation(t_ph *phi)
 		pthread_create(&observe[i], NULL, (void *)fonction_qui_gere_la_mort, (void *)&phi->infos[i]);
 		i++;
 	}
+	// i = 0;
+	// while (i < phi->phi_nb)
+	// {
+	// 	// gerer la mort;
+	// }
 	i = 0;
 	while (i < phi->phi_nb)
 	{
@@ -109,8 +114,7 @@ void	start_simulation(t_ph *phi)
 
 int	main(int ac, char **av)
 {
-	t_ph     	phi;
-	//struct timeval time;
+	t_ph	phi;
 
 	if (!parsing(ac, av))
 		return (1);
@@ -120,10 +124,6 @@ int	main(int ac, char **av)
 	{
 		start_simulation(&phi);
 		if (phi.infos->stop_eat == 1)
-			return (0); 
+			return (0);
 	}
-	// print_time(&time);
-	// usleep(1001200);
-	// print_time(&time);
-	//count_eating_time(phi.infos);
 }
