@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:14:06 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/08 22:02:54 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/09 16:38:20 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,49 +67,51 @@ int	parsing(int ac, char **av)
 	return (1);
 }
 
+void	ft_exit(t_ph *phi)
+{
+	free (phi->infos);
+	//destroy_mutex(phi);
+	
+}
+
+long	print_time(t_infos *inf)
+{
+	long	time;
+
+	gettimeofday(&inf->time, NULL);	
+	time = (inf->time.tv_sec * 1000) + (inf->time.tv_usec / 1000);
+	return (time);
+}
+
 void	start_simulation(t_ph *phi)
 {
 	int				i;
+	long			time;
 	pthread_t		*philo;
-	pthread_t		*observe;
+	pthread_t		observe;
 	pthread_mutex_t	*forks;
 
 	i = 0;
 	philo = malloc(sizeof(pthread_t) * phi->phi_nb);
 	forks = malloc(sizeof(pthread_mutex_t) * phi->phi_nb);
-	observe = malloc(sizeof(pthread_t) * phi->phi_nb);
+	init_mutex(phi, forks);
+	time = print_time(phi->infos);
+	init_infos(phi, forks, time);
 	while (i < phi->phi_nb)
 	{
-		pthread_mutex_init(&forks[i], NULL);
+		pthread_create(&philo[i], NULL, (void *)routine, (void *)&phi->infos[i]);
 		i++;
 	}
-	i = 0;
-	while (i < phi->phi_nb)
-	{
-		init_infos(phi, i);
-		phi->infos[i].fork = forks;
-		pthread_create(&philo[i], NULL, (void *)try_activity, (void *)&phi->infos[i]);
-		pthread_create(&observe[i], NULL, (void *)fonction_qui_gere_la_mort, (void *)&phi->infos[i]);
-		i++;
-	}
-	// i = 0;
-	// while (i < phi->phi_nb)
+	pthread_create(&observe, NULL, (void *)fonction_qui_gere_la_mort, (void *)phi->infos);
+	join_threads(phi, philo, &observe);
+	//destroy_mutex(phi);
+	// if (phi->infos[i].is_dead)
 	// {
-	// 	// gerer la mort;
+	// 	free (philo);
+	// 	free (forks);
+	// 	free (observe);
+	// 	//ft_exit(phi);
 	// }
-	i = 0;
-	while (i < phi->phi_nb)
-	{
-		pthread_join(philo[i], NULL);
-		pthread_join(observe[i], NULL);
-		i++;
-	}
-	i = 0;
-	while (i < phi->phi_nb)
-	{
-		pthread_mutex_destroy(&phi->infos->fork[i]);
-		i++;
-	}
 }
 
 int	main(int ac, char **av)
@@ -120,10 +122,5 @@ int	main(int ac, char **av)
 		return (1);
 	if (!init_phi(&phi, av))
 		return (1);
-	while (1)
-	{
-		start_simulation(&phi);
-		if (phi.infos->stop_eat == 1)
-			return (0);
-	}
+	start_simulation(&phi);
 }

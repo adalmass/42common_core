@@ -3,12 +3,12 @@ NAME = philo
 SRC = main.c \
 	  init.c \
 	  utils.c \
-	  activities.c \
+	  routine.c \
 	  microlibft.c \
 	  
 OBJ = $(SRC:.c=.o)
 
-CC = gcc -Wall -Wextra -Werror #-fsanitize=address
+CC = gcc  #-fsanitize=address
 
 .c.o = $(CC) -c -o $(OBJ)
 

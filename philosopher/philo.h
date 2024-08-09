@@ -48,9 +48,12 @@ typedef struct s_infos
 	int				eat_max;
 	int				eat_count;
 	int				stop_eat;
+	int				stop_simulation;
+	int				is_dead;
 	long			last_time_eat;
+	long			start_time;
 	struct timeval	time;
-	struct timeval	timer_eat;
+	pthread_mutex_t	*print;
 	pthread_mutex_t	*fork;
 }					t_infos;
 
@@ -67,16 +70,20 @@ typedef struct s_ph
 // --- parsing.c
 int		parsing(int ac, char **av);
 int		check_arg(char *arg);
+long	print_time(t_infos *inf);
 
 // --- init.c
 int		init_phi(t_ph *phi, char **av);
-void	init_infos(t_ph *phi, int idx_philo);
+void	init_infos(t_ph *phi, pthread_mutex_t *forks, long time);
 void	start_simulation(t_ph *phi);
 void	create_mutex(t_ph *phi, pthread_mutex_t *forks);
 
 // --- utils.c
 void	error_found(char *msg);
 long	get_time(t_infos *inf);
+void	init_mutex(t_ph *phi, pthread_mutex_t *forks);
+void	join_threads(t_ph *phi, pthread_t *philo, pthread_t *observe);
+void	destroy_mutex(t_ph *phi);
 
 // --- microlibft.c
 int		ft_isdigit(int c);
@@ -86,7 +93,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 // --- activities.c
 void	*fonction_qui_gere_la_mort(void *phi);
-void    *try_activity(void *infos);
+void    *routine(void *infos);
 void    eating(t_infos *inf);
 void    sleeping(t_infos *inf);
 void    thinking(t_infos *inf);

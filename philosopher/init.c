@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 19:21:44 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/08 21:23:24 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/09 16:38:50 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,36 @@ int	init_phi(t_ph *phi, char **av)
 		error_found("phi->infos malloc failed");
 		return (0);
 	}
-	phi->infos->stop_eat = 0;
-	phi->infos->eat_count = 0;
 	return (1);
 }
 
-void	init_infos(t_ph *phi, int p_id)
+void	init_infos(t_ph *phi, pthread_mutex_t *forks, long time)
 {
-	phi->infos[p_id].phi_id = p_id + 1;
-	phi->infos[p_id].phi_nb = phi->phi_nb;
-	phi->infos[p_id].t_dying = phi->t_dying;
-	phi->infos[p_id].t_eating = phi->t_eating;
-	phi->infos[p_id].t_sleeping = phi->t_sleeping;
-	phi->infos[p_id].eat_max = phi->eat_max;
-	if (phi->infos[p_id].phi_id == phi->infos[p_id].phi_nb)
-		phi->infos[p_id].right_fork = 0;
-	else
-		phi->infos[p_id].right_fork = phi->infos[p_id].phi_id;
-	phi->infos[p_id].left_fork = phi->infos[p_id].phi_id - 1;
-	phi->infos[p_id].last_time_eat = phi->infos->last_time_eat;
+	int	i;
+
+	i = 0;
+	while (i < phi->phi_nb)
+	{
+		phi->infos[i].start_time = time;
+		phi->infos[i].phi_id = i + 1;
+		phi->infos[i].phi_nb = phi->phi_nb;
+		phi->infos[i].t_dying = phi->t_dying;
+		phi->infos[i].t_eating = phi->t_eating;
+		phi->infos[i].t_sleeping = phi->t_sleeping;
+		phi->infos[i].eat_max = phi->eat_max;
+		if (phi->infos[i].phi_id == phi->infos[i].phi_nb)
+			phi->infos[i].right_fork = 0;
+		else
+		phi->infos[i].right_fork = phi->infos[i].phi_id;
+		phi->infos[i].left_fork = phi->infos[i].phi_id - 1;
+		phi->infos[i].last_time_eat = phi->infos->last_time_eat;
+		phi->infos[i].stop_eat = 0;
+		phi->infos[i].eat_count = 0;
+		phi->infos[i].is_dead = 0;
+		phi->infos[i].stop_simulation = 0;
+		phi->infos[i].fork = forks;
+		i++;
+	}
 }
 
 void	create_mutex(t_ph *phi, pthread_mutex_t *forks)
