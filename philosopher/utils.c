@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:09:04 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/09 16:20:06 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/11 23:07:13 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,35 +17,26 @@ void	error_found(char *msg)
 	printf(YELLOW "PHILO ERROR: %s\n" RESET, msg);
 }
 
-long	get_time(t_infos *inf)
-{
-	long	current_time;
+// void	destroy_mutex(t_ph *phi)
+// {
+// 	int	x;
+// 	int	y;
 
-	gettimeofday(&inf->time, NULL);
-	current_time = (inf->time.tv_sec * 1000000) + inf->time.tv_usec;
-	return (current_time);
-}
+// 	y = 0;
+// 	while (phi->infos[y].fork)
+// 	{
+// 		x = 0;
+// 		while (phi[y].infos[y].fork)
+// 		{
+// 			pthread_mutex_destroy(&phi[y]->infos->fork);
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// 	printf("destroy mutex ok\n");
+//}
 
-void	destroy_mutex(t_ph *phi)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (phi->infos[y].fork)
-	{
-		x = 0;
-		while (phi[y].infos[y].fork)
-		{
-			pthread_mutex_destroy(&phi[y].infos[y].fork);
-			x++;
-		}
-		y++;
-	}
-	printf("destroy mutex ok\n");
-}
-
-void	join_threads(t_ph *phi, pthread_t *philo, pthread_t *observe)
+void	join_threads(t_ph *phi, pthread_t *philo)
 {
 	int	i;
 
@@ -53,7 +44,6 @@ void	join_threads(t_ph *phi, pthread_t *philo, pthread_t *observe)
 	while (i < phi->phi_nb)
 	{
 		pthread_join(philo[i], NULL);
-		//pthread_join(observe[i], NULL);
 		i++;
 	}
 }

@@ -75,14 +75,14 @@ long	print_time(t_infos *inf);
 // --- init.c
 int		init_phi(t_ph *phi, char **av);
 void	init_infos(t_ph *phi, pthread_mutex_t *forks, long time);
+
 void	start_simulation(t_ph *phi);
 void	create_mutex(t_ph *phi, pthread_mutex_t *forks);
 
 // --- utils.c
 void	error_found(char *msg);
-long	get_time(t_infos *inf);
 void	init_mutex(t_ph *phi, pthread_mutex_t *forks);
-void	join_threads(t_ph *phi, pthread_t *philo, pthread_t *observe);
+void	join_threads(t_ph *phi, pthread_t *philo);
 void	destroy_mutex(t_ph *phi);
 
 // --- microlibft.c

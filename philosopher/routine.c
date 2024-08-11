@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:30:00 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/09 16:26:49 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/11 21:33:01 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,23 @@ void	*fonction_qui_gere_la_mort(void *infos)
 	while (1)
 	{
 		i = 0;
-		time = print_time(inf) - inf->last_time_eat;
-		//printf("TIME: %ld - DYING: %d\n", time, inf->t_dying / 1000);
 		while (i < inf[i].phi_nb)
 		{
-			if (inf->last_time_eat > inf[i].t_dying / 1000)
+			if (inf->last_time_eat > 0)
 			{
-				printf(RED "%ld PHILO %d IS DEAD\n" RESET, inf->last_time_eat, inf[i].phi_id);
-				i = 0;
-				while (i < inf[i].phi_nb)
+				time = print_time(inf);
+				//printf("TIME: %ld - LAST EAT: %ld\nRESULT: %ld\n", time, inf->last_time_eat, time - inf->last_time_eat);
+				if ((time - inf->last_time_eat)  > inf[i].t_dying / 1000)
 				{
-					inf[i].stop_simulation = 1;
-					i++;
+					printf(RED "%ld PHILO %d IS DEAD\n" RESET, (time - inf->last_time_eat), inf[i].phi_id);
+					i = 0;
+					while (i < inf[i].phi_nb)
+					{
+						inf[i].stop_simulation = 1;
+						i++;
+					}
+					return (NULL);
 				}
-				return (NULL);
 			}
 			i++;
 		}
@@ -45,7 +48,16 @@ void	*fonction_qui_gere_la_mort(void *infos)
 void    *routine(void *infos)
 {
 	t_infos *inf = (t_infos *) infos;
-
+	if (inf->phi_nb == 1)
+	{
+		printf("0 PHILO %d is taking fork 1\n", inf[0].phi_id);
+		usleep(inf->t_dying);
+		printf(RED "%d PHILO %d IS DEAD\n" RESET, inf->t_dying / 1000, inf[0].phi_id);
+		inf->stop_simulation = 1;
+		return (NULL);
+	}
+	if (inf->phi_nb % 2 == 0 && inf->phi_id % 2 == 0)
+		usleep(50);
 	while (1)
 	{
 		if (inf->stop_simulation)
@@ -68,13 +80,13 @@ void	eating(t_infos *inf)
 {
 	long	time;
 
-	// if (inf->phi_nb % 2 == 0 && inf->phi_id % 2 == 0)
-	// 	usleep(150);
 	pthread_mutex_lock(&inf->fork[inf->left_fork]);
 	pthread_mutex_lock(&inf->fork[inf->right_fork]);
-	time = print_time(inf) - inf->start_time;
 	if (inf->stop_simulation)
 		return ;
+	time = print_time(inf) - inf->start_time;
+	printf(CYAN"%ld Philo %d is taking fork 1\n"RESET, time, inf->phi_id);
+	printf(CYAN"%ld Philo %d is taking fork 2\n"RESET, time, inf->phi_id);
 	printf(GREEN"%ld Philo %d is eating\n"RESET, time, inf->phi_id);
 	usleep(inf->t_eating);
 	inf->last_time_eat = print_time(inf);
@@ -91,9 +103,9 @@ void	thinking(t_infos *inf)
 {
 	long	time;
 
-	time = print_time(inf) - inf->start_time;
 	if (inf->stop_simulation)
 		return ;
+	time = print_time(inf) - inf->start_time;
 	printf(YELLOW"%ld Philo %d is thinking\n"RESET, time, inf->phi_id);
 	return ;
 }
@@ -102,9 +114,9 @@ void	sleeping(t_infos *inf)
 {
 	long	time;
 
-	time = print_time(inf) - inf->start_time;
 	if (inf->stop_simulation)
 		return ;
+	time = print_time(inf) - inf->start_time;
 	printf(CYAN"%ld Philo %d is sleeping\n"RESET, time, inf->phi_id);
 	usleep(inf->t_sleeping);
 	return ;

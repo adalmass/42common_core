@@ -8,7 +8,7 @@ SRC = main.c \
 	  
 OBJ = $(SRC:.c=.o)
 
-CC = gcc  #-fsanitize=address
+CC = gcc -Wall -Wextra -Werror -fsanitize=address
 
 .c.o = $(CC) -c -o $(OBJ)
 

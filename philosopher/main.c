@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:14:06 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/09 16:38:20 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/11 22:15:57 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,15 +103,22 @@ void	start_simulation(t_ph *phi)
 		i++;
 	}
 	pthread_create(&observe, NULL, (void *)fonction_qui_gere_la_mort, (void *)phi->infos);
-	join_threads(phi, philo, &observe);
+	join_threads(phi, philo);
+	i = 0;
+	if (phi->infos[i].is_dead)
+	{
+		while (phi->phi_nb)
+		{
+			free (&phi->infos[i]);
+			free (&philo[i]);
+			i++;
+		}
+		free (&phi->infos);
+		free (philo);
+		//free (forks);
+		//ft_exit(phi);
 	//destroy_mutex(phi);
-	// if (phi->infos[i].is_dead)
-	// {
-	// 	free (philo);
-	// 	free (forks);
-	// 	free (observe);
-	// 	//ft_exit(phi);
-	// }
+	}
 }
 
 int	main(int ac, char **av)
