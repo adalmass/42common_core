@@ -71,6 +71,7 @@ typedef struct s_ph
 int		parsing(int ac, char **av);
 int		check_arg(char *arg);
 long	print_time(t_infos *inf);
+void	usleep_remake(t_infos *inf, long sleep);
 
 // --- init.c
 int		init_phi(t_ph *phi, char **av);
