@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:14:06 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/15 11:14:51 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/15 21:43:12 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ void	start_simulation(t_ph *phi)
 		{
 			free (&phi->infos[i]);
 			free (&philo[i]);
+			free (&forks[i]);
 			i++;
 		}
 		free (phi->infos);

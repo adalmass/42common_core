@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:30:00 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/15 11:44:40 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/15 20:41:58 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ void	set_stop_simu(t_infos *inf, long time)
 
 	pthread_mutex_lock(&inf->print);
 	i = 0;
-	norme = inf->last_meal;
+	norme = inf[i].last_meal;
 	printf(RED "%ld PHILO %d IS DEAD\n" RESET, (time - norme), inf[i].phi_id);
 	while (i < inf[i].phi_nb)
 	{
 		inf[i].stop_simulation = 1;
+		//printf("CACA: %p\n", &inf[i].phi_nb);
 		i++;
 	}
 	pthread_mutex_unlock(&inf->print);
@@ -42,10 +43,11 @@ void	*fonction_qui_gere_la_mort(void *infos)
 		i = 0;
 		while (i < inf[i].phi_nb)
 		{
-			if (inf->last_meal > 0)
+			//printf("philo number: %d\n", inf[i].phi_nb);
+			if (inf[i].last_meal > 0)
 			{
 				time = print_time(inf);
-				if ((time - inf->last_meal) > inf[i].t_dying / 1000)
+				if ((time - inf[i].last_meal) > inf[i].t_dying / 1000)
 				{
 					set_stop_simu(inf, time);
 					return (NULL);
