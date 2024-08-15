@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 19:21:44 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/11 23:01:32 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/15 11:19:54 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	init_infos(t_ph *phi, pthread_mutex_t *forks, long time)
 		else
 		phi->infos[i].right_fork = phi->infos[i].phi_id;
 		phi->infos[i].left_fork = phi->infos[i].phi_id - 1;
-		phi->infos[i].last_time_eat = phi->infos->last_time_eat;
+		phi->infos[i].last_meal = phi->infos->last_meal;
 		phi->infos[i].stop_eat = 0;
 		phi->infos[i].eat_count = 0;
 		phi->infos[i].is_dead = 0;
@@ -68,6 +68,30 @@ void	create_mutex(t_ph *phi, pthread_mutex_t *forks)
 	while (i < phi->phi_nb)
 	{
 		pthread_mutex_init(&forks[i], NULL);
+		i++;
+	}
+}
+
+void	init_write_mutex(t_infos *inf)
+{
+	int	i;
+
+	i = 0;
+	while (i < inf->phi_nb)
+	{
+		pthread_mutex_init(&inf[i].print, NULL);
+		i++;
+	}
+}
+
+void	destroy_print_mutex(t_infos *inf)
+{
+	int	i;
+
+	i = 0;
+	while (i < inf->phi_nb)
+	{
+		pthread_mutex_destroy(&inf[i].print);
 		i++;
 	}
 }

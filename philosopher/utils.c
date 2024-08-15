@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:09:04 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/11 23:07:13 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/15 11:08:46 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,18 @@ void	error_found(char *msg)
 	printf(YELLOW "PHILO ERROR: %s\n" RESET, msg);
 }
 
-// void	destroy_mutex(t_ph *phi)
-// {
-// 	int	x;
-// 	int	y;
+void	destroy_mutex(t_ph *phi)
+{
+	int	y;
 
-// 	y = 0;
-// 	while (phi->infos[y].fork)
-// 	{
-// 		x = 0;
-// 		while (phi[y].infos[y].fork)
-// 		{
-// 			pthread_mutex_destroy(&phi[y]->infos->fork);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// 	printf("destroy mutex ok\n");
-//}
+	y = 0;
+	while (phi->infos[y].fork)
+	{
+		pthread_mutex_destroy(phi->infos[y].fork);
+		y++;
+	}
+	printf("destroy mutex ok\n");
+}
 
 void	join_threads(t_ph *phi, pthread_t *philo)
 {
@@ -53,10 +47,26 @@ void	init_mutex(t_ph *phi, pthread_mutex_t *forks)
 	int	i;
 
 	i = 0;
-	//pthread_mutex_init(&phi->infos->print, NULL); 
 	while (i < phi->phi_nb)
 	{
 		pthread_mutex_init(&forks[i], NULL);
 		i++;
+	}
+}
+
+void	usleep_remake(t_infos *inf, long sleep)
+{
+	long	time;
+	long	start_time;
+
+	gettimeofday(&inf->time, NULL);
+	start_time = inf->time.tv_sec * 1000000 + inf->time.tv_usec;
+	while (1)
+	{
+		gettimeofday(&inf->time, NULL);
+		time = inf->time.tv_sec * 1000000 + inf->time.tv_usec;
+		if ((time - start_time) >= sleep)
+			break ;
+		usleep(25);
 	}
 }

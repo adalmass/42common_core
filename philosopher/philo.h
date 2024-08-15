@@ -33,8 +33,8 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-typedef struct s_ph t_ph;
-typedef struct s_infos t_infos;
+typedef struct s_ph		t_ph;
+typedef struct s_infos	t_infos;
 
 typedef struct s_infos
 {
@@ -50,10 +50,10 @@ typedef struct s_infos
 	int				stop_eat;
 	int				stop_simulation;
 	int				is_dead;
-	long			last_time_eat;
+	long			last_meal;
 	long			start_time;
 	struct timeval	time;
-	pthread_mutex_t	*print;
+	pthread_mutex_t	print;
 	pthread_mutex_t	*fork;
 }					t_infos;
 
@@ -71,20 +71,23 @@ typedef struct s_ph
 int		parsing(int ac, char **av);
 int		check_arg(char *arg);
 long	print_time(t_infos *inf);
-void	usleep_remake(t_infos *inf, long sleep);
 
 // --- init.c
 int		init_phi(t_ph *phi, char **av);
 void	init_infos(t_ph *phi, pthread_mutex_t *forks, long time);
+void	init_write_mutex(t_infos *inf);
+void	create_mutex(t_ph *phi, pthread_mutex_t *forks);
+void	destroy_print_mutex(t_infos *inf);
 
 void	start_simulation(t_ph *phi);
-void	create_mutex(t_ph *phi, pthread_mutex_t *forks);
+void	handle_solo_philo(t_infos *inf);
 
 // --- utils.c
 void	error_found(char *msg);
 void	init_mutex(t_ph *phi, pthread_mutex_t *forks);
 void	join_threads(t_ph *phi, pthread_t *philo);
 void	destroy_mutex(t_ph *phi);
+void	usleep_remake(t_infos *inf, long sleep);
 
 // --- microlibft.c
 int		ft_isdigit(int c);
