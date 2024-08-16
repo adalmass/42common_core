@@ -54,6 +54,9 @@ typedef struct s_infos
 	long			start_time;
 	struct timeval	time;
 	pthread_mutex_t	print;
+	pthread_mutex_t	check_l_meal;
+	pthread_mutex_t	check_stop;
+	pthread_mutex_t	check_eat;
 	pthread_mutex_t	*fork;
 }					t_infos;
 
@@ -73,12 +76,10 @@ int		check_arg(char *arg);
 long	print_time(t_infos *inf);
 
 // --- init.c
+int		ft_strlen(char *s);
 int		init_phi(t_ph *phi, char **av);
 void	init_infos(t_ph *phi, pthread_mutex_t *forks, long time);
-void	init_write_mutex(t_infos *inf);
-void	create_mutex(t_ph *phi, pthread_mutex_t *forks);
-void	destroy_print_mutex(t_infos *inf);
-
+void	init_infos2(t_ph *phi, int i);
 void	start_simulation(t_ph *phi);
 void	handle_solo_philo(t_infos *inf);
 
@@ -96,10 +97,15 @@ int		handle_int_limit(char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 // --- activities.c
-void	*fonction_qui_gere_la_mort(void *phi);
-void    *routine(void *infos);
-void    eating(t_infos *inf);
-void    sleeping(t_infos *inf);
-void    thinking(t_infos *inf);
+void	*handle_death(void *phi);
+void	*rout(void *infos);
+void	eating(t_infos *inf);
+void	sleeping(t_infos *inf);
+void	thinking(t_infos *inf);
+
+// --- death.c
+void	*handle_death(void *infos);
+int		check_if_dead(t_infos *inf, int i);
+void	set_stop_simu(t_infos *inf, long time);
 
 #endif

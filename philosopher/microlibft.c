@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:21:36 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/15 09:13:35 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/16 23:20:53 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,6 @@ int	ft_isdigit(int c)
 	if ((c >= '0') && (c <= '9'))
 		return (1);
 	return (0);
-}
-
-int	ft_strlen(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
 }
 
 int	get_result(const char *str, size_t i)

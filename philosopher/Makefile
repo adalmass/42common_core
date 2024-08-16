@@ -4,11 +4,12 @@ SRC = main.c \
 	  init.c \
 	  utils.c \
 	  routine.c \
+	  death.c \
 	  microlibft.c \
-	  
+
 OBJ = $(SRC:.c=.o)
 
-CC = gcc -Wall -Wextra -Werror #-fsanitize=address
+CC = gcc -Wall -Wextra -Werror -fsanitize=address -g
 
 .c.o = $(CC) -c -o $(OBJ)
 

@@ -6,11 +6,21 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 19:21:44 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/15 11:19:54 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/16 23:29:37 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	ft_strlen(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
 int	init_phi(t_ph *phi, char **av)
 {
@@ -31,6 +41,15 @@ int	init_phi(t_ph *phi, char **av)
 	return (1);
 }
 
+void	init_infos2(t_ph *phi, int i)
+{
+	phi->infos[i].phi_id = i + 1;
+	phi->infos[i].stop_eat = 0;
+	phi->infos[i].eat_count = 0;
+	phi->infos[i].is_dead = 0;
+	phi->infos[i].stop_simulation = 0;
+}
+
 void	init_infos(t_ph *phi, pthread_mutex_t *forks, long time)
 {
 	int	i;
@@ -38,60 +57,24 @@ void	init_infos(t_ph *phi, pthread_mutex_t *forks, long time)
 	i = 0;
 	while (i < phi->phi_nb)
 	{
+		init_infos2(phi, i);
 		phi->infos[i].start_time = time;
-		phi->infos[i].phi_id = i + 1;
 		phi->infos[i].phi_nb = phi->phi_nb;
 		phi->infos[i].t_dying = phi->t_dying;
 		phi->infos[i].t_eating = phi->t_eating;
 		phi->infos[i].t_sleeping = phi->t_sleeping;
+		pthread_mutex_init(&phi->infos[i].print, NULL);
+		pthread_mutex_init(&phi->infos[i].check_l_meal, NULL);
+		pthread_mutex_init(&phi->infos[i].check_stop, NULL);
+		pthread_mutex_init(&phi->infos[i].check_eat, NULL);
 		phi->infos[i].eat_max = phi->eat_max;
 		if (phi->infos[i].phi_id == phi->infos[i].phi_nb)
 			phi->infos[i].right_fork = 0;
 		else
-		phi->infos[i].right_fork = phi->infos[i].phi_id;
+			phi->infos[i].right_fork = phi->infos[i].phi_id;
 		phi->infos[i].left_fork = phi->infos[i].phi_id - 1;
 		phi->infos[i].last_meal = phi->infos->last_meal;
-		phi->infos[i].stop_eat = 0;
-		phi->infos[i].eat_count = 0;
-		phi->infos[i].is_dead = 0;
-		phi->infos[i].stop_simulation = 0;
 		phi->infos[i].fork = forks;
-		i++;
-	}
-}
-
-void	create_mutex(t_ph *phi, pthread_mutex_t *forks)
-{
-	int	i;
-
-	i = 0;
-	while (i < phi->phi_nb)
-	{
-		pthread_mutex_init(&forks[i], NULL);
-		i++;
-	}
-}
-
-void	init_write_mutex(t_infos *inf)
-{
-	int	i;
-
-	i = 0;
-	while (i < inf->phi_nb)
-	{
-		pthread_mutex_init(&inf[i].print, NULL);
-		i++;
-	}
-}
-
-void	destroy_print_mutex(t_infos *inf)
-{
-	int	i;
-
-	i = 0;
-	while (i < inf->phi_nb)
-	{
-		pthread_mutex_destroy(&inf[i].print);
 		i++;
 	}
 }

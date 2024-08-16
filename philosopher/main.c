@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:14:06 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/15 21:43:12 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/16 23:19:31 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,18 +67,11 @@ int	parsing(int ac, char **av)
 	return (1);
 }
 
-void	ft_exit(t_ph *phi)
-{
-	free (phi->infos);
-	//destroy_mutex(phi);
-	
-}
-
 long	print_time(t_infos *inf)
 {
 	long	time;
 
-	gettimeofday(&inf->time, NULL);	
+	gettimeofday(&inf->time, NULL);
 	time = (inf->time.tv_sec * 1000) + (inf->time.tv_usec / 1000);
 	return (time);
 }
@@ -96,29 +89,20 @@ void	start_simulation(t_ph *phi)
 	forks = malloc(sizeof(pthread_mutex_t) * phi->phi_nb);
 	init_mutex(phi, forks);
 	time = print_time(phi->infos);
+	phi->infos->last_meal = 0;
 	init_infos(phi, forks, time);
 	while (i < phi->phi_nb)
 	{
-		pthread_create(&philo[i], NULL, (void *)routine, (void *)&phi->infos[i]);
+		pthread_create(&philo[i], NULL, (void *)rout, (void *)&phi->infos[i]);
 		i++;
 	}
-	pthread_create(&observe, NULL, (void *)fonction_qui_gere_la_mort, (void *)phi->infos);
+	pthread_create(&observe, NULL, (void *)handle_death, (void *)phi->infos);
 	join_threads(phi, philo);
-	i = 0;
-	if (phi->infos[i].is_dead)
-	{
-		while (phi->phi_nb)
-		{
-			free (&phi->infos[i]);
-			free (&philo[i]);
-			free (&forks[i]);
-			i++;
-		}
-		free (phi->infos);
-		free (philo);
-		//ft_exit(phi);
-	//destroy_mutex(phi);
-	}
+	pthread_join(observe, NULL);
+	destroy_mutex(phi);
+	free (phi->infos);
+	free (philo);
+	free (forks);
 }
 
 int	main(int ac, char **av)
