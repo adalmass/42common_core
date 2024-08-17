@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 17:08:06 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/17 17:09:35 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/17 20:44:44 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	handle_solo_philo(t_infos *inf)
 	norme_dying = inf->t_dying;
 	printf(CYAN"0 PHILO %ld is taking fork 1\n"RESET, norme_id);
 	usleep_remake(inf, norme_dying);
-	set_stop_simu(inf, norme_dying / 1000);
+	set_stop_simu(inf, (norme_dying / 1000) + 1);
 }
 
 int	rout2(t_infos *inf)
