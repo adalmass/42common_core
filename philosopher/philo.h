@@ -98,15 +98,17 @@ int		handle_int_limit(char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 // --- activities.c
-void	*handle_death(void *phi);
+int		eating2(t_infos *inf);
+int		rout2(t_infos *inf);
 void	*rout(void *infos);
+void	*handle_death(void *phi);
 void	eating(t_infos *inf);
 void	sleeping(t_infos *inf);
 void	thinking(t_infos *inf);
 
 // --- death.c
-void	*handle_death(void *infos);
 int		check_if_dead(t_infos *inf, int i);
+void	*handle_death(void *infos);
 void	set_stop_simu(t_infos *inf, long time);
 
 #endif
