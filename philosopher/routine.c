@@ -14,17 +14,14 @@
 
 void	handle_solo_philo(t_infos *inf)
 {
-	long	norme;
+	long	norme_dying;
 	long	norme_id;
 
-	printf(CYAN"0 PHILO %d is taking fork 1\n"RESET, inf[0].phi_id);
-	usleep_remake(inf, inf->t_dying);
-	norme = inf->t_dying;
 	norme_id = inf[0].phi_id;
-	printf(RED "%ld PHILO %ld IS DEAD\n" RESET, norme / 1000, norme_id);
-	pthread_mutex_lock(&inf->check_stop);
-	inf->stop_simulation = 1;
-	pthread_mutex_unlock(&inf->check_stop);
+	norme_dying = inf->t_dying;
+	printf(CYAN"0 PHILO %ld is taking fork 1\n"RESET, norme_id);
+	usleep_remake(inf, norme_dying);
+	set_stop_simu(inf, norme_dying / 1000);
 }
 
 void	*rout(void *infos)
@@ -38,7 +35,7 @@ void	*rout(void *infos)
 		return (NULL);
 	}
 	if (inf->phi_id % 2 == 0)
-		usleep(100);
+		usleep(150);
 	while (1)
 	{
 		pthread_mutex_lock(&inf->check_stop);
@@ -77,12 +74,12 @@ void	eating(t_infos *inf)
 		return ;
 	}
 	pthread_mutex_unlock(&inf->check_stop);
-	time = print_time(inf) - inf->start_time;
+	time = get_time(inf) - inf->start_time;
 	printf("%ld Philo %d has taken forks\n", time, inf->phi_id);
 	printf(GREEN"%ld Philo %d is eating\n"RESET, time, inf->phi_id);
 	usleep_remake(inf, inf->t_eating);
 	pthread_mutex_lock(&inf->check_l_meal);
-	inf->last_meal = print_time(inf);
+	inf->last_meal = get_time(inf);
 	pthread_mutex_unlock(&inf->check_l_meal);
 	if (inf->eat_max)
 		inf->eat_count++;
@@ -115,7 +112,7 @@ long	time;
 		return ;
 	}
 	pthread_mutex_unlock(&inf->check_stop);
-	time = print_time(inf) - inf->start_time;
+	time = get_time(inf) - inf->start_time;
 	pthread_mutex_lock(&inf->check_stop);
 	if (inf->stop_simulation)
 	{
@@ -138,7 +135,7 @@ void	sleeping(t_infos *inf)
 		return ;
 	}
 	pthread_mutex_unlock(&inf->check_stop);
-	time = print_time(inf) - inf->start_time;
+	time = get_time(inf) - inf->start_time;
 	pthread_mutex_lock(&inf->check_stop);
 	if (inf->stop_simulation)
 	{

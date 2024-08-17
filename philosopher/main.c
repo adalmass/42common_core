@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:14:06 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/16 23:19:31 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/17 14:40:59 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,9 @@ int	check_arg(char *arg)
 		return (0);
 	while (arg[x])
 	{
-		if (arg[x] == '-')
-			x++;
 		if (!ft_isdigit(arg[x]))
 		{
-			error_found("args must be digits");
+			error_found("args must be positives digits");
 			return (0);
 		}
 		x++;
@@ -67,7 +65,7 @@ int	parsing(int ac, char **av)
 	return (1);
 }
 
-long	print_time(t_infos *inf)
+long	get_time(t_infos *inf)
 {
 	long	time;
 
@@ -88,7 +86,7 @@ void	start_simulation(t_ph *phi)
 	philo = malloc(sizeof(pthread_t) * phi->phi_nb);
 	forks = malloc(sizeof(pthread_mutex_t) * phi->phi_nb);
 	init_mutex(phi, forks);
-	time = print_time(phi->infos);
+	time = get_time(phi->infos);
 	phi->infos->last_meal = 0;
 	init_infos(phi, forks, time);
 	while (i < phi->phi_nb)

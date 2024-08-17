@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 19:21:44 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/16 23:29:37 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/17 15:55:03 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	init_phi(t_ph *phi, char **av)
 		error_found("phi->infos malloc failed");
 		return (0);
 	}
+	phi->infos->meal_finished = 0;
 	return (1);
 }
 

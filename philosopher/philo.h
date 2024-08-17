@@ -48,6 +48,7 @@ typedef struct s_infos
 	int				eat_max;
 	int				eat_count;
 	int				stop_eat;
+	int				meal_finished;
 	int				stop_simulation;
 	int				is_dead;
 	long			last_meal;
@@ -73,7 +74,7 @@ typedef struct s_ph
 // --- parsing.c
 int		parsing(int ac, char **av);
 int		check_arg(char *arg);
-long	print_time(t_infos *inf);
+long	get_time(t_infos *inf);
 
 // --- init.c
 int		ft_strlen(char *s);
