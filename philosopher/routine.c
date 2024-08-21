@@ -82,8 +82,7 @@ int	eating2(t_infos *inf)
 	if (inf->eat_max && inf->eat_count == inf->eat_max)
 	{
 		pthread_mutex_lock(&inf->check_eat);
-		//if (inf->phi_id == inf->phi_nb)
-			inf->stop_eat = 1;
+		inf->stop_eat = 1;
 		pthread_mutex_unlock(&inf->check_eat);
 	}
 	return (1);
