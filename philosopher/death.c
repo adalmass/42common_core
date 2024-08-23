@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 23:25:19 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/17 16:22:17 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/23 16:29:07 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,33 @@ void	set_stop_simu(t_infos *inf, long time)
 {
 	int	i;
 
-	pthread_mutex_lock(&inf->print);
 	i = 0;
+	pthread_mutex_lock(&inf->print);
 	if (time != -1)
 		printf(RED "%ld PHILO %d IS DEAD\n" RESET, time, inf[i].phi_id);
-	while (i < inf->phi_nb)
-	{
-		pthread_mutex_lock(&inf[i].check_stop);
-		inf[i].stop_simulation = 1;
-		pthread_mutex_unlock(&inf[i].check_stop);
-		i++;
-	}
 	pthread_mutex_unlock(&inf->print);
+	// while (i < inf->phi_nb)
+	// {
+		pthread_mutex_lock(&inf->ph->check_stop);
+		inf->ph->stop_simulation = 1;
+		pthread_mutex_unlock(&inf->ph->check_stop);
+	// }
 }
 
 int	check_if_dead(t_infos *inf, int i)
 {
-	long	time;
+	long long	time;
 
 	pthread_mutex_lock(&inf[i].check_l_meal);
 	if (inf[i].last_meal != 0)
 	{
+		pthread_mutex_unlock(&inf[i].check_l_meal);
+		pthread_mutex_lock(&inf[i].check_l_meal);
 		time = get_time(inf);
 		if ((time - inf[i].last_meal) > inf[i].t_dying / 1000)
 		{
-			set_stop_simu(inf, time - inf->start_time);
 			pthread_mutex_unlock(&inf[i].check_l_meal);
+			set_stop_simu(inf, time - inf->start_time);
 			return (1);
 		}
 	}

@@ -56,9 +56,9 @@ typedef struct s_infos
 	struct timeval	time;
 	pthread_mutex_t	print;
 	pthread_mutex_t	check_l_meal;
-	pthread_mutex_t	check_stop;
 	pthread_mutex_t	check_eat;
 	pthread_mutex_t	*fork;
+	t_ph			*ph;
 }					t_infos;
 
 typedef struct s_ph
@@ -67,8 +67,10 @@ typedef struct s_ph
 	int				t_sleeping;
 	int				t_dying;
 	int				eat_max;
+	int				stop_simulation;
 	int				phi_nb;
 	t_infos			*infos;
+	pthread_mutex_t	check_stop;
 }					t_ph;
 
 // --- parsing.c
@@ -82,7 +84,10 @@ int		init_phi(t_ph *phi, char **av);
 void	init_infos(t_ph *phi, pthread_mutex_t *forks, long time);
 void	init_infos2(t_ph *phi, int i);
 void	start_simulation(t_ph *phi);
-void	handle_solo_philo(t_infos *inf);
+int		handle_solo_philo(t_infos *inf);
+long	ptf_time(t_infos *inf);
+int		check_stop(t_infos *inf);
+int		check_stop_forks(t_infos *inf, int fork);
 
 // --- utils.c
 void	error_found(char *msg);
@@ -90,6 +95,7 @@ void	init_mutex(t_ph *phi, pthread_mutex_t *forks);
 void	join_threads(t_ph *phi, pthread_t *philo);
 void	destroy_mutex(t_ph *phi);
 void	usleep_remake(t_infos *inf, long sleep);
+int		print_infos(t_infos *inf, int print);
 
 // --- microlibft.c
 int		ft_isdigit(int c);
@@ -98,11 +104,10 @@ int		handle_int_limit(char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 // --- activities.c
-int		eating2(t_infos *inf);
-int		rout2(t_infos *inf);
 void	*rout(void *infos);
 void	*handle_death(void *phi);
 void	eating(t_infos *inf);
+void	eating2(t_infos *inf);
 void	sleeping(t_infos *inf);
 void	thinking(t_infos *inf);
 

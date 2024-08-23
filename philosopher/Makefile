@@ -10,12 +10,12 @@ SRC = main.c \
 
 OBJ = $(SRC:.c=.o)
 
-CC = gcc -Wall -Wextra -Werror
+CC = gcc -Wall -Wextra -Werror #-fsanitize=thread -g
 
 .c.o = $(CC) -c -o $(OBJ)
 
 $(NAME): $(OBJ)
-	@${CC} $(OBJ) -o $(NAME) -lreadline -D_REENTRANT
+	@${CC} $(OBJ) -o $(NAME)
 	@echo "Archivage terminé [philosopher]"
 
 all: $(NAME)

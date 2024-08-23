@@ -17,120 +17,83 @@ void	*rout(void *infos)
 	t_infos	*inf;
 
 	inf = (t_infos *) infos;
-	if (inf->phi_nb == 1)
-	{
-		handle_solo_philo(inf);
+	if (handle_solo_philo(inf))
 		return (NULL);
-	}
 	if (inf->phi_id % 2 == 0)
 		usleep(150);
 	while (1)
 	{
-		pthread_mutex_lock(&inf->check_stop);
-		if (inf->stop_simulation)
+		if (check_stop(inf))
 			break ;
-		pthread_mutex_unlock(&inf->check_stop);
 		eating(inf);
-		pthread_mutex_lock(&inf->check_stop);
-		if (!rout2(inf))
+		if (check_stop(inf))
+			break ;
+		sleeping(inf);
+		if (check_stop(inf))
+			break ;
+		thinking(inf);
+		if (check_stop(inf))
 			break ;
 	}
-	pthread_mutex_unlock(&inf->check_stop);
 	return (NULL);
 }
 
 void	eating(t_infos *inf)
 {
-	long	time;
-
 	pthread_mutex_lock(&inf->fork[inf->right_fork]);
-	pthread_mutex_lock(&inf->fork[inf->left_fork]);
-	pthread_mutex_lock(&inf->check_stop);
-	if (inf->stop_simulation)
-	{
-		pthread_mutex_unlock(&inf->fork[inf->left_fork]);
-		pthread_mutex_unlock(&inf->fork[inf->right_fork]);
-		pthread_mutex_unlock(&inf->check_stop);
+	if (check_stop_forks(inf, 1))
 		return ;
-	}
-	pthread_mutex_unlock(&inf->check_stop);
-	time = get_time(inf) - inf->start_time;
-	printf("%ld Philo %d has taken forks\n", time, inf->phi_id);
-	printf(GREEN"%ld Philo %d is eating\n"RESET, time, inf->phi_id);
+	print_infos(inf, 4);
+	pthread_mutex_lock(&inf->fork[inf->left_fork]);
+	if (check_stop_forks(inf, 2))
+		return ;
+	print_infos(inf, 5);
+	if (check_stop_forks(inf, 2))
+		return ;
+	print_infos(inf, 1);
 	pthread_mutex_lock(&inf->check_l_meal);
 	inf->last_meal = get_time(inf);
 	pthread_mutex_unlock(&inf->check_l_meal);
 	usleep_remake(inf, inf->t_eating);
-	if (!eating2(inf))
+	if (check_stop_forks(inf, 2))
 		return ;
+	pthread_mutex_unlock(&inf->fork[inf->left_fork]);
+	pthread_mutex_unlock(&inf->fork[inf->right_fork]);
+	eating2(inf);
 	return ;
 }
 
-int	eating2(t_infos *inf)
+void	eating2(t_infos *inf)
 {
+	if (check_stop(inf))
+		return ;
 	if (inf->eat_max)
 		inf->eat_count++;
-	pthread_mutex_unlock(&inf->fork[inf->left_fork]);
-	pthread_mutex_unlock(&inf->fork[inf->right_fork]);
-	pthread_mutex_lock(&inf->check_stop);
-	if (inf->stop_simulation)
+	pthread_mutex_lock(&inf->check_eat);
+	if (inf->eat_max && (inf->stop_eat == 0) && inf->eat_count == inf->eat_max)
 	{
-		pthread_mutex_unlock(&inf->check_stop);
-		return (0);
-	}
-	pthread_mutex_unlock(&inf->check_stop);
-	if (inf->eat_max && inf->eat_count == inf->eat_max)
-	{
-		pthread_mutex_lock(&inf->check_eat);
 		inf->stop_eat = 1;
 		pthread_mutex_unlock(&inf->check_eat);
+		return ;
 	}
-	return (1);
+	pthread_mutex_unlock(&inf->check_eat);
+	return ;
 }
 
 void	thinking(t_infos *inf)
 {
-	long	time;
-
-	pthread_mutex_lock(&inf->check_stop);
-	if (inf->stop_simulation)
-	{
-		pthread_mutex_unlock(&inf->check_stop);
+	if (check_stop(inf))
 		return ;
-	}
-	pthread_mutex_unlock(&inf->check_stop);
-	time = get_time(inf) - inf->start_time;
-	pthread_mutex_lock(&inf->check_stop);
-	if (inf->stop_simulation)
-	{
-		pthread_mutex_unlock(&inf->check_stop);
-		return ;
-	}
-	pthread_mutex_unlock(&inf->check_stop);
-	printf(YELLOW"%ld Philo %d is thinking\n"RESET, time, inf->phi_id);
+	print_infos(inf, 2);
 	return ;
 }
 
 void	sleeping(t_infos *inf)
 {
-	long	time;
-
-	pthread_mutex_lock(&inf->check_stop);
-	if (inf->stop_simulation)
-	{
-		pthread_mutex_unlock(&inf->check_stop);
+	if (check_stop(inf))
 		return ;
-	}
-	pthread_mutex_unlock(&inf->check_stop);
-	time = get_time(inf) - inf->start_time;
-	pthread_mutex_lock(&inf->check_stop);
-	if (inf->stop_simulation)
-	{
-		pthread_mutex_unlock(&inf->check_stop);
-		return ;
-	}
-	pthread_mutex_unlock(&inf->check_stop);
-	printf(CYAN"%ld Philo %d is sleeping\n"RESET, time, inf->phi_id);
+	print_infos(inf, 3);
 	usleep_remake(inf, inf->t_sleeping);
+
 	return ;
 }

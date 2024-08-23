@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:14:06 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/17 17:36:54 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/23 16:33:01 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,13 @@ void	start_simulation(t_ph *phi)
 	pthread_t		observe;
 	pthread_mutex_t	*forks;
 
-	i = 0;
 	philo = malloc(sizeof(pthread_t) * phi->phi_nb);
 	forks = malloc(sizeof(pthread_mutex_t) * phi->phi_nb);
 	init_mutex(phi, forks);
 	time = get_time(phi->infos);
 	phi->infos->last_meal = 0;
 	init_infos(phi, forks, time);
+	i = 0;
 	while (i < phi->phi_nb)
 	{
 		pthread_create(&philo[i], NULL, (void *)rout, (void *)&phi->infos[i]);
