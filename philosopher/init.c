@@ -6,13 +6,13 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 19:21:44 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/23 16:14:56 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/23 18:20:37 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long	ptf_time(t_infos *inf)
+long	p_time(t_infos *inf)
 {
 	long	time;
 
@@ -49,6 +49,7 @@ int	init_phi(t_ph *phi, char **av)
 	phi->infos->meal_finished = 0;
 	phi->stop_simulation = 0;
 	pthread_mutex_init(&phi->check_stop, NULL);
+	pthread_mutex_init(&phi->print, NULL);
 	return (1);
 }
 
@@ -74,9 +75,7 @@ void	init_infos(t_ph *phi, pthread_mutex_t *forks, long time)
 		phi->infos[i].t_dying = phi->t_dying;
 		phi->infos[i].t_eating = phi->t_eating;
 		phi->infos[i].t_sleeping = phi->t_sleeping;
-		pthread_mutex_init(&phi->infos[i].print, NULL);
 		pthread_mutex_init(&phi->infos[i].check_l_meal, NULL);
-		//pthread_mutex_init(&phi->infos[i].check_stop, NULL);
 		pthread_mutex_init(&phi->infos[i].check_eat, NULL);
 		phi->infos[i].eat_max = phi->eat_max;
 		if (phi->infos[i].phi_id == phi->infos[i].phi_nb)

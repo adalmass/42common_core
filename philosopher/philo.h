@@ -19,7 +19,7 @@
 # define BLUE    "\x1b[34m"
 # define MAGENTA "\x1b[35m"
 # define CYAN    "\x1b[36m"
-# define RESET   "\x1b[0m"
+# define RST   "\x1b[0m"
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -54,7 +54,6 @@ typedef struct s_infos
 	long			last_meal;
 	long			start_time;
 	struct timeval	time;
-	pthread_mutex_t	print;
 	pthread_mutex_t	check_l_meal;
 	pthread_mutex_t	check_eat;
 	pthread_mutex_t	*fork;
@@ -71,6 +70,7 @@ typedef struct s_ph
 	int				phi_nb;
 	t_infos			*infos;
 	pthread_mutex_t	check_stop;
+	pthread_mutex_t	print;
 }					t_ph;
 
 // --- parsing.c
@@ -85,7 +85,7 @@ void	init_infos(t_ph *phi, pthread_mutex_t *forks, long time);
 void	init_infos2(t_ph *phi, int i);
 void	start_simulation(t_ph *phi);
 int		handle_solo_philo(t_infos *inf);
-long	ptf_time(t_infos *inf);
+long	p_time(t_infos *inf);
 int		check_stop(t_infos *inf);
 int		check_stop_forks(t_infos *inf, int fork);
 

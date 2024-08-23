@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 20:09:04 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/23 16:20:25 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/23 18:23:23 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	error_found(char *msg)
 {
-	printf(YELLOW "PHILO ERROR: %s\n" RESET, msg);
+	printf(YELLOW "PHILO ERROR: %s\n" RST, msg);
 }
 
 void	destroy_mutex(t_ph *phi)
@@ -23,10 +23,10 @@ void	destroy_mutex(t_ph *phi)
 
 	y = 0;
 	pthread_mutex_destroy(&phi->check_stop);
+	pthread_mutex_destroy(&phi->print);
 	while (y < phi->phi_nb)
 	{
 		pthread_mutex_destroy(phi->infos[y].fork);
-		pthread_mutex_destroy(&phi->infos[y].print);
 		pthread_mutex_destroy(&phi->infos[y].check_eat);
 		pthread_mutex_destroy(&phi->infos[y].check_l_meal);
 		y++;
@@ -64,19 +64,14 @@ void	usleep_remake(t_infos *inf, long sleep)
 	long	result;
 
 	gettimeofday(&inf->time, NULL);
-	start_time = inf->time.tv_sec * 1000000 + inf->time.tv_usec;
+	start_time = (inf->time.tv_sec * 1000000) + inf->time.tv_usec;
 	result = 0;
 	while (result <= sleep)
 	{
-		pthread_mutex_lock(&inf->ph->check_stop);
-		if (inf->ph->stop_simulation == 1)
-		{
-			pthread_mutex_unlock(&inf->ph->check_stop);
+		if (check_stop(inf))
 			return ;
-		}
-		pthread_mutex_unlock(&inf->ph->check_stop);
 		gettimeofday(&inf->time, NULL);
-		time = inf->time.tv_sec * 1000000 + inf->time.tv_usec;
+		time = (inf->time.tv_sec * 1000000) + inf->time.tv_usec;
 		result = time - start_time;
 		usleep(10);
 	}

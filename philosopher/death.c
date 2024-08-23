@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 23:25:19 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/23 16:29:07 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/23 18:20:15 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,15 @@ void	set_stop_simu(t_infos *inf, long time)
 	int	i;
 
 	i = 0;
-	pthread_mutex_lock(&inf->print);
 	if (time != -1)
-		printf(RED "%ld PHILO %d IS DEAD\n" RESET, time, inf[i].phi_id);
-	pthread_mutex_unlock(&inf->print);
-	// while (i < inf->phi_nb)
-	// {
-		pthread_mutex_lock(&inf->ph->check_stop);
-		inf->ph->stop_simulation = 1;
-		pthread_mutex_unlock(&inf->ph->check_stop);
-	// }
+	{
+		pthread_mutex_lock(&inf->ph->print);
+		printf(RED "%ld PHILO %d IS DEAD\n" RST, time, inf[i].phi_id);
+		pthread_mutex_unlock(&inf->ph->print);
+	}
+	pthread_mutex_lock(&inf->ph->check_stop);
+	inf->ph->stop_simulation = 1;
+	pthread_mutex_unlock(&inf->ph->check_stop);
 }
 
 int	check_if_dead(t_infos *inf, int i)
