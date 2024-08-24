@@ -6,7 +6,7 @@
 /*   By: aldalmas <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 17:08:06 by aldalmas          #+#    #+#             */
-/*   Updated: 2024/08/23 18:22:29 by aldalmas         ###   ########.fr       */
+/*   Updated: 2024/08/24 22:32:54 by aldalmas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,25 @@ int	print_forks(t_infos *inf, int print)
 	if (print == 4)
 	{
 		pthread_mutex_lock(&inf->ph->print);
+		if (check_stop(inf))
+		{
+			pthread_mutex_unlock(&inf->ph->print);
+			return (0);
+		}
 		printf("%ld Philo %d has taken fork 1\n", p_time(inf), inf->phi_id);
 		pthread_mutex_unlock(&inf->ph->print);
 	}
-	if (check_stop(inf))
-		return (0);
 	if (print == 5)
 	{
 		pthread_mutex_lock(&inf->ph->print);
+		if (check_stop(inf))
+		{
+			pthread_mutex_unlock(&inf->ph->print);
+			return (0);
+		}
 		printf("%ld Philo %d has taken fork 2\n", p_time(inf), inf->phi_id);
 		pthread_mutex_unlock(&inf->ph->print);
 	}
-	if (check_stop(inf))
-		return (0);
 	return (1);
 }
 
@@ -59,22 +65,33 @@ int	print_infos(t_infos *inf, int print)
 	if (print == 1)
 	{
 		pthread_mutex_lock(&inf->ph->print);
+		if (check_stop(inf))
+		{
+			pthread_mutex_unlock(&inf->ph->print);
+			return (0);
+		}
 		printf(GREEN"%ld Philo %d is eating\n"RST, p_time(inf), inf->phi_id);
 		pthread_mutex_unlock(&inf->ph->print);
 	}
-	if (check_stop(inf))
-		return (0);
 	if (print == 2)
 	{
 		pthread_mutex_lock(&inf->ph->print);
+		if (check_stop(inf))
+		{
+			pthread_mutex_unlock(&inf->ph->print);
+			return (0);
+		}
 		printf(YELLOW"%ld Philo %d is thinking\n"RST, p_time(inf), inf->phi_id);
 		pthread_mutex_unlock(&inf->ph->print);
 	}
-	if (check_stop(inf))
-		return (0);
 	if (print == 3)
 	{
 		pthread_mutex_lock(&inf->ph->print);
+		if (check_stop(inf))
+		{
+			pthread_mutex_unlock(&inf->ph->print);
+			return (0);
+		}
 		printf(CYAN"%ld Philo %d is sleeping\n"RST, p_time(inf), inf->phi_id);
 		pthread_mutex_unlock(&inf->ph->print);
 	}
@@ -98,11 +115,11 @@ int	check_stop_forks(t_infos *inf, int fork)
 	pthread_mutex_lock(&inf->ph->check_stop);
 	if (inf->ph->stop_simulation == 1)
 	{
+		pthread_mutex_unlock(&inf->ph->check_stop);
 		if (fork == 1 || fork == 2)
 			pthread_mutex_unlock(&inf->fork[inf->right_fork]);
 		if (fork == 2)
 			pthread_mutex_unlock(&inf->fork[inf->left_fork]);
-		pthread_mutex_unlock(&inf->ph->check_stop);
 		return (1);
 	}
 	pthread_mutex_unlock(&inf->ph->check_stop);

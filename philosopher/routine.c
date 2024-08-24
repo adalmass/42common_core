@@ -41,8 +41,6 @@ void	*rout(void *infos)
 void	eating(t_infos *inf)
 {
 	pthread_mutex_lock(&inf->fork[inf->right_fork]);
-	if (check_stop_forks(inf, 1))
-		return ;
 	if (!print_infos(inf, 4))
 		return ;
 	pthread_mutex_lock(&inf->fork[inf->left_fork]);
@@ -55,11 +53,14 @@ void	eating(t_infos *inf)
 	if (!print_infos(inf, 1))
 		return ;
 	pthread_mutex_lock(&inf->check_l_meal);
+	if (check_stop(inf))
+	{
+		pthread_mutex_unlock(&inf->check_l_meal);
+		return ;
+	}
 	inf->last_meal = get_time(inf);
 	pthread_mutex_unlock(&inf->check_l_meal);
 	usleep_remake(inf, inf->t_eating);
-	if (check_stop_forks(inf, 2))
-		return ;
 	pthread_mutex_unlock(&inf->fork[inf->left_fork]);
 	pthread_mutex_unlock(&inf->fork[inf->right_fork]);
 	eating2(inf);
@@ -75,6 +76,11 @@ void	eating2(t_infos *inf)
 	pthread_mutex_lock(&inf->check_eat);
 	if (inf->eat_max && (inf->stop_eat == 0) && inf->eat_count == inf->eat_max)
 	{
+		if (check_stop(inf))
+		{
+			pthread_mutex_unlock(&inf->check_l_meal);
+			return ;
+		}
 		inf->stop_eat = 1;
 		pthread_mutex_unlock(&inf->check_eat);
 		return ;

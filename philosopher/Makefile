@@ -11,7 +11,6 @@ SRC = main.c \
 OBJ = $(SRC:.c=.o)
 
 CC = gcc -Wall -Wextra -Werror
-
 .c.o = $(CC) -c -o $(OBJ)
 
 $(NAME): $(OBJ)
